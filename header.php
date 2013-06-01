@@ -18,20 +18,26 @@
 </head>
 
 <body <?php body_class(); ?>>
-<div id="page" class="hfeed site">
-	<?php do_action( 'before' ); ?>
-	<header id="masthead" class="site-header" role="banner">
-		<div class="site-branding">
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<h2 class="site-description"><?php bloginfo( 'description' ); ?></h2>
-		</div>
 
-		<nav id="site-navigation" class="navigation-main" role="navigation">
-			<h1 class="menu-toggle"><?php _e( 'Menu', 'anamorhpic' ); ?></h1>
-			<div class="screen-reader-text skip-link"><a href="#content" title="<?php esc_attr_e( 'Skip to content', 'anamorhpic' ); ?>"><?php _e( 'Skip to content', 'anamorhpic' ); ?></a></div>
-
-			<?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
-		</nav><!-- #site-navigation -->
-	</header><!-- #masthead -->
-
-	<div id="main" class="site-main">
+  <div id="header_area" class="grid">
+    <div class="page">
+      <?php do_action( 'before' ); ?>
+      
+      <header id="header" role="banner">
+        <h1 id="logo" class="">
+          <a href="<?php echo esc_url( home_url( '/' ) ); ?>" 
+             title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" 
+             rel="home"><?php bloginfo( 'name' ); ?>
+          </a>
+        </h1>
+        <p class="tagline"><?php bloginfo( 'description' ); ?></p>
+      </header><!-- #header -->
+    </div>
+  </div><!-- #header_area -->
+  <div id="navigation_area" class="grid">
+    <div class="page">
+       <nav role="navigation">
+         <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+       </nav><!-- #site-navigation -->
+    </div>
+  </div><!-- #navigation_area -->
