@@ -14,7 +14,7 @@
  * If the current post is protected by a password and
  * the visitor has not yet entered the password we will
  * return early without loading the comments.
- */
+ *
 if ( post_password_required() )
 	return;
 ?>
@@ -46,7 +46,7 @@ if ( post_password_required() )
 				 * If you want to overload this in a child theme then you can
 				 * define anamorhpic_comment() and that will be used instead.
 				 * See anamorhpic_comment() in inc/template-tags.php for more.
-				 */
+				 *
 				wp_list_comments( array( 'callback' => 'anamorhpic_comment' ) );
 			?>
 		</ol><!-- .comment-list -->
@@ -71,3 +71,4 @@ if ( post_password_required() )
 	<?php comment_form(); ?>
 
 </div><!-- #comments -->
+ */
