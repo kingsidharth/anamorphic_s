@@ -37,7 +37,18 @@
   <div id="navigation_area" class="grid">
     <div class="page">
        <nav role="navigation">
-         <?php wp_nav_menu( array( 'theme_location' => 'primary' ) ); ?>
+         <?php /* 
+           $primary_menu_default = array(
+              'theme_location'  => 'primary',
+              'container'       => 'nav',
+              'container_class' => '',
+              'container_id'    => '',
+              'menu_class'      => 'menu',
+              'fallback_cb'     => 'wp_page_menu',
+              'items_wrap'      => '<ul id="%1$s" class="%2$s nav nav--blocked">%3$s</ul>',
+            );
+            wp_nav_menu( $primary_menu_default ); */ 
+          ?>
        </nav><!-- #site-navigation -->
     </div>
   </div><!-- #navigation_area -->
