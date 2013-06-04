@@ -24,31 +24,31 @@
       <?php do_action( 'before' ); ?>
       
       <header id="header" role="banner">
-        <h1 id="logo" class="">
+      <div class="grid__item one-third">
+        <h1 id="main-logo" class="">
           <a href="<?php echo esc_url( home_url( '/' ) ); ?>" 
              title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" 
-             rel="home"><?php bloginfo( 'name' ); ?>
+             rel="home" class="brand"><?php bloginfo( 'name' ); ?>
           </a>
         </h1>
-        <p class="tagline"><?php bloginfo( 'description' ); ?></p>
+      </div><?php if(is_home()) { ?><!--
+      --><div id="intro_header" class="grid__item two-thirds">
+          <p>A collection of film and book reviews and some random writings. <a href="/why">Why?</a></p>
+        </div>
+      <?php } ?>
       </header><!-- #header -->
     </div>
   </div><!-- #header_area -->
   <div id="navigation_area" class="grid">
     <div class="page">
        <nav role="navigation">
-         <?php /* 
-           $primary_menu_default = array(
-              'theme_location'  => 'primary',
-              'container'       => 'nav',
-              'container_class' => '',
-              'container_id'    => '',
-              'menu_class'      => 'menu',
-              'fallback_cb'     => 'wp_page_menu',
-              'items_wrap'      => '<ul id="%1$s" class="%2$s nav nav--blocked">%3$s</ul>',
-            );
-            wp_nav_menu( $primary_menu_default ); */ 
-          ?>
+          <ul class="nav nav--block">
+            <?php if(!is_home()) {?><li><a href="/">Home</a></li><?php } ?>
+            <li><a href="">About + Why?</a></li>
+            <li><a href="">Film Reviews</a></li>
+            <li><a href="">Book Reviews</a></li>
+            <li><a href="">Other Stuff</a></li>
+          </ul>            
        </nav><!-- #site-navigation -->
     </div>
   </div><!-- #navigation_area -->

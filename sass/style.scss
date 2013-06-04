@@ -12,8 +12,47 @@ License: GNU General Public License
 @import "defaults";
 @import "../vendor/inuit";
 
+@import "compass";
+
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic);
+
+$maroon: #7E3637;
+$maroon-rgb: rgb(126, 54, 55);
+
+$red: #CF3F41;
+$red-rgb: rgb(207, 63, 65);
+
+$blue: #3FCFCD;
+$blue-rgb: rgb(63, 207, 205);
+
+$green: #367E7D;
+$green-rgb: rgb(54, 126, 125);
+
+$white: #FAFAFA;
+
+$black: adjust-lightness($maroon, -25%);
+
+@mixin sans {
+  font-family: 'Lato', 'Lucida Grande', 'Lucida Sans', Tahoma, sans-serif;
+}
+
+body {
+  color: $black;
+  background: $white;
+  @include sans;
+}
 
 .page {
   max-width: 800px;
-  margin: 0 auto;
 }
+
+.brand {
+  background: url('assets/images/anamorphic-logo.png') transparent top left no-repeat;
+  background-size: contain;
+  display: inline-block;
+  text-indent: -9999px;
+  width: 100%;
+}
+  #main-logo {
+    margin-bottom: 0;
+  }
