@@ -8,13 +8,47 @@
  */
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
-<head>
-<meta charset="<?php bloginfo( 'charset' ); ?>" />
-<meta name="viewport" content="width=device-width" />
-<title><?php wp_title( '|', true, 'right' ); ?></title>
-<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+  <title><?php if(!is_home()) {
+    the_title();
+    echo ' - ';
+   }
+   echo bloginfo('name');
+  ?>
+  </title>
 
-<?php wp_head(); ?>
+  <?php wp_head(); ?>
+  
+  <meta name="viewport" content="width=device-width" />
+  <meta charset="<?php bloginfo( 'charset' ); ?>" />
+
+  <!-- Open Graph Data -->
+  <meta property="fb:app_id" content="502579883131350" /> 
+  <?php global $post;
+    if(is_single()) {
+    $meta_head = get_post_meta( $post->ID ); ?>
+  <meta property="og:type"                content="article" /> 
+  <meta property="og:url"                 content="<?php the_permalink(); ?>" /> 
+  <meta property="og:title"               content="<?php the_title(); ?>" /> 
+  <meta property="og:image"               content="<?php echo $meta_head[anamorphic_imageurl][0]; ?>" /> 
+  <meta property="article:author"         content="http://www.kingsidharth.com"/>
+  <meta property="article:published_time" content="<?php echo get_the_date('c'); ?>"/>
+  <meta property="article:modified_time"  content="<?php echo the_modified_date('c'); ?>"/>
+  <meta property="og:description"         content="<?php echo $meta_head[anamorphic_subheading][0]; ?>"/>
+  <?php #end_is_single() 
+    } elseif(is_front_page()) { ?>
+  <meta property="og:type"                content="website" /> 
+  <meta property="og:url"                 content="<?php bloginfo('url'); ?>" /> 
+  <meta property="og:title"               content="<?php bloginfo('name'); ?>" /> 
+  <meta property="og:description"         content="A collection of film & book reviews & other writings by King Sidharth"/>  
+  <?php } ?>
+  <meta property="og:image"               content="http://anamorphic.in/wp-content/uploads/2013/06/anamorphic-color-300-sq.png" />
+  <meta property="og:image"               content="http://anamorphic.in/wp-content/uploads/2013/06/anamorphic-white-300-sq.jpg"/>
+
+  <!-- Header Scripts -->
+  <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" /> 
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
 </head>
 
 <body <?php body_class(); ?>>
@@ -24,31 +58,24 @@
       <?php do_action( 'before' ); ?>
       
       <header id="header" role="banner">
-      <div class="grid__item one-third">
+      <div class="grid__item one-third portable-one-whole">
         <h1 id="main-logo" class="">
           <a href="<?php echo esc_url( home_url( '/' ) ); ?>" 
              title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" 
              rel="home" class="brand"><?php bloginfo( 'name' ); ?>
           </a>
         </h1>
-      </div><?php if(is_home()) { ?><!--
-      --><div id="intro_header" class="grid__item two-thirds">
-          <p>A collection of film and book reviews and some random writings. <a href="/why">Why?</a></p>
-        </div>
-      <?php } ?>
-      </header><!-- #header -->
+      </div><!--
+      --><nav id="main-navigation" role="navigation" class="grid__item two-thirds portable-one-whole">
+        <ul class="nav nav--block">
+          <?php if(!is_home()) {?><li><a href="/">Home</a></li><?php }?>
+          <li><a <?php if(is_page('about')) {?> class="active" <?php }?>href="/about">About + Why</a></li>
+          <li><a <?php if(is_category('film')){?> class="active"<?php }?> href="/category/film">Films</a></li>
+          <li><a <?php if(is_category('book')){?> class="active"<?php }?>href="/category/book">Books</a></li>
+          <li><a href="http://bit.ly/anatwitks"><i class="icon icon-twitter"></i></a></li>
+          <li><a href="http://bit.ly/anamorfbks"><i class="icon icon-facebook"></i></a></li>
+        </ul>            
+       </nav><!-- #main-navigation -->
+       </header><!-- #header -->
     </div>
   </div><!-- #header_area -->
-  <div id="navigation_area" class="grid">
-    <div class="page">
-       <nav role="navigation">
-          <ul class="nav nav--block">
-            <?php if(!is_home()) {?><li><a href="/">Home</a></li><?php } ?>
-            <li><a href="">About + Why?</a></li>
-            <li><a href="">Film Reviews</a></li>
-            <li><a href="">Book Reviews</a></li>
-            <li><a href="">Other Stuff</a></li>
-          </ul>            
-       </nav><!-- #site-navigation -->
-    </div>
-  </div><!-- #navigation_area -->

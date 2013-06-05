@@ -13,35 +13,64 @@
 
 get_header(); ?>
 
-  <div id="content_area" class="grid">
+  <div id="latest_area" class="grid">
     <div class="page">
-      <div id="content" class"" role="main">
+      <div id="latest" class"" role="main">
+        <div class="grid__item one-half post_list palm-one-whole">
+          <h2>Latest Film Reviews</h2>
+          <ul class="nav nav--stacked">
+          <?php 
+            global $post;
+            $args = array( 'numberposts' => 5, 'category' => 3 );
 
-        <?php if ( have_posts() ) : ?>
+            $myposts = get_posts( $args );
 
-          <?php /* Start the Loop */ ?>
-          <?php while ( have_posts() ) : the_post(); ?>
+            foreach( $myposts as $post ) : setup_postdata($post); 
+              $meta  = get_post_meta($post->ID);
+              $rating = $meta['anamorphic_rating'][0]; ?>
+              <li class="post_item_wrap"><a class="post_item" href="<?php the_permalink(); ?>">
+                <span class="entry-title"><?php the_title(); ?></span>
+                <div class="entry-meta">
+                  <?php if($rating){ 
+                    echo '<span class="rating">';
+                    anamorhpic_rating_to_star($rating);
+                    echo '</span>';
+                  } ?>
+                  <span class="entry-date"><?php echo get_the_date(); ?></span>              
+                </div><!--.entry-meta-->
+              </a></li>
+            <?php endforeach; ?>
+          </ul>
+        </div><!-- #latest_films.post_list 
 
-            <?php
-              /* Include the Post-Format-specific template for the content.
-               * If you want to overload this in a child theme then include a file
-               * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-               */
-              get_template_part( 'content', get_post_format() );
-            ?>
+        --><div class="grid__item one-half post_list palm-one-whole">
+          <h2>Latest Book Reviews</h2>
+          <ul class="nav nav--stacked">
+          <?php 
+            global $post;
+            $args = array( 'numberposts' => 5, 'category' => 4 );
 
-          <?php endwhile; ?>
+            $myposts = get_posts( $args );
 
-          <?php anamorhpic_content_nav( 'nav-below' ); ?>
-
-        <?php else : ?>
-
-          <?php get_template_part( 'no-results', 'index' ); ?>
-
-        <?php endif; ?>
-        <?php get_sidebar(); ?>
-      </div><!-- #content -->
+            foreach( $myposts as $post ) : setup_postdata($post); 
+              $meta  = get_post_meta($post->ID);
+              $rating = $meta['anamorphic_rating'][0]; ?>
+              <li class="post_item_wrap"><a class="post_item" href="<?php the_permalink(); ?>">
+                <span class="entry-title"><?php the_title(); ?></span>
+                <div class="entry-meta">
+                  <?php if($rating){ 
+                    echo '<span class="rating">';
+                    anamorhpic_rating_to_star($rating);
+                    echo '</span>';
+                  } ?>
+                  <span class="entry-date"><?php echo get_the_date(); ?></span>              
+                </div><!--.entry-meta-->
+              </a></li>
+            <?php endforeach; ?>
+          </ul>
+        </div><!-- #latest_films.post_list -->
+      </div><!-- #latest -->
 		</div>
-	</div><!-- #content_area -->
+	</div><!-- #latest_area -->
 
 <?php get_footer(); ?>

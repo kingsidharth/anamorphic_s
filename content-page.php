@@ -13,12 +13,5 @@
 
 	<div class="entry-content">
 		<?php the_content(); ?>
-		<?php
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . __( 'Pages:', 'anamorhpic' ),
-				'after'  => '</div>',
-			) );
-		?>
 	</div><!-- .entry-content -->
-	<?php edit_post_link( __( 'Edit', 'anamorhpic' ), '<footer class="entry-meta"><span class="edit-link">', '</span></footer>' ); ?>
 </article><!-- #post-## -->

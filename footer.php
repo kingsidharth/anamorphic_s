@@ -13,15 +13,39 @@
     <footer role="contentinfo">
       <div class="site-info">
         <?php do_action( 'anamorhpic_credits' ); ?>
-        <a href="http://wordpress.org/" title="<?php esc_attr_e( 'A Semantic Personal Publishing Platform', 'anamorhpic' ); ?>" rel="generator"><?php printf( __( 'Proudly powered by %s', 'anamorhpic' ), 'WordPress' ); ?></a>
-        <span class="sep"> | </span>
-        <?php printf( __( 'Theme: %1$s by %2$s.', 'anamorhpic' ), 'anamorhpic', '<a href="http://www.kingsidharth.com" rel="designer">King Sidharth</a>' ); ?>
       </div><!-- .site-info -->
+      <p class="grid__item one-whole center">
+      &copy; <?php echo date("Y"); ?> 
+      <a href="http://www.kingsidharth.com" class="author" rel="author">King Sidharth</a>
+      <a href="https://plus.google.com/100630005600562803456?rel=author">+</a> 
+      <a href="http://bit.ly/anatwitks"><i class="icon icon-twitter"></i></a> 
+      <a href="http://bit.ly/anamorfbks"><i class="icon icon-facebook"></i></a>
+      </p>
     </footer>
   </div>
 </div><!-- #footer_area -->
 
 <?php wp_footer(); ?>
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+  <div id="fb-root"></div>
+  <script>
+    (function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=502579883131350";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+  </script>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
+    ga('create', 'UA-4910697-22', 'anamorphic.in');
+    ga('send', 'pageview');
+
+  </script>
 </body>
 </html>

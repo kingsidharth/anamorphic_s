@@ -1,0 +1,29 @@
+
+@include media-query('desk'){
+  .sidebar {
+    padding-top: 0.8em;
+  }
+  #main-logo .brand {
+    background-position: bottom left;
+  }    
+}
+
+@include media-query('portable') {
+  nav .nav {
+    text-align: center;
+  }
+  #main-logo .brand{
+    background-position: top center;
+  }
+
+  #header_area {
+    margin-bottom: 2em;
+  }
+}
+
+@include media-query('palm') {
+  .page {
+    padding-left: 1em;
+    padding-right: 1em;
+  }
+}

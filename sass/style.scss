@@ -8,6 +8,7 @@ Version: 1.0
 License: GNU General Public License
 */
 
+
 /* __________ IMPORTS __________ */
 @import "defaults";
 @import "../vendor/inuit";
@@ -16,21 +17,15 @@ License: GNU General Public License
 
 @import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic);
 
-$maroon: #7E3637;
-$maroon-rgb: rgb(126, 54, 55);
+@import "responsive";
 
-$red: #CF3F41;
-$red-rgb: rgb(207, 63, 65);
 
-$blue: #3FCFCD;
-$blue-rgb: rgb(63, 207, 205);
-
-$green: #367E7D;
-$green-rgb: rgb(54, 126, 125);
-
-$white: #FAFAFA;
-
-$black: adjust-lightness($maroon, -25%);
+/* __________ VARIABLES __________ */
+ $white:      #f1f2e4;
+   $red:      #f28972;
+ $green:      #2abfb0;
+$lgreen:      #688a87;
+ $black:      #0e2825;
 
 @mixin sans {
   font-family: 'Lato', 'Lucida Grande', 'Lucida Sans', Tahoma, sans-serif;
@@ -40,10 +35,37 @@ body {
   color: $black;
   background: $white;
   @include sans;
+  a {
+    color: $red;
+    &:hover {
+      color: $lgreen;
+    }
+    &:active {
+      outline: none;
+    }
+  }
+  h1, h2, h3, h4, h5, h6 {
+    margin-top: 0.9em;
+    margin-bottom: 0.5em;
+  }
+  blockquote {
+    color: $lgreen;
+    padding-left: 1em;
+    border-left: 1px solid $red;
+    .source {
+      text-align: right;
+      font-variant: italic;
+    }
+  }
 }
 
+body.page {
+  max-width: 100%;
+  margin: auto;
+}
 .page {
   max-width: 800px;
+  margin: 0 auto;
 }
 
 .brand {
@@ -54,5 +76,111 @@ body {
   width: 100%;
 }
   #main-logo {
+    margin-top: 0;
     margin-bottom: 0;
+    .brand {
+      background-image: url('assets/images/anamorphic-logo-alt.png');
+      background-size: initial;
+    }
   }
+
+.entry-title {
+  margin-top: 0;
+}
+.subheading {
+  font-weight: bold;
+  font-size: 1.1em;
+}
+.entry-meta {
+  font-size: 0.9em;
+  color: $lgreen;
+  .name {
+    font-weight: bold;
+  }
+  .byline {
+    display: block;
+    .name {
+      font-weight: 300;
+    }
+  }
+
+}
+
+#header_area {
+  background: $red;
+  nav .nav {
+    margin-bottom: 0;
+    word-spacing: 0;
+    li{
+      text-align: center;
+      a{
+        padding-top: 17px;
+        padding-bottom: 18px;
+        background: $red;
+        color: $white;
+        text-decoration: none;
+        &:hover, .active {
+          background: $lgreen;
+        }
+      }
+    }
+  }
+}
+
+
+/* __________ HEADER __________ */
+#header_area {
+}
+
+#main-navigation {
+  text-align: right;
+}
+
+// List of posts
+.post_list {
+  .post_item_wrap {
+    a {
+      text-decoration: none;
+      padding-left: 0.5em;
+      border-bottom: 1px dotted $lgreen;
+      border-left: 2px solid $white;
+      margin-bottom: 0.2em;
+      padding-bottom: 0.2em;
+      @include transition(0.2s);
+      &:hover {
+        border-left: 2px solid $green;
+        .entry-meta {
+          color: $lgreen;
+        }
+        .rating {
+          color: $lgreen;
+        }
+        .entry-title {
+          border-bottom: 1px solid $red;
+          color: $red;
+        }
+      }
+    }
+    .entry-title {
+      font-weight: bold;
+      border-bottom: 1px solid transparent;
+    }
+    .entry-meta {
+      color: $green;
+    }
+  }
+}
+
+.rating {
+  color: $green;
+}
+
+.center {
+  text-align: center;
+}
+.right {
+  text-align: right;
+}
+.left {
+  text-align: left;
+}
