@@ -98,38 +98,57 @@ add_action( 'widgets_init', 'anamorhpic_widgets_init' );
  * Enqueue scripts and styles
  */
 function anamorhpic_scripts() {
-	wp_enqueue_style( 'anamorhpic-style', get_stylesheet_uri() );
-
-
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+  
+  wp_enqueue_style( 'anamorhpic-style', get_stylesheet_uri() );
 
 }
 add_action( 'wp_enqueue_scripts', 'anamorhpic_scripts' );
 
 /**
- * Implement the Custom Header feature.
- */
-//require get_template_directory() . '/inc/custom-header.php';
-
-/**
- * Custom template tags for this theme.
- */
-require get_template_directory() . '/inc/template-tags.php';
-
-/**
- * Custom functions that act independently of the theme templates.
- */
-require get_template_directory() . '/inc/extras.php';
-
-/**
- * Customizer additions.
- */
-require get_template_directory() . '/inc/customizer.php';
-
-/**
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+// Register Custom Taxonomy
+function anamorphic_people_taxnomy()  {
+	$labels = array(
+		'name'                       => 'People',
+		'singular_name'              => 'Person',
+		'menu_name'                  => 'People',
+		'all_items'                  => 'All People',
+		'parent_item'                => 'Parent Person',
+		'parent_item_colon'          => 'Parent Person:',
+		'new_item_name'              => 'New Person',
+		'add_new_item'               => 'Add A New Person',
+		'edit_item'                  => 'Edit Person',
+		'update_item'                => 'Update Person',
+		'separate_items_with_commas' => 'Separate people with commas',
+		'search_items'               => 'Search people...',
+		'add_or_remove_items'        => 'Add or remove Person/People',
+		'choose_from_most_used'      => 'Choose from the people',
+	);
+
+	$rewrite = array(
+		'slug'                       => 'person',
+		'with_front'                 => true,
+		'hierarchical'               => false,
+	);
+
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => false,
+		'rewrite'                    => $rewrite,
+	);
+
+	register_taxonomy( 'people', 'post', $args );
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'anamorphic_people_taxnomy', 0 );
+
 
