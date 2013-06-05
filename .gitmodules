@@ -1,3 +1,6 @@
 [submodule "vendor"]
 	path = vendor
 	url = git://github.com/csswizardry/inuit.css.git
+[submodule "lib/metabox"]
+	path = lib/metabox
+	url = git://github.com/jaredatch/Custom-Metaboxes-and-Fields-for-WordPress.git
