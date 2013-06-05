@@ -151,4 +151,191 @@ function anamorphic_people_taxnomy()  {
 // Hook into the 'init' action
 add_action( 'init', 'anamorphic_people_taxnomy', 0 );
 
+/* META BOXES */
+add_filter( 'cmb_meta_boxes', 'anamorphic_metaboxes' );
+ 
+function anamorphic_metaboxes( $meta_boxes ) {
+  $prefix = 'anamorphic_';
+
+  /* Meta Box for Common Fields */
+	$meta_boxes[] = array(
+    'id' => 'review_data',
+    'title' => 'Review Data',
+    'context' => 'side',
+    'priority' => 'high',
+    'pages' => array('post'),
+    'show_names' => true,
+    'fields' => array(
+      // Rating
+      array(
+        'name' => 'Rating',
+        'id'   => $prefix . 'rating',
+        'type' => 'text_small'
+      ),
+
+      // Main image [array of this for Open Graph]
+      array(
+        'name' => 'Main Image',
+        'desc' => 'Goes in sidebar',
+        'id'   => $prefix . 'imageurl',
+        'type' => 'text',
+      ),
+
+      // Based On URL
+      array (
+        'name'  => 'Based on',
+        'id'    => $prefix . 'basedon',
+        'type'  => 'text',
+      ),
+
+      array(
+        'name' => 'Item Type',
+        'id'   => $prefix . 'item_type',
+        'type' => 'text',
+      )
+    )
+	);
+
+  /* Meta box for Other Side Data */
+  $meta_boxes[] = array(
+    'id' => 'other_data',
+    'title' => 'Side Data',
+    'context' => 'normal',
+    'priority' => 'high',
+    'pages' => array('post'),
+    'show_names' => true,
+    'fields' =>  array(
+      // Other Name 
+      array(
+        'name' => 'Other Name',
+        'id' => $prefix . 'name',
+        'type' => 'text',
+      ),
+
+      // Sub Heading
+      array(
+        'name' => 'Sub Heading',
+        'id' => $prefix . 'subheading',
+        'type' => 'text',
+      )
+    ),
+  );
+  
+  /* Meta Box for Film Reviews */
+  $meta_boxes[] = array(
+    'id' => 'movie_data',
+    'title' => 'Movie Data',
+    'context' => 'normal',
+    'pages' => array('post'),    
+    'priority' => 'high',
+    'show_names' => true,
+    'fields' => array(
+      // Director(s)
+      array(
+        'name' => 'Director(s)',
+        'id'   => $prefix . 'directors',
+        'type' => 'text',        
+      ),
+
+      // Actor(s)
+      array(
+        'name' => 'Actor(s)',
+        'id'   => $prefix . 'actors_list',
+        'type' => 'text',        
+      ),
+
+      // Short?
+      array(
+        'name' => 'Is this a Short Film?',
+        'id'   => $prefix . 'film_length',
+        'type' => 'checkbox',
+      ),
+
+      // Bollywood / Hollywood / Indie?
+      array(
+        'name' => 'Film Origin',
+        'id'   => $prefix . 'origin',
+        'type' => 'radio',
+        'options' => array(
+          array('name' => 'Hollywood', 'value' => 'hollywood'),
+          array('name' => 'Bollywood', 'value' => 'bollywood'),
+          array('name' => 'Indiependent', 'value' => 'indie'),
+          array('name' => 'Other', 'value' => 'other')
+        ),
+      )
+    ),
+  );
+
+  /* Meta Box for Book Reviews */
+  $meta_boxes[] = array(
+    'id' => 'book_data',
+    'title' => 'Book Data',
+    'pages' => array('post'),    
+    'context' => 'normal',
+    'show_names' => true,
+    'priority' => 'high',
+    'fields' => array(
+      // Author
+      array(
+        'name' => 'Author(s)',
+        'id'   => $prefix . 'authors',
+        'type' => 'text',
+      ),
+
+      // ISBN
+      array(
+        'name' => 'ISBN',
+        'id' => $prefix . 'isbn',
+        'type' => 'text',
+      ),
+    ),
+  );
+	return $meta_boxes;
+}
+
+add_action( 'init', 'be_initialize_cmb_meta_boxes', 9999 );
+function be_initialize_cmb_meta_boxes() {
+	if ( !class_exists( 'cmb_Meta_Box' ) ) {
+		require_once( 'lib/metabox/init.php' );
+	}
+}
+
+/* RATING to Star System in PHP */
+function anamorhpic_rating_to_star($rating) {
+  $round_rating = floor($rating); // Reset rating to down round up  
+  
+  if($rating != $round_rating) {
+    // If Rating is in points
+    // Count empty stars
+    $no_star = 5 - $round_rating; // .5 rounds upwards
+
+    // Print the full stars
+    for ($i = 0; $i < $round_rating; $i++) {
+      echo '<i class="icon icon-star"></i> ';
+    }
+
+    // Print the half star 
+    echo '<i class="icon icon-star-half-full"></i> ';
+
+    // Print empty stars
+    for ($i = 1; $i < $no_star; $i++) {
+       echo '<i class="icon icon-star-empty"></i> ';
+    }
+    
+  } else {
+    // Count the empty stars
+    $no_star = 5 - $rating;                    
+
+    // Print full stars = rating.
+    for ($i = 0; $i < $rating; $i++) {
+      echo '<i class="icon icon-star"></i> ';
+    }
+
+    // Print empty stars.
+    for ($i = 0; $i < $no_star; $i++) {
+      echo '<i class="icon icon-star-empty"></i> ';
+    }
+  }
+}
+
 
