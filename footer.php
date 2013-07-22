@@ -15,18 +15,20 @@
         <?php do_action( 'anamorhpic_credits' ); ?>
       </div><!-- .site-info -->
       <p class="grid__item one-whole center">
-      &copy; <?php echo date("Y"); ?> 
-      <a href="http://www.kingsidharth.com" class="author" rel="author">King Sidharth</a>
-      <a href="https://plus.google.com/100630005600562803456?rel=author">+</a> 
-      <a href="http://bit.ly/anatwitks"><i class="icon icon-twitter"></i></a> 
-      <a href="http://bit.ly/anamorfbks"><i class="icon icon-facebook"></i></a>
+        &copy; <?php echo date("Y"); ?> 
+        <br/>
+        <small>
+          <a href="https://plus.google.com/100630005600562803456?rel=author"><i class="icon icon-google-plus"></i></a> 
+          <a href="http://bit.ly/anatwitks"><i class="icon icon-twitter"></i></a> 
+          <a href="http://bit.ly/anamorfbks"><i class="icon icon-facebook"></i></a>
+        </small>
       </p>
     </footer>
   </div>
 </div><!-- #footer_area -->
 
 <?php wp_footer(); ?>
-  <link href="//netdna.bootstrapcdn.com/font-awesome/3.1.1/css/font-awesome.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   <div id="fb-root"></div>
   <script>
     (function(d, s, id) {
