@@ -15,7 +15,7 @@ get_header(); ?>
 
       <?php if ( have_posts() ) : ?>
 
-        <header class="page-header">
+        <header class="page-header grid__item one-whole">
           <h1 class="page-title">
             <?php
               if ( is_category() ) :
@@ -131,42 +131,40 @@ get_header(); ?>
 
               $bookisbn   = $meta[anamorphic_isbn][0]; ?>
 
-       <div class="archive-entry-list-item g one-whole">
-         <p class="entry-meta">
-         <?php
-            echo '<span class="entry-date">';
-            the_date();
-            echo '</span>';
-         ?>
-         </p>
-         <h2 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
-           <?php the_title(); ?>
-         </a></h2>
-         <div class="entry-meta">
-           <?php
-            if($rating){ 
-              echo '<span class="rating">';
-              anamorhpic_rating_to_star($rating);
-              echo '</span>';
-            }
-          ?> 
-         </div><!-- .entry-meta -->
-         <?php 
-            // Print Subheading, if that
-            // doesn't exist, then print 
-            // the excerpt.   
-            if($subheading) {
-              echo '<p class="subheading" itemprop="alternativeHeadline">';
+        <?php while ( have_posts() ) : the_post();
+          $meta  = get_post_meta($post->ID);
+          $rating = $meta['anamorphic_rating'][0];
+          $subheading = $meta[anamorphic_subheading][0];
+        ?>
+          <div class="post grid__item one-whole">
+            <h2 class="entry-title gamma"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+            <div class="entry-meta">
+              <?php if($rating){ 
+                echo '<span class="rating">';
+                anamorhpic_rating_to_star($rating);
+                echo '</span>';
+              } ?>
+              <span class="entry-date"><?php echo get_the_date(); ?></span>              
+            </div><!--.entry-meta-->
+            <?php if($subheading) { 
+              echo '<p>';
               echo $subheading;
               echo '</p>';
-            } else {
-              echo '<p class="excerpt">';
-              the_excerpt();
-              echo '</p>';
-            }?>
-       </div><!-- .entry -->
-       <?php endwhile; ?>
-     <?php else : ?>
+            } ?>
+
+          <?php
+            /* Include the Post-Format-specific template for the content.
+             * If you want to overload this in a child theme then include a file
+             * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+             *
+                get_template_part( 'content', get_post_format() );
+             */
+          ?>
+          </div>
+
+        <?php endwhile; ?>
+
+      <?php else : ?>
 
         <?php get_template_part( 'no-results', 'archive' ); ?>
 

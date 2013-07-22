@@ -9,11 +9,15 @@
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
-  <title><?php if(!is_home()) {
-    the_title();
-    echo ' - ';
-   }
-   echo bloginfo('name');
+  <title>
+  <?php if(is_home()) { 
+      echo bloginfo('name');
+    } elseif (is_category()) {
+      echo  single_cat_title( '', false );
+      echo ' Reviews';
+    } elseif (is_single() || is_page()) {
+      the_title();
+    }
   ?>
   </title>
 
@@ -72,8 +76,6 @@
           <li><a <?php if(is_page('about')) {?> class="active" <?php }?>href="/about">About + Why</a></li>
           <li><a <?php if(is_category('film')){?> class="active"<?php }?> href="/category/film">Films</a></li>
           <li><a <?php if(is_category('book')){?> class="active"<?php }?>href="/category/book">Books</a></li>
-          <li><a href="http://bit.ly/anatwitks"><i class="icon icon-twitter"></i></a></li>
-          <li><a href="http://bit.ly/anamorfbks"><i class="icon icon-facebook"></i></a></li>
         </ul>            
        </nav><!-- #main-navigation -->
        </header><!-- #header -->
