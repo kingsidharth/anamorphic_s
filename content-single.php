@@ -79,15 +79,13 @@ $bookisbn   = $meta[anamorphic_isbn][0];
     rateIt(rating, noStar, rating_float);
   });
 </script>
-<article itemscope itemtype="http://schema.org/Review" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+<article itemscope itemtype="
+  <?php if($itemtype == 'film') {
+    echo 'http://schema.org/Movie';
+  } elseif ($itemtype == 'book') {
+    echo 'http//schema.org/Book';
+  } ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
   <div class="sidebar single_sidebar grid__item three-eighths palm-one-whole right">
-    <div itemprop="about" itemscope itemtype="
-    <?php 
-      if($itemtype == 'film') {
-        echo 'http://schema.org/Movie';
-      } elseif ($itemtype == 'book') {
-        echo 'http//schema.org/Book';
-      } ?>" >
     <aside class="photo">
       <img src="<?php echo $main_image ?>" 
       alt="<?php the_title(); ?>" title="<?php the_title(); ?>" itemprop="image">
@@ -134,7 +132,7 @@ $bookisbn   = $meta[anamorphic_isbn][0];
       } elseif($itemtype == 'book') {
         if(!empty($bookisbn)) {
           echo '<p class="entry-meta">ISBN: ';
-          echo "<span>$bookisbn</span></p>";
+          echo "<span itemprop='isbn'>$bookisbn</span></p>";
         }
       }
       ?>
@@ -165,10 +163,9 @@ $bookisbn   = $meta[anamorphic_isbn][0];
     <aside class="admin-ui">
       <?php edit_post_link( __( 'Edit', 'anamorhpic' ), '<span class="admin edit-link">', '</span>' ); ?>
     </aside>
-  </div>
   </div><!-- .sidebar
 
-  --><div class="format_text grid__item five-eighths palm-one-whole">
+  --><div itemprop="review" itemscope itemtype="http://schema.org/Review" class="format_text grid__item five-eighths palm-one-whole">
     <header class="entry-header">
       <h1 itemprop="name" class="entry-title"><?php the_title(); ?></h1>
       <div class="entry-meta">
