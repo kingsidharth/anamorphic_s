@@ -9,11 +9,15 @@
 ?><!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
-  <title><?php if(!is_home()) {
-    the_title();
-    echo ' - ';
-   }
-   echo bloginfo('name');
+  <title>
+  <?php if(is_home()) { 
+      echo bloginfo('name');
+    } elseif (is_category()) {
+      echo  single_cat_title( '', false );
+      echo ' Reviews';
+    } elseif (is_single() || is_page()) {
+      the_title();
+    }
   ?>
   </title>
 
