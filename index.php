@@ -17,7 +17,7 @@ get_header(); ?>
     <div class="page">
       <div id="latest" class"" role="main">
         <div class="grid__item one-half post_list palm-one-whole">
-          <h2>Latest Film Reviews</h2>
+          <h2 class="group-title">Latest Film Reviews</h2>
           <ul class="nav nav--stacked">
           <?php 
             global $post;
@@ -44,7 +44,7 @@ get_header(); ?>
         </div><!-- #latest_films.post_list 
 
         --><div class="grid__item one-half post_list palm-one-whole">
-          <h2>Latest Book Reviews</h2>
+          <h2 class="group-title">Latest Book Reviews</h2>
           <ul class="nav nav--stacked">
           <?php 
             global $post;

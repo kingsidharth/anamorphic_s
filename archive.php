@@ -86,29 +86,92 @@ get_header(); ?>
         </header><!-- .page-header -->
 
         <?php /* Start the Loop */ ?>
-        <?php while ( have_posts() ) : the_post(); ?>
+        <?php while ( have_posts() ) : the_post(); 
+              //Get post meta
+              
+              $meta = get_post_meta( $postid );
+              # Uncomment line below to print 
+              # the meta values. Helpful for 
+              # debugging
+              # print_r($meta);
 
-          <?php
-            /* Include the Post-Format-specific template for the content.
-             * If you want to overload this in a child theme then include a file
-             * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-             *
-                get_template_part( 'content', get_post_format() );
-             */
-          ?>
+              # Fetch Subheading
+              $subheading = $meta[anamorphic_subheading][0];
 
-        <?php endwhile; ?>
+              # Fetch Rating out of 5
+              # just contains rating
+              $rating     = $meta[anamorphic_rating][0];
 
-        <?php anamorhpic_content_nav( 'nav-below' ); ?>
+              # Item type film or book
+              $itemtype   = $meta[anamorphic_item_type][0]; 
 
-      <?php else : ?>
+              # URL of main image also
+              # used for Open Graph
+              $main_image = $meta[anamorphic_imageurl][0];
+
+              # In case title of Review
+              # is differnt, override.
+              $other_name = $meta[anamorphic_name][0];
+
+              # Get name of a single 
+              # director or CSL of
+              # directors.
+              $dirctr_str = $meta[anamorphic_directors][0];
+              $directors  = explode(",", $dirctr_str);
+
+              # Get CSL or single name
+              # of author(s).
+              $author_str= $meta[anamorphic_authors][0];
+              $authors   = explode(",", $author_str);
+
+              # Get CSL list of actors 
+              # and split it in individual.
+              $actors_str = $meta[anamorphic_actors_list][0];
+              $actors     = explode(",",$actors_str);
+
+              $bookisbn   = $meta[anamorphic_isbn][0]; ?>
+
+       <div class="archive-entry-list-item g one-whole">
+         <p class="entry-meta">
+         <?php
+            echo '<span class="entry-date">';
+            the_date();
+            echo '</span>';
+         ?>
+         </p>
+         <h2 class="entry-title"><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>">
+           <?php the_title(); ?>
+         </a></h2>
+         <div class="entry-meta">
+           <?php
+            if($rating){ 
+              echo '<span class="rating">';
+              anamorhpic_rating_to_star($rating);
+              echo '</span>';
+            }
+          ?> 
+         </div><!-- .entry-meta -->
+         <?php 
+            // Print Subheading, if that
+            // doesn't exist, then print 
+            // the excerpt.   
+            if($subheading) {
+              echo '<p class="subheading" itemprop="alternativeHeadline">';
+              echo $subheading;
+              echo '</p>';
+            } else {
+              echo '<p class="excerpt">';
+              the_excerpt();
+              echo '</p>';
+            }?>
+       </div><!-- .entry -->
+       <?php endwhile; ?>
+     <?php else : ?>
 
         <?php get_template_part( 'no-results', 'archive' ); ?>
 
-      <?php endif; ?>
+     <?php endif; ?>
+   </div><!-- #content -->
+ </section><!-- #primary -->
 
-		</div><!-- #content -->
-	</section><!-- #primary -->
-
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>
