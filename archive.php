@@ -87,54 +87,49 @@ get_header(); ?>
 
         <?php /* Start the Loop */ ?>
         <?php while ( have_posts() ) : the_post(); 
-              //Get post meta
-              
-              $meta = get_post_meta( $postid );
-              # Uncomment line below to print 
-              # the meta values. Helpful for 
-              # debugging
-              # print_r($meta);
+          //Get post meta
+          
+          $meta = get_post_meta( $post->ID );
+          # Uncomment line below to print 
+          # the meta values. Helpful for 
+          # debugging
+          # print_r($meta);
 
-              # Fetch Subheading
-              $subheading = $meta[anamorphic_subheading][0];
-
-              # Fetch Rating out of 5
-              # just contains rating
-              $rating     = $meta[anamorphic_rating][0];
-
-              # Item type film or book
-              $itemtype   = $meta[anamorphic_item_type][0]; 
-
-              # URL of main image also
-              # used for Open Graph
-              $main_image = $meta[anamorphic_imageurl][0];
-
-              # In case title of Review
-              # is differnt, override.
-              $other_name = $meta[anamorphic_name][0];
-
-              # Get name of a single 
-              # director or CSL of
-              # directors.
-              $dirctr_str = $meta[anamorphic_directors][0];
-              $directors  = explode(",", $dirctr_str);
-
-              # Get CSL or single name
-              # of author(s).
-              $author_str= $meta[anamorphic_authors][0];
-              $authors   = explode(",", $author_str);
-
-              # Get CSL list of actors 
-              # and split it in individual.
-              $actors_str = $meta[anamorphic_actors_list][0];
-              $actors     = explode(",",$actors_str);
-
-              $bookisbn   = $meta[anamorphic_isbn][0]; ?>
-
-        <?php while ( have_posts() ) : the_post();
-          $meta  = get_post_meta($post->ID);
-          $rating = $meta['anamorphic_rating'][0];
+          # Fetch Subheading
           $subheading = $meta[anamorphic_subheading][0];
+
+          # Fetch Rating out of 5
+          # just contains rating
+          $rating     = $meta[anamorphic_rating][0];
+
+          # Item type film or book
+          $itemtype   = $meta[anamorphic_item_type][0]; 
+
+          # URL of main image also
+          # used for Open Graph
+          $main_image = $meta[anamorphic_imageurl][0];
+
+          # In case title of Review
+          # is differnt, override.
+          $other_name = $meta[anamorphic_name][0];
+
+          # Get name of a single 
+          # director or CSL of
+          # directors.
+          $dirctr_str = $meta[anamorphic_directors][0];
+          $directors  = explode(",", $dirctr_str);
+
+          # Get CSL or single name
+          # of author(s).
+          $author_str= $meta[anamorphic_authors][0];
+          $authors   = explode(",", $author_str);
+
+          # Get CSL list of actors 
+          # and split it in individual.
+          $actors_str = $meta[anamorphic_actors_list][0];
+          $actors     = explode(",",$actors_str);
+
+          $bookisbn   = $meta[anamorphic_isbn][0]; 
         ?>
           <div class="post grid__item one-whole">
             <h2 class="entry-title gamma"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
@@ -142,7 +137,7 @@ get_header(); ?>
               <?php if($rating){ 
                 echo '<span class="rating">';
                 anamorhpic_rating_to_star($rating);
-                echo '</span>';
+                echo '</span><br/>';
               } ?>
               <span class="entry-date"><?php echo get_the_date(); ?></span>              
             </div><!--.entry-meta-->
@@ -152,14 +147,6 @@ get_header(); ?>
               echo '</p>';
             } ?>
 
-          <?php
-            /* Include the Post-Format-specific template for the content.
-             * If you want to overload this in a child theme then include a file
-             * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-             *
-                get_template_part( 'content', get_post_format() );
-             */
-          ?>
           </div>
 
         <?php endwhile; ?>
