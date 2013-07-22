@@ -65,6 +65,9 @@ body {
 body.page {
   max-width: 100%;
   margin: auto;
+  #content_area .page {
+    max-width: 500px;
+  }
 }
 .page {
   max-width: 800px;
@@ -162,15 +165,9 @@ body.page {
       padding-bottom: 0.2em;
       @include transition(0.2s);
       &:hover {
-        background: adjust-lightness($white, 2%);
-        .entry-meta {
-          color: $lgreen;
-        }
+        color: $lgreen;
         .rating {
           color: $lgreen;
-        }
-        .entry-title {
-          color: $green;
         }
       }
       &:active {
@@ -183,6 +180,13 @@ body.page {
     }
     .entry-meta {
       color: $green;
+      > span {
+        display: inline-block;
+        width: 49.5%;
+      }
+      .entry-date {
+        text-align: right;
+      }
     }
   }
   .group-title {
@@ -210,5 +214,11 @@ body.page {
 .archive-entry-list-item {
   h1, h2, h3, h4, h5, h6, p, ul {
     margin-bottom: 0.35em;
+  }
+}
+
+#footer_area {
+  footer {
+    font-size: 0.9em;
   }
 }

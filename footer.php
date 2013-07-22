@@ -17,11 +17,9 @@
       <p class="grid__item one-whole center">
         &copy; <?php echo date("Y"); ?> 
         <br/>
-        <small>
           <a href="https://plus.google.com/100630005600562803456?rel=author"><i class="icon icon-google-plus"></i></a> 
           <a href="http://bit.ly/anatwitks"><i class="icon icon-twitter"></i></a> 
           <a href="http://bit.ly/anamorfbks"><i class="icon icon-facebook"></i></a>
-        </small>
       </p>
     </footer>
   </div>

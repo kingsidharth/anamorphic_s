@@ -74,8 +74,8 @@
         <ul class="nav nav--block">
           <?php if(!is_home()) {?><li><a href="/">Home</a></li><?php }?>
           <li><a <?php if(is_page('about')) {?> class="active" <?php }?>href="/about">About + Why</a></li>
-          <li><a <?php if(is_category('film')){?> class="active"<?php }?> href="/category/film">Films</a></li>
-          <li><a <?php if(is_category('book')){?> class="active"<?php }?>href="/category/book">Books</a></li>
+          <li><a <?php if(is_category(3)){?> class="active"<?php }?> href="/category/film">Films</a></li>
+          <li><a <?php if(is_category(4)){?> class="active"<?php }?>href="/category/book">Books</a></li>
         </ul>            
        </nav><!-- #main-navigation -->
        </header><!-- #header -->
