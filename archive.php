@@ -15,7 +15,7 @@ get_header(); ?>
 
       <?php if ( have_posts() ) : ?>
 
-        <header class="page-header">
+        <header class="page-header grid__item one-whole">
           <h1 class="page-title">
             <?php
               if ( is_category() ) :
@@ -86,7 +86,26 @@ get_header(); ?>
         </header><!-- .page-header -->
 
         <?php /* Start the Loop */ ?>
-        <?php while ( have_posts() ) : the_post(); ?>
+        <?php while ( have_posts() ) : the_post();
+          $meta  = get_post_meta($post->ID);
+          $rating = $meta['anamorphic_rating'][0];
+          $subheading = $meta[anamorphic_subheading][0];
+        ?>
+          <div class="post grid__item one-whole">
+            <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+            <div class="entry-meta">
+              <?php if($rating){ 
+                echo '<span class="rating">';
+                anamorhpic_rating_to_star($rating);
+                echo '</span>';
+              } ?>
+              <span class="entry-date"><?php echo get_the_date(); ?></span>              
+            </div><!--.entry-meta-->
+            <?php if($subheading) { 
+              echo '<p>';
+              echo $subheading;
+              echo '</p>';
+            } ?>
 
           <?php
             /* Include the Post-Format-specific template for the content.
@@ -96,10 +115,9 @@ get_header(); ?>
                 get_template_part( 'content', get_post_format() );
              */
           ?>
+          </div>
 
         <?php endwhile; ?>
-
-        <?php anamorhpic_content_nav( 'nav-below' ); ?>
 
       <?php else : ?>
 
@@ -110,5 +128,4 @@ get_header(); ?>
 		</div><!-- #content -->
 	</section><!-- #primary -->
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>
