@@ -21,7 +21,7 @@ get_header(); ?>
           <ul class="nav nav--stacked">
           <?php 
             global $post;
-            $args = array( 'numberposts' => 5, 'category' => 3 );
+            $args = array( 'numberposts' => 15, 'category' => 3 );
 
             $myposts = get_posts( $args );
 
@@ -48,7 +48,7 @@ get_header(); ?>
           <ul class="nav nav--stacked">
           <?php 
             global $post;
-            $args = array( 'numberposts' => 5, 'category' => 4 );
+            $args = array( 'numberposts' => 15, 'category' => 4 );
 
             $myposts = get_posts( $args );
 
