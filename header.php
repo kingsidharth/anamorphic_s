@@ -76,8 +76,6 @@
           <li><a <?php if(is_page('about')) {?> class="active" <?php }?>href="/about">About + Why</a></li>
           <li><a <?php if(is_category('film')){?> class="active"<?php }?> href="/category/film">Films</a></li>
           <li><a <?php if(is_category('book')){?> class="active"<?php }?>href="/category/book">Books</a></li>
-          <li><a href="http://bit.ly/anatwitks"><i class="icon icon-twitter"></i></a></li>
-          <li><a href="http://bit.ly/anamorfbks"><i class="icon icon-facebook"></i></a></li>
         </ul>            
        </nav><!-- #main-navigation -->
        </header><!-- #header -->
