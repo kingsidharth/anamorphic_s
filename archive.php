@@ -92,7 +92,7 @@ get_header(); ?>
           $subheading = $meta[anamorphic_subheading][0];
         ?>
           <div class="post grid__item one-whole">
-            <h2 class="entry-title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+            <h2 class="entry-title gamma"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
             <div class="entry-meta">
               <?php if($rating){ 
                 echo '<span class="rating">';
