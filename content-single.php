@@ -4,48 +4,52 @@
  */
 ?>
 <?php
-/* Get all the Meta Values */
-$meta = get_post_meta( $post->ID );
-# Uncomment line below to print 
-# the meta values. Helpful for 
-# debugging
-# print_r($meta);
+  /* Get the Posts Meta data
+   * must be called inside the
+   * loop.
+   */
+  $meta = get_post_meta( $post->ID );
+  # Uncomment line below to print 
+  # the meta values. Helpful for 
+  # debugging
+  # print_r($meta);
 
-# Fetch Subheading
-$subheading = $meta[anamorphic_subheading][0];
+  # Fetch Subheading
+  $subheading = $meta[anamorphic_subheading][0];
 
-# Fetch Rating out of 5
-# just contains rating
-$rating     = $meta[anamorphic_rating][0];
+  # Fetch Rating out of 5
+  # just contains rating
+  $rating     = $meta[anamorphic_rating][0];
 
-# Item type film or book
-$itemtype   = $meta[anamorphic_item_type][0]; 
+  # Item type film or book
+  $itemtype   = $meta[anamorphic_item_type][0]; 
 
-# URL of main image also
-# used for Open Graph
-$main_image = $meta[anamorphic_imageurl][0];
+  # URL of main image also
+  # used for Open Graph
+  $main_image = $meta[anamorphic_imageurl][0];
 
-# In case title of Review
-# is differnt, override.
-$other_name = $meta[anamorphic_name][0];
+  # In case title of Review
+  # is differnt, override.
+  $other_name = $meta[anamorphic_name][0];
 
-# Get name of a single 
-# director or CSL of
-# directors.
-$dirctr_str = $meta[anamorphic_directors][0];
-$directors  = explode(",", $dirctr_str);
+  # Get name of a single 
+  # director or CSL of
+  # directors.
+  $dirctr_str = $meta[anamorphic_directors][0];
+  $directors  = explode(",", $dirctr_str);
 
-# Get CSL or single name
-# of author(s).
-$author_str= $meta[anamorphic_authors][0];
-$authors   = explode(",", $author_str);
+  # Get CSL or single name
+  # of author(s).
+  $author_str= $meta[anamorphic_authors][0];
+  $authors   = explode(",", $author_str);
 
-# Get CSL list of actors 
-# and split it in individual.
-$actors_str = $meta[anamorphic_actors_list][0];
-$actors     = explode(",",$actors_str);
+  # Get CSL list of actors 
+  # and split it in individual.
+  $actors_str = $meta[anamorphic_actors_list][0];
+  $actors     = explode(",",$actors_str);
 
-$bookisbn   = $meta[anamorphic_isbn][0];
+  $bookisbn   = $meta[anamorphic_isbn][0];
+
 ?>
 <script>
   // Get the rating number
@@ -121,7 +125,7 @@ $bookisbn   = $meta[anamorphic_isbn][0];
     <?php 
       if($itemtype == 'film') {
         if(!empty($actors)){
-          echo '<p class="actor entry-meta">Starring: ';
+          echo '<p class="actor entry-meta"><strong>Starring:</strong> ';
           foreach ($actors as $actor) {
             echo '<span itemprop="actor" itemscope itemtype="http://schema.org/Person">';
             echo "<span itemprop=name>$actor</span>";
@@ -130,7 +134,7 @@ $bookisbn   = $meta[anamorphic_isbn][0];
         }
       echo '</p>';
       } elseif($itemtype == 'book') {
-        if(!empty($bookisbn)) {
+        if($bookisbn) {
           echo '<p class="entry-meta">ISBN: ';
           echo "<span itemprop='isbn'>$bookisbn</span></p>";
         }
@@ -156,8 +160,9 @@ $bookisbn   = $meta[anamorphic_isbn][0];
     </aside> 
     <aside class="social-share">
       <ul class="nav nav--stacked">
-        <li><div class="fb-like" data-href="<?php the_permalink(); ?>" data-send="true" data-layout="button_count" data-width="250" data-show-faces="false"></div></li>
-        <li><div class="fb-follow" data-href="https://www.facebook.com/KingSidharth" data-layout="button_count" data-show-faces="false" data-width="200"></div></li>
+        <!--<li><div class="fb-like" data-href="<?php the_permalink(); ?>" data-send="true" data-layout="button_count" data-width="250" data-show-faces="false"></div></li>-->
+        <!--<li><div class="fb-follow" data-href="https://www.facebook.com/KingSidharth" data-layout="button_count" data-show-faces="false" data-width="200"></div></li>-->
+        <li><div class="fb-like-box" data-href="https://www.facebook.com/anamorphic.in" data-width="250" data-show-faces="false" data-stream="false" data-show-border="false" data-header="false"></div></li>
       </ul>
     </aside>
     <aside class="admin-ui">
@@ -185,12 +190,11 @@ $bookisbn   = $meta[anamorphic_isbn][0];
     <div class="entry-content" itemprop="reviewBody">
       <?php the_content(); ?>
     </div><!-- .entry-content -->
-  </div><!-- .format_text-->
-
-  <footer class="grid__item one-whole entry-meta center">
-    <p>
+    <div class="fb-like" data-href="<?php the_permalink(); ?>" data-send="true" data-width="450" data-show-faces="false"></div>
+    <p>&nbsp;</p>
+    <p class="entry-meta">
       <span class="published"><meta itemprop="datePublished" content="<?php the_date('c'); ?>">Published on <span><?php echo get_the_date('F j, Y'); ?></span>.
       <span class="updated">Updated on <meta itemprop="dateModified" content="<?php the_modified_date('c'); ?>"><?php the_modified_date(); ?>.</span>
     </p>
-	</footer><!-- .entry-meta -->
+  </div><!-- .format_text-->
 </article><!-- #post-## -->

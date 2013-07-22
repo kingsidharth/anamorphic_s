@@ -43,6 +43,9 @@ body {
     &:active {
       outline: none;
     }
+    .icon {
+      text-decoration: none;
+    }
   }
   h1, h2, h3, h4, h5, h6 {
     margin-top: 0.9em;
@@ -68,6 +71,11 @@ body.page {
   margin: 0 auto;
 }
 
+::selection, ::-moz-selection {
+  background: $red;
+  color: $white;
+}
+
 .brand {
   background: url('assets/images/anamorphic-logo.png') transparent top left no-repeat;
   background-size: contain;
@@ -79,8 +87,7 @@ body.page {
     margin-top: 0;
     margin-bottom: 0;
     .brand {
-      background-image: url('assets/images/anamorphic-logo-alt.png');
-      background-size: initial;
+      background-image: url('assets/images/anamorphic-logo-red.png');
     }
   }
 
@@ -107,7 +114,6 @@ body.page {
 }
 
 #header_area {
-  background: $red;
   nav .nav {
     margin-bottom: 0;
     word-spacing: 0;
@@ -116,11 +122,13 @@ body.page {
       a{
         padding-top: 17px;
         padding-bottom: 18px;
-        background: $red;
-        color: $white;
         text-decoration: none;
         &:hover, .active {
-          background: $lgreen;
+          background: $red;
+          color: $white;
+        }
+        .icon {
+          font-size: 0.9em;
         }
       }
     }
@@ -128,12 +136,21 @@ body.page {
 }
 
 
+
 /* __________ HEADER __________ */
 #header_area {
+  margin-bottom: 0.5em;
+  header {
+    border-bottom: 1px dashed $red;
+  }
 }
 
 #main-navigation {
   text-align: right;
+}
+
+#content_area {
+  padding-top: 2em;
 }
 
 // List of posts
@@ -141,14 +158,11 @@ body.page {
   .post_item_wrap {
     a {
       text-decoration: none;
-      padding-left: 0.5em;
       border-bottom: 1px dotted $lgreen;
-      border-left: 2px solid $white;
-      margin-bottom: 0.2em;
       padding-bottom: 0.2em;
       @include transition(0.2s);
       &:hover {
-        border-left: 2px solid $green;
+        background: adjust-lightness($white, 2%);
         .entry-meta {
           color: $lgreen;
         }
@@ -156,9 +170,11 @@ body.page {
           color: $lgreen;
         }
         .entry-title {
-          border-bottom: 1px solid $red;
-          color: $red;
+          color: $green;
         }
+      }
+      &:active {
+        background: adjust-lightness($white, -2%);
       }
     }
     .entry-title {
@@ -168,6 +184,12 @@ body.page {
     .entry-meta {
       color: $green;
     }
+  }
+  .group-title {
+    font-size: 1em;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: $lgreen;
   }
 }
 
@@ -183,4 +205,10 @@ body.page {
 }
 .left {
   text-align: left;
+}
+
+.archive-entry-list-item {
+  h1, h2, h3, h4, h5, h6, p, ul {
+    margin-bottom: 0.35em;
+  }
 }
