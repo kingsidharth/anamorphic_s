@@ -20,6 +20,7 @@
           <a href="https://plus.google.com/100630005600562803456?rel=author"><i class="icon icon-google-plus"></i></a> 
           <a href="http://bit.ly/anatwitks"><i class="icon icon-twitter"></i></a> 
           <a href="http://bit.ly/anamorfbks"><i class="icon icon-facebook"></i></a>
+          <a href="http://feeds.feedburner.com/anamorphic"><i class="icon icon-rss"></i></a>
       </p>
     </footer>
   </div>
