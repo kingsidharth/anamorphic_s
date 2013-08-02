@@ -52,6 +52,7 @@
   <!-- Header Scripts -->
   <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>" />
   <link rel="icon" type="image/x-icon" href="/favicon.ico" /> 
+  <link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?>" href=”http://feeds.feedburner.com/anamorphic" />
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
 </head>
 
