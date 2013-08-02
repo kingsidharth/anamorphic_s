@@ -87,7 +87,7 @@
   <?php if($itemtype == 'film') {
     echo 'http://schema.org/Movie';
   } elseif ($itemtype == 'book') {
-    echo 'http//schema.org/Book';
+    echo 'http://schema.org/Book';
   } ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
   <div class="sidebar single_sidebar grid__item three-eighths palm-one-whole right">
     <aside class="photo">
