@@ -82,17 +82,18 @@
     $('.rating').empty(); 
     rateIt(rating, noStar, rating_float);
   });
+
 </script>
-<article itemscope itemtype="
-  <?php if($itemtype == 'film') {
-    echo 'http://schema.org/Movie';
-  } elseif ($itemtype == 'book') {
-    echo 'http://schema.org/Book';
-  } ?>" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-  <div class="sidebar single_sidebar grid__item three-eighths palm-one-whole right">
+<article itemprop="review" itemscope itemtype="http://schema.org/Review" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+  <div itemprop="itemReviewed" itemscope itemtype="
+   <?php if($itemtype == 'book') {
+     echo "http://schema.org/Book";
+   } elseif($itemtype == 'film') {
+     echo "http://schema.org/Movie";
+   } ?>" class="sidebar single_sidebar grid__item three-eighths palm-one-whole right">
     <aside class="photo">
       <img src="<?php echo $main_image ?>" 
-      alt="<?php the_title(); ?>" title="<?php the_title(); ?>" itemprop="image">
+      alt="<?php echo $extended_title; ?>" title="<?php echo $extended_title; ?>" itemprop="image">
     </aside>
 
     <aside class="about">
@@ -110,15 +111,15 @@
     <?php
         if($itemtype =='film') {
           foreach ($directors as $director) {          
-            echo '<span class="name" itemprop="director">';
+            echo '<span class="name" itemprop="director" itemscope itemtype="http://schema.org/Person"><span itemprop="name">';
             echo $director;
-            echo '</span>';
+            echo '</span></span>';
           }
         } elseif($itemtype == 'book') { 
           foreach ($authors as $author) {
-            echo '<span class="name" itemprop="author">'; 
+            echo '<span class="name" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">'; 
             echo $author;
-            echo '</span>';
+            echo '</span></span>';
           }
         }
     ?></span></p>
@@ -138,10 +139,78 @@
           echo '<p class="entry-meta">ISBN: ';
           echo "<span itemprop='isbn'>$bookisbn</span></p>";
         }
+        if($publisher) {
+          echo '<p class="entry-meta">Publisher: ';
+          echo "<span itemprop=publisher>$publisher</span></p>";
+        }
       }
       ?>
+      <?php if($flipkart_link || $amazon_link || $other_link) {
+        
+        # IF Rating is higher than 1.5
+        if($rating > 1.5) {
+          echo "<p>Buy it on: ";
+        } else {
+          echo "<p>I really don't think you should buy it, but if you must: ";
+        }
+
+        # THE LINKS
+
+        if($amazon_link) { 
+          echo "<a href='$amazon_link' rel='nofollow' target='_blank'>Amazon</a>, "; 
+        }
+        if($flipkart_link) {
+          echo "<a href='$flipkart_link' rel='nofollow' target='_blank'>Flipkart</a>, "; 
+        }
+        if($other_link) { 
+          echo "<a href='$other_link' rel='nofollow' target='_blank'>this site</a>";
+        }
+
+        # le Fin
+        echo "<br/><small>These are affiliate links.</small>";
+        echo "</p>";
+      }?>
     </aside> 
+    <aside class="social-share">
+      <ul class="nav nav--stacked">
+        <!--<li><div class="fb-like" data-href="<?php the_permalink(); ?>" data-send="true" data-layout="button_count" data-width="250" data-show-faces="false"></div></li>-->
+        <!--<li><div class="fb-follow" data-href="https://www.facebook.com/KingSidharth" data-layout="button_count" data-show-faces="false" data-width="200"></div></li>-->
+        <li><div class="fb-like-box" data-href="https://www.facebook.com/anamorphic.in" data-width="250" data-show-faces="false" data-stream="false" data-show-border="false" data-header="false"></div></li>
+      </ul>
+    </aside>
+    <aside class="admin-ui">
+      <?php edit_post_link( __( 'Edit', 'anamorhpic' ), '<span class="admin edit-link">', '</span>' ); ?>
+    </aside>
+  </div><!-- .sidebar
+
+  --><div class="format_text grid__item five-eighths palm-one-whole">
+    <header class="entry-header">
+      <h1 itemprop="name" class="entry-title"><?php echo $extended_title; ?></h1>
+      <div class="entry-meta">
+      <?php
+        if($subheading) {
+          echo '<p class="subheading" itemprop="alternativeHeadline">';
+          echo $subheading;
+          echo '</p>';
+        }
+        echo '<p class="rating" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">';
+        echo '<meta itemprop="worstRating" content="1"/>';
+        echo "Rating <span itemprop='ratingValue'>$rating</span> out of <span itemprop='bestRating'>5</span>";
+        echo '</p>';
+      ?> 
+        <meta itemprop="author" content="King Sidharth"/>
+      </div><!-- .entry-meta -->
+    </header><!-- .entry-header -->
+    <div class="entry-content" itemprop="reviewBody">
+      <?php the_content(); ?>
+    </div><!-- .entry-content -->
+    <div class="fb-like" data-href="<?php the_permalink(); ?>" data-send="true" data-width="450" data-show-faces="false"></div>
+    <p>&nbsp;</p>
     <aside class="breadcrumbs entry-meta">
+    <p class="entry-date">
+      <span class="published"><meta itemprop="datePublished" content="<?php the_date('c'); ?>"/>Published on <?php echo get_the_date('F j, Y'); ?>.</span>
+      <span class="updated">Updated on <meta itemprop="dateModified" content="<?php the_modified_date('c'); ?>"><?php the_modified_date(); ?>.</span>
+    </p>
     <ul class="nav">
       <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
         <a itemprop="url" href="/"><span itemprop="title">Anamorphic</span></a>
@@ -158,43 +227,5 @@
       <?php } ?>
     </ul>
     </aside> 
-    <aside class="social-share">
-      <ul class="nav nav--stacked">
-        <!--<li><div class="fb-like" data-href="<?php the_permalink(); ?>" data-send="true" data-layout="button_count" data-width="250" data-show-faces="false"></div></li>-->
-        <!--<li><div class="fb-follow" data-href="https://www.facebook.com/KingSidharth" data-layout="button_count" data-show-faces="false" data-width="200"></div></li>-->
-        <li><div class="fb-like-box" data-href="https://www.facebook.com/anamorphic.in" data-width="250" data-show-faces="false" data-stream="false" data-show-border="false" data-header="false"></div></li>
-      </ul>
-    </aside>
-    <aside class="admin-ui">
-      <?php edit_post_link( __( 'Edit', 'anamorhpic' ), '<span class="admin edit-link">', '</span>' ); ?>
-    </aside>
-  </div><!-- .sidebar
-
-  --><div itemprop="review" itemscope itemtype="http://schema.org/Review" class="format_text grid__item five-eighths palm-one-whole">
-    <header class="entry-header">
-      <h1 itemprop="name" class="entry-title"><?php the_title(); ?></h1>
-      <div class="entry-meta">
-      <?php
-        if($subheading) {
-          echo '<p class="subheading" itemprop="alternativeHeadline">';
-          echo $subheading;
-          echo '</p>';
-        }
-        echo '<p class="rating" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">';
-        echo '<meta itemprop="worstRating" content = "1">';
-        echo "Rating <span itemprop='ratingValue'>$rating</span> out of <span itemprop='bestRating'>5</span>";
-        echo '</p>';
-      ?> 
-      </div><!-- .entry-meta -->
-    </header><!-- .entry-header -->
-    <div class="entry-content" itemprop="reviewBody">
-      <?php the_content(); ?>
-    </div><!-- .entry-content -->
-    <div class="fb-like" data-href="<?php the_permalink(); ?>" data-send="true" data-width="450" data-show-faces="false"></div>
-    <p>&nbsp;</p>
-    <p class="entry-meta">
-      <span class="published"><meta itemprop="datePublished" content="<?php the_date('c'); ?>">Published on <span><?php echo get_the_date('F j, Y'); ?></span>.
-      <span class="updated">Updated on <meta itemprop="dateModified" content="<?php the_modified_date('c'); ?>"><?php the_modified_date(); ?>.</span>
-    </p>
   </div><!-- .format_text-->
 </article><!-- #post-## -->
