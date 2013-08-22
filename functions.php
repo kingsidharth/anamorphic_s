@@ -384,4 +384,61 @@ function anamorhpic_rating_to_star($rating) {
   }
 }
 
+/* ____ GET META _____ */
+
+function anamorphic_post_data($meta) {
+  global $subheading, $rating, $itemtype, $main_image, $other_name,
+    $directors, $authors, $actors, $bookisbn, $publisher, $extended_title,
+    $flipkart_link, $amazon_link, $other_link;
+  # Fetch Subheading
+  $subheading = $meta[anamorphic_subheading][0];
+
+  # Fetch Rating out of 5
+  # just contains rating
+  $rating     = $meta[anamorphic_rating][0];
+
+  # Item type film or book
+  $itemtype   = $meta[anamorphic_item_type][0]; 
+
+  # URL of main image also
+  # used for Open Graph
+  $main_image = $meta[anamorphic_imageurl][0];
+
+  # In case title of Review
+  # is differnt, override.
+  $other_name = $meta[anamorphic_name][0];
+
+  # Get name of a single 
+  # director or CSL of
+  # directors.
+  $dirctr_str = $meta[anamorphic_directors][0];
+  $directors  = explode(",", $dirctr_str);
+
+  # Get CSL or single name
+  # of author(s).
+  $author_str= $meta[anamorphic_authors][0];
+  $authors   = explode(",", $author_str);
+
+  # Get CSL list of actors 
+  # and split it in individual.
+  $actors_str = $meta[anamorphic_actors_list][0];
+  $actors     = explode(",",$actors_str);
+
+  $bookisbn   = $meta[anamorphic_isbn][0];
+
+  $publisher  = $meta[anamorphic_publisher][0];
+
+
+  # Affiliate Links 
+  $flipkart_link = $meta[anamorphic_aff_flipkart][0];
+  $amazon_link = $meta[anamorphic_aff_amazon][0];
+  $other_link = $meta[anamorphic_aff_other][0];
+
+
+  if($itemtype == 'book') {
+    $extended_title = get_the_title() . ' by ' . implode(",", $array);
+  } else {
+    $extended_title = get_the_title();
+  }
+}
 
