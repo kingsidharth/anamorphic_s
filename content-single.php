@@ -50,6 +50,21 @@
 
   $bookisbn   = $meta[anamorphic_isbn][0];
 
+  $publisher  = $meta[anamorphic_publisher][0];
+
+
+  # Affiliate Links 
+  $flipkart_link = $meta[anamorphic_aff_flipkart][0];
+  $amazon_link = $meta[anamorphic_aff_amazon][0];
+  $other_link = $meta[anamorphic_aff_other][0];
+
+
+  if($itemtype == 'book') {
+    $extended_title = get_the_title() . ' by ' . implode(",", $authors);
+  } else {
+    $extended_title = get_the_title();
+  }
+
 ?>
 <script>
   // Get the rating number

@@ -294,8 +294,48 @@ function anamorphic_metaboxes( $meta_boxes ) {
         'id' => $prefix . 'isbn',
         'type' => 'text',
       ),
+
+      // Publisher
+      array(
+        'name' => 'Publisher',
+        'id' => $prefix . 'publisher',
+        'type' => 'text',
+      ),
+
     ),
   );
+
+  $meta_boxes[] = array(
+    'id' => 'aff_data',
+    'title' => 'Affiliate Links',
+    'pages' => array('post'),
+    'context' => 'normal',
+    'show_names' => true,
+    'priority' => 'low',
+    'fields' => array(
+      // Flipkart
+      array(
+        'name' => 'Filpkart',
+        'id' => $prefix . 'aff_flipkart',
+        'type' => 'text',
+      ),
+
+      // Amazon 
+      array(
+        'name' => 'Amazon',
+        'id' => $prefix . 'aff_amazon',
+        'type' => 'text',
+      ),
+
+      // Other 
+      array(
+        'name' => 'Other Link',
+        'id' => $prefix . 'aff_other',
+        'type' => 'text',
+      ),
+    ),
+  );
+
 	return $meta_boxes;
 }
 
