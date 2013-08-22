@@ -230,7 +230,7 @@
       <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
         <a itemprop="url" href="/"><span itemprop="title">Anamorphic</span></a>
       </li>
-      <li class="separator"><a><i class="icon icon-angle-right"></i></a></li>
+      <li class="separator"><a><i class="icon icon-chevron-right"></i></a></li>
       <?php if($itemtype =='film') { ?>
       <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
         <a itemprop="url" href="/category/film"><span itemprop="title">Films</span></a>
@@ -240,6 +240,10 @@
         <a itemprop="url" href="/category/book"><span itemprop="title">Books</span></a>
       </li> 
       <?php } ?>
+      <li class="separator"><a><i class="icon icon-chevron-right"></i></a></li>
+      <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        <a itemprop="url" href="<?php the_permalink(); ?>"><span itemprop="title"><?php the_title(); ?></span></a>
+      </li>
     </ul>
     </aside> 
   </div><!-- .format_text-->
