@@ -80,7 +80,7 @@ add_action( 'wp_enqueue_scripts', 'anamorhpic_scripts' );
 require get_template_directory() . '/inc/jetpack.php';
 
 // Register Custom Taxonomy
-function anamorphic_people_taxnomy()  {
+/* function anamorphic_people_taxnomy()  {
 	$labels = array(
 		'name'                       => 'People',
 		'singular_name'              => 'Person',
@@ -116,10 +116,46 @@ function anamorphic_people_taxnomy()  {
 	);
 
 	register_taxonomy( 'people', 'post', $args );
+} */
+
+function anamorphic_authors_taxnomy()  {
+	$labels = array(
+		'name'                       => 'Authors',
+		'singular_name'              => 'Author',
+		'menu_name'                  => 'Authors',
+		'all_items'                  => 'All Authors',
+		'new_item_name'              => 'New Author',
+		'add_new_item'               => 'Add A New Author',
+		'edit_item'                  => 'Edit Author',
+		'update_item'                => 'Update Author',
+		'separate_items_with_commas' => 'Separate authors with commas',
+		'search_items'               => 'Search authors...',
+		'add_or_remove_items'        => 'Add or remove Authors',
+		'choose_from_most_used'      => 'Choose from the author',
+	);
+
+	$rewrite = array(
+		'slug'                       => 'author',
+		'with_front'                 => true,
+		'hierarchical'               => false,
+	);
+
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => false,
+		'rewrite'                    => $rewrite,
+	);
+
+	register_taxonomy( 'authors', 'post', $args );
 }
 
 // Hook into the 'init' action
-add_action( 'init', 'anamorphic_people_taxnomy', 0 );
+add_action( 'init', 'anamorphic_authors_taxnomy', 0 );
 
 /* META BOXES */
 add_filter( 'cmb_meta_boxes', 'anamorphic_metaboxes' );
