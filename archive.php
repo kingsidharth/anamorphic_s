@@ -137,6 +137,8 @@ get_header(); ?>
         <?php get_template_part( 'no-results', 'archive' ); ?>
 
      <?php endif; ?>
+     <p class="grid__item one-whole"><?php posts_nav_link(); ?></p>
+       
    </div><!-- #content -->
  </section><!-- #primary -->
 

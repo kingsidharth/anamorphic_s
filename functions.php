@@ -442,3 +442,10 @@ function anamorphic_post_data($meta) {
   }
 }
 
+function get_array_list($array) {
+  echo implode(",", $array);
+} 
+
+function the_array_list($array) {
+  echo get_array_list($array);
+}

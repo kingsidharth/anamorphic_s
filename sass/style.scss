@@ -150,7 +150,6 @@ body.page {
 #header_area {
   margin-bottom: 0.5em;
   header {
-    border-bottom: 1px dashed $red;
   }
 }
 
@@ -164,34 +163,45 @@ body.page {
 
 // List of posts
 .post_list {
+  .post_item_wrap:nth-child(2n+1) {
+    clear: right;
+  }
   .post_item_wrap {
+    margin-bottom: 20px;
     a {
       text-decoration: none;
+      padding-bottom: 10px;
+      max-width: 100%;
       border-bottom: 1px dotted $lgreen;
-      padding-bottom: 0.2em;
+      color: $lgreen;
       @include transition(0.2s);
       &:hover {
-        color: $lgreen;
+        color: $black;
+        border-bottom: 1px solid $red;
         .rating {
           color: $lgreen;
+        }
+        .entry-meta span{
+          color: $black;
+        }
+        .entry-title {
+          color: $black;
         }
       }
       &:active {
         background: adjust-lightness($white, -2%);
       }
-    }
-    .entry-title {
-      font-weight: bold;
-      border-bottom: 1px solid transparent;
-    }
-    .entry-meta {
-      color: $green;
-      > span {
-        display: inline-block;
-        width: 49.5%;
+      .entry-title {
+        font-size: 1em;
+        margin-bottom: 3px;
+        color: $red;
+        @include transition(0.2s);
       }
-      .entry-date {
-        text-align: right;
+      .entry-meta {
+        span {
+          @include transition(0.2s);      
+          display: block;
+        }
       }
     }
   }
@@ -201,6 +211,10 @@ body.page {
     text-transform: uppercase;
     color: $lgreen;
   }
+}
+
+#latest > .grid__item {
+  padding-left: 0px;
 }
 
 .rating {
@@ -226,5 +240,18 @@ body.page {
 #footer_area {
   footer {
     font-size: 0.9em;
+  }
+}
+
+
+/* _____ ARCHIVES PAGE _____ */
+.archive {
+  .post {
+    border-bottom: 1px dotted $lgreen;
+    padding-bottom: 10px;
+    margin-bottom:  10px;
+  }
+  .media {
+    margin-bottom: 0px;
   }
 }

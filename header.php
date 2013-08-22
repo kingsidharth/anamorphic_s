@@ -15,8 +15,17 @@
     } elseif (is_category()) {
       echo  single_cat_title( '', false );
       echo ' Reviews';
-    } elseif (is_single() || is_page()) {
+    } elseif (is_page()) {
       the_title();
+    } elseif (is_single()) {
+      if($itemtype == 'book') {
+        echo $extended_title . ' &mdash; Book Review';
+      } elseif ($itemtype == 'film') {
+        the_title();
+        echo ' &mdash Film Review';
+      } else {
+        the_title();
+      }
     }
   ?>
   </title>
@@ -39,12 +48,14 @@
   <meta property="article:published_time" content="<?php echo get_the_date('c'); ?>"/>
   <meta property="article:modified_time"  content="<?php echo the_modified_date('c'); ?>"/>
   <meta property="og:description"         content="<?php echo $meta_head[anamorphic_subheading][0]; ?>"/>
+  <meta property="description"            content="<?php echo $meta_head[anamorphic_subheading][0]; ?>"/>
   <?php #end_is_single() 
     } elseif(is_front_page()) { ?>
   <meta property="og:type"                content="website" /> 
   <meta property="og:url"                 content="<?php bloginfo('url'); ?>" /> 
   <meta property="og:title"               content="<?php bloginfo('name'); ?>" /> 
   <meta property="og:description"         content="A collection of film & book reviews & other writings by King Sidharth"/>  
+  <meta property="description"            content="A collection of film & book reviews & other writings by King Sidharth"/>  
   <?php } ?>
   <meta property="og:image"               content="http://anamorphic.in/wp-content/uploads/2013/06/anamorphic-color-300-sq.png" />
   <meta property="og:image"               content="http://anamorphic.in/wp-content/uploads/2013/06/anamorphic-white-300-sq.jpg"/>
