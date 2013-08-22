@@ -60,6 +60,12 @@ body {
       font-variant: italic;
     }
   }
+  ul {
+    list-style-type: square;
+  }
+  ul, ol, dd {
+    margin-left: 1.8rem;
+  }
 }
 
 body.page {
