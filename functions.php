@@ -436,7 +436,7 @@ function anamorphic_post_data($meta) {
 
 
   if($itemtype == 'book') {
-    $extended_title = get_the_title() . ' by ' . implode(",", $array);
+    $extended_title = get_the_title() . ' by ' . implode(",", $authors);
   } else {
     $extended_title = get_the_title();
   }

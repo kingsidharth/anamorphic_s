@@ -112,7 +112,7 @@
     </aside>
 
     <aside class="about">
-    <p class="entry-meta" >
+    <p class="entry-meta main-meta" >
     <span class="name" itemprop="name">
     <?php 
       if($other_name) {
@@ -126,13 +126,13 @@
     <?php
         if($itemtype =='film') {
           foreach ($directors as $director) {          
-            echo '<span class="name" itemprop="director" itemscope itemtype="http://schema.org/Person"><span itemprop="name">';
+            echo '<span class="creator director" itemprop="director" itemscope itemtype="http://schema.org/Person"><span itemprop="name">';
             echo $director;
             echo '</span></span>';
           }
         } elseif($itemtype == 'book') { 
           foreach ($authors as $author) {
-            echo '<span class="name" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">'; 
+            echo '<span class="creator author" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">'; 
             echo $author;
             echo '</span></span>';
           }
@@ -147,20 +147,25 @@
             echo "<span itemprop=name>$actor</span>";
             echo '</span>, ';
           }
+          echo '</p>';
         }
-      echo '</p>';
+        # end if($authors)
       } elseif($itemtype == 'book') {
+        echo '<p class="entry-meta sub-meta">';
         if($bookisbn) {
-          echo '<p class="entry-meta">ISBN: ';
-          echo "<span itemprop='isbn'>$bookisbn</span></p>";
+          echo '<span class="entry-isbn"><strong>ISBN:</strong> ';
+          echo "<span itemprop='isbn'>$bookisbn</span></span>";
         }
         if($publisher) {
-          echo '<p class="entry-meta">Publisher: ';
+          echo '<span class="entry-publisher"><strong>Publisher:</strong> ';
           echo "<span itemprop=publisher>$publisher</span></p>";
         }
+        echo '</p>';
       }
-      ?>
-      <?php if($flipkart_link || $amazon_link || $other_link) {
+ 
+      # BEGIN AFFILATE SHIT
+      
+      if($flipkart_link || $amazon_link || $other_link) {
         
         # IF Rating is higher than 1.5
         if($rating > 1.5) {

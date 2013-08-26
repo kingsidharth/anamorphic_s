@@ -18,14 +18,7 @@
     } elseif (is_page()) {
       the_title();
     } elseif (is_single()) {
-      if($itemtype == 'book') {
-        echo $extended_title . ' &mdash; Book Review';
-      } elseif ($itemtype == 'film') {
-        the_title();
-        echo ' &mdash Film Review';
-      } else {
-        the_title();
-      }
+      the_title() . ' Review';
     }
   ?>
   </title>

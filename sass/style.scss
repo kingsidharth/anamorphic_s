@@ -110,16 +110,24 @@ body.page {
 .entry-meta {
   font-size: 0.9em;
   color: $lgreen;
-  .name {
+}
+
+.main-meta {
+  .name, .creator {
     font-weight: bold;
   }
-  .byline {
+  .name {
+    font-size: 1.3em;
     display: block;
-    .name {
-      font-weight: 300;
-    }
   }
+  .byline {
+    font-style: italic;
+  }
+}
 
+.sub-meta > span {
+  display: block;
+  // Find better ideas
 }
 
 #header_area {
