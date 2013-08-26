@@ -191,15 +191,16 @@
         echo "</p>";
       }?>
     </aside> 
-    <aside class="social-share">
+    <aside class="admin-ui">
+      <?php edit_post_link( __( '<i class="icon icon-edit"> </i>Edit', 'anamorhpic' ), '<span class="admin edit-link">', '</span>' ); ?>
+    </aside>
+    <aside class="social-share palm-hidden">
       <ul class="nav nav--stacked">
         <!--<li><div class="fb-like" data-href="<?php the_permalink(); ?>" data-send="true" data-layout="button_count" data-width="250" data-show-faces="false"></div></li>-->
         <!--<li><div class="fb-follow" data-href="https://www.facebook.com/KingSidharth" data-layout="button_count" data-show-faces="false" data-width="200"></div></li>-->
+        <li><a target="_blank" href="//pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo $main_image ?>&description=<?php echo $extended_title; ?>: <?php if($subheading) { echo $subheading; } ?>" data-pin-do="buttonPin" data-pin-config="none"><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a></li>
         <li><div class="fb-like-box" data-href="https://www.facebook.com/anamorphic.in" data-width="250" data-show-faces="false" data-stream="false" data-show-border="false" data-header="false"></div></li>
       </ul>
-    </aside>
-    <aside class="admin-ui">
-      <?php edit_post_link( __( 'Edit', 'anamorhpic' ), '<span class="admin edit-link">', '</span>' ); ?>
     </aside>
   </div><!-- .sidebar
 
