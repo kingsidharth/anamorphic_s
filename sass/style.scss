@@ -263,3 +263,10 @@ body.page {
     margin-bottom: 0px;
   }
 }
+
+
+@include media-query(palm) {
+  .palm-hidden {
+    display: none!important;
+  }
+}
