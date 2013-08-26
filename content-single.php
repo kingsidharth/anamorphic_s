@@ -219,7 +219,11 @@
         echo "Rating <span itemprop='ratingValue'>$rating</span> out of <span itemprop='bestRating'>5</span>";
         echo '</p>';
       ?> 
-        <meta itemprop="author" content="King Sidharth"/>
+        <div class="hidden review-author-meta" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <meta itemprop="name" content="King Sidharth"/>
+          <meta itemprop="url"  content="http://www.KingSidharth.com"/>
+          <meta itemprop="url"  content="https://plus.google.com/100630005600562803456?rel=author"/>
+        </div><!-- .review-author-meta -->
       </div><!-- .entry-meta -->
     </header><!-- .entry-header -->
     <div class="entry-content" itemprop="reviewBody">
