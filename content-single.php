@@ -243,5 +243,10 @@
       </li>
     </ul>
     </aside> 
+    <?php 
+     echo "<aside class='related_posts'>";
+     related_posts();
+     echo "</aside>";
+     ?>
   </div><!-- .format_text-->
 </article><!-- #post-## -->

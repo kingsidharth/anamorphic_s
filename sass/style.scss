@@ -131,6 +131,19 @@ aside.entry-meta {
     margin-bottom: 5px;
     padding-bottom: 5px;
     border-bottom: 1px dotted $green;
+
+    a {
+      color: $lgreen;
+      text-decoration: none;
+      border-bottom: 1px dotted $red;
+      &:hover {
+        color: $red;
+        border-bottom: 1px solid $red;
+      }
+      &:active {
+        color: $black;
+      }
+    }
   }
 }
 
@@ -251,7 +264,10 @@ aside.entry-meta {
 }
 
 #footer_area {
+  margin-top: 0.5em;
+  padding-top: 0.5em;
   footer {
+    border-top: 1px dotted adjust-lightness($white, -15%);
     font-size: 0.9em;
   }
 }
