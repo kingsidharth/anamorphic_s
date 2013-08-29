@@ -180,10 +180,12 @@
         echo '</ul>';
 
         echo '</aside>';
+      }
+      if ( is_user_logged_in() ) {
+        echo '<aside class="admin-ui">';
+        edit_post_link( __( '<i class="icon icon-edit"> </i>Edit', 'anamorhpic' ), '<span class="admin edit-link">', '</span>' );
+        echo '</aside>';
       }?>
-    <aside class="admin-ui">
-      <?php edit_post_link( __( '<i class="icon icon-edit"> </i>Edit', 'anamorhpic' ), '<span class="admin edit-link">', '</span>' ); ?>
-    </aside>
   </div><!-- .sidebar
 
   --><div class="format_text grid__item five-eighths palm-one-whole">
