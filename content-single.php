@@ -184,11 +184,6 @@
     <aside class="admin-ui">
       <?php edit_post_link( __( '<i class="icon icon-edit"> </i>Edit', 'anamorhpic' ), '<span class="admin edit-link">', '</span>' ); ?>
     </aside>
-    <aside class="social-share palm-hidden">
-      <ul class="nav nav--stacked">
-        <li><div class="fb-like-box" data-href="https://www.facebook.com/anamorphic.in" data-width="250" data-show-faces="false" data-stream="false" data-show-border="false" data-header="false"></div></li>
-      </ul>
-    </aside>
   </div><!-- .sidebar
 
   --><div class="format_text grid__item five-eighths palm-one-whole">

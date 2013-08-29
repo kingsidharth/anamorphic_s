@@ -343,3 +343,15 @@ aside.entry-meta {
     display: none;
   }
 }
+
+#subscribe_area {
+  h4 {
+    color: $green;
+  }
+  a{
+    text-decoration: none;
+  }
+  p {
+    margin-bottom: 10px;
+  }
+}
