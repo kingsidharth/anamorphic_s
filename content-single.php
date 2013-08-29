@@ -71,8 +71,8 @@
       alt="<?php echo $extended_title; ?>" title="<?php echo $extended_title; ?>" itemprop="image">
     </aside>
 
-    <aside class="about">
-      <p class="entry-meta main-meta" >
+    <aside class="about entry-meta main-meta">
+      <p class="byline-meta" >
         <span class="name" itemprop="name">
           <?php if($other_name) { echo $other_name; } else { the_title(); }?>
         </span>

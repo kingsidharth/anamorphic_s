@@ -122,15 +122,20 @@ body.page {
   }
   .byline {
     font-style: italic;
+    font-weight: 300;
   }
 }
 
-.sub-meta > span {
-  display: block;
-  // Find better ideas
+aside.entry-meta {
+  p {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted $green;
+  }
 }
 
 #header_area {
+  margin-top: 1.5em;
   nav .nav {
     margin-bottom: 0;
     word-spacing: 0;
