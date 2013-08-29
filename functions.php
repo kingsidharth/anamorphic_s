@@ -531,17 +531,37 @@ function anamorhpic_rating_to_star($rating) {
 /* ____ GET META _____ */
 
 function anamorphic_post_data($meta) {
-  global $subheading, $rating, $itemtype, $main_image, $other_name,
-    $directors, $authors, $actors, $bookisbn, $publisher, $release_year, $extended_title,
-    $flipkart_link, $amazon_link, $other_link;
-  # Fetch Subheading
+  # Making the variables accessible
+  # outside this function.
+  # Somehow, doesn't work on
+  # single post stuff.
+  global $subheading,
+    $rating, 
+    $main_image, 
+    $other_name,
+
+    $itemtype, 
+    
+    $directors, 
+    $release_year,     
+    
+    $authors, 
+    $bookisbn, 
+    $publisher, 
+
+    $flipkart_link, $amazon_link, $amazon_us_link, $other_link,
+    $extended_title;  
+  
+  # COMMON METADATA
+  
   $subheading = $meta[anamorphic_subheading][0];
-
-  # Fetch Rating out of 5
-  # just contains rating
   $rating     = $meta[anamorphic_rating][0];
+  $main_image = $meta[anamorphic_imageurl][0];  
+  $other_name = $meta[anamorphic_name][0];
 
-  # Item type film or book
+  # Define Item type
+  # based on category 
+  # assigned.
   if(in_category('book', $post->ID)) {
     $itemtype = 'book';
   } 
@@ -550,33 +570,16 @@ function anamorphic_post_data($meta) {
   } else {
     $itemtype = 'other';
   }
-  #$itemtype   = $meta[anamorphic_item_type][0]; 
 
-  # URL of main image also
-  # used for Open Graph
-  $main_image = $meta[anamorphic_imageurl][0];
-
-  # In case title of Review
-  # is differnt, override.
-  $other_name = $meta[anamorphic_name][0];
-
-  # Get name of a single 
-  # director or CSL of
-  # directors.
+  # Film Specific Metadata
   $dirctr_str = $meta[anamorphic_directors][0];
   $directors  = explode(",", $dirctr_str);
 
-  # Get CSL or single name
-  # of author(s).
+  $release_year = $meta[anamorphic_release_year][0];
+  
+  # Book Specific Metadata
   $author_str= $meta[anamorphic_authors][0];
   $authors   = explode(",", $author_str);
-
-  # Get CSL list of actors 
-  # and split it in individual.
-  $actors_str = $meta[anamorphic_actors_list][0];
-  $actors     = explode(",",$actors_str);
-
-  $release_year = $meta[anamorphic_release_year][0];
 
   $bookisbn   = $meta[anamorphic_isbn][0];
 
@@ -584,19 +587,20 @@ function anamorphic_post_data($meta) {
 
 
   # Affiliate Links 
-  $flipkart_link = $meta[anamorphic_aff_flipkart][0];
-  $amazon_link = $meta[anamorphic_aff_amazon][0];
-  $other_link = $meta[anamorphic_aff_other][0];
+  $flipkart_link    = $meta[anamorphic_aff_flipkart][0];
+  $amazon_link      = $meta[anamorphic_aff_amazon][0];
+  $amazon_us_link   = $meta[anamorphic_aff_amazon_us][0];
+  $other_link       = $meta[anamorphic_aff_other][0];
 
 
+  # Extended Title
   if($itemtype == 'book') {
+    # Book: <Book Title> by <Author>
+    # TODO: Various Authors Automation
     $extended_title = get_the_title() . ' by ' . implode(",", $authors);
   } elseif ($item_type = 'film') {
-    if($release_year) {
-      $extended_title = get_the_title() . ' ('. $release_year . ')';
-    } else {
-      $extended_title = get_the_title();
-    }
+    # Film: Film (<Release Year>)
+    $extended_title = get_the_title() . ' ('. $release_year . ')';
   } else {
     $extended_title = get_the_title();
   }

@@ -4,13 +4,23 @@
  */
 ?>
 <?php
-  /* Get the Posts Meta data
-   * must be called inside the
-   * loop.
-   */
-  global $subheading, $rating, $itemtype, $main_image, $other_name,
-    $directors, $authors, $actors, $bookisbn, $publisher, $release_year, $extended_title,
-    $flipkart_link, $amazon_link, $other_link;
+  global $subheading,
+    $rating, 
+    $main_image, 
+    $other_name,
+
+    $itemtype, 
+    
+    $directors, 
+    $release_year,     
+    
+    $authors, 
+    $bookisbn, 
+    $publisher, 
+
+    $flipkart_link, $amazon_link, $amazon_us_link, $other_link,
+    $extended_title;  
+
   $meta = get_post_meta( $post->ID );
   anamorphic_post_data($meta);
 
@@ -150,9 +160,9 @@
 
       # End Common Meta
       echo '</aside>';
- 
+
       # BEGIN AFFILATE SHIT
-      /*(if($flipkart_link || $amazon_link || $other_link) {
+      if($flipkart_link || $amazon_link || $other_link || $amazon) {
         
         # IF Rating is higher than 1.5
         if($rating > 1.5) {
@@ -188,10 +198,6 @@
         <li><a target="_blank" href="//pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo $main_image ?>&description=<?php echo $extended_title; ?>: <?php if($subheading) { echo $subheading; } ?>" data-pin-do="buttonPin" data-pin-config="none"><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a></li>
         <li><div class="fb-like-box" data-href="https://www.facebook.com/anamorphic.in" data-width="250" data-show-faces="false" data-stream="false" data-show-border="false" data-header="false"></div></li>
       </ul>
-    </aside>
-    <aside>
-    <!--
-      -->
     </aside>
   </div><!-- .sidebar
 
