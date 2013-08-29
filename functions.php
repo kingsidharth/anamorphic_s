@@ -43,7 +43,7 @@ function anamorhpic_setup() {
 	/**
 	 * Enable support for Post Formats
 	 */
-	add_theme_support( 'post-formats', array( 'aside', 'image', 'video', 'quote', 'link' ) );
+	add_theme_support( 'post-formats', array( 'aside', 'link' ) );
 }
 endif; // anamorhpic_setup
 add_action( 'after_setup_theme', 'anamorhpic_setup' );
@@ -164,39 +164,141 @@ function anamorphic_genre()  {
 add_action( 'init', 'anamorphic_genre', 0 );
 
 
-function anamorphic_display_taxonomy() {
-  global $post, $post_id;
-  // get post by post id
-  $post = &get_post($post->ID);
-  // get post type by post
-  $post_type = $post->post_type;
-  $taxonomies = get_object_taxonomies($post_type);
-  foreach ($taxonomies as $taxonomy) {        
-      $out .= "<li>".$taxonomy.": ";
-      // get the terms related to post
-      $terms = get_the_terms( $post->ID, $taxonomy );
-      if ( !empty( $terms ) ) {
-          foreach ( $terms as $term )
-              $out .= '<a href="' .get_term_link($term->slug, $taxonomy) .'">'.$term->name.'</a> ';
-      }
-      $out .= "</li>";
-  }
-  $out .= "</ul>";
-  return $out;
+// Actor(s)
+function anamorphic_actor()  {
+	$labels = array(
+		'name'                       => 'Actors',
+		'singular_name'              => 'Actor',
+		'menu_name'                  => 'Actors',
+		'all_items'                  => 'All Actors',
+		'new_item_name'              => 'New Actor',
+		'add_new_item'               => 'Add A New Actor',
+		'edit_item'                  => 'Edit Actor Details',
+		'update_item'                => 'Update Actor Details',
+		'separate_items_with_commas' => 'Separate actors with commas',
+		'search_items'               => 'Search actor...',
+		'add_or_remove_items'        => 'Add or remove Actor(s)',
+		'choose_from_most_used'      => 'Choose from the Actor',
+	);
+
+	$rewrite = array(
+		'slug'                       => 'actor',
+		'with_front'                 => true,
+		'hierarchical'               => false,
+	);
+
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => false,
+		'rewrite'                    => $rewrite,
+	);
+
+	register_taxonomy( 'actor', 'post', $args );
 }
 
-function anamorphic_get_genre() {
-  $args=array(
-    'name' => 'genre'
-  );
-  $output = 'objects'; // or objects
-  $taxonomies= get_taxonomies($args, $output); 
-  if($taxonomies) {
-    foreach ($taxonomies  as $taxonomy ) {
-      echo '<a href="' . $taxonomy->slug . '">'.$taxonomy->name.'</a> ';
+
+// Hook into the 'init' action
+add_action( 'init', 'anamorphic_actor', 0 );
+
+
+function anamorphic_list_taxonomy($args) {
+  // Unfold the Array
+  $tax_slug = $args['slug'];
+  $tax_title = $args['title'];
+  // For schema markup
+  $schema_prop = $args['prop'];
+  $schema_scope = $args['scope'];
+  $schema_link_prop = $args['link_prop'];
+
+  $terms = get_terms($tax_slug);
+  echo '<p class="'. $tax_slug. '">';
+  if($tax_title){
+    echo "<strong>$tax_title: </strong>";
+  }
+
+  foreach ($terms as $term) {
+    //Always check if it's an error before continuing. get_term_link() can be finicky sometimes
+    $term_link = get_term_link( $term, $tax_slug );
+    if( is_wp_error( $term_link ) )
+        continue;
+    //We successfully got a link. Print it out.
+    echo '<span ';
+    if($schema_prop) {
+      echo "itemprop='$schema_prop'";
     }
-  }  
+    if($schema_scope) {
+      echo "itemscope itemtype='http://schema.org/$schema_scope'";
+    }
+    echo '>';
+    echo '<a rel="nofllow" href="' . $term_link .'" ';
+    if($schema_link_prop) {
+      echo "itemprop='$schema_link_prop'";
+    }
+    echo '>' . $term->name . '</a>, </span>';
+  }
+  echo '</p>';
 }
+
+function anamorphic_custom_tax_list($args) {
+  $post = $args['post_id'];
+  $tax_slug = $args['tax_slug'];
+  $tax_title = $args['tax_title'];
+  $prop = $args['tax_item_prop'];
+  $scope = $args['tax_item_scope'];
+  $child_prop = $args['tax_item_child_prop'];
+  $before = $args['before'];
+  $after  = $args['after'];
+
+  $before_list = '';
+  if($tax_title) {
+    $before_list .= "<strong>$tax_title: </strong>";
+  }
+  if($prop && $scope && $child_prop) {
+    $before_list .= "<span itemprop='$prop' itemscope itemtype='http://schema.org/$scope'><span itemprop='$child_prop'>";
+  } elseif($prop) {
+    $before_list .= "<span itemprop='$prop'>";
+  } else {
+    $before_list .= "<span>";
+  }
+
+  $separator = '';
+  if($prop && $scope && $child_prop) {
+    $separator .= "</span></span>, " . 
+      "<span itemprop='$prop' itemscope itemtype='http://schema.org/$scope'><span itemprop='$child_prop'>";
+  } elseif($prop){
+    $separator .= "</span>, " . 
+      "<span itemprop='$prop'>";
+  } else {
+    $separator .= '</span>, <span>'; 
+  }
+
+  $after_list = '';
+  if($prop && $scope && $child_prop) {
+    $after_list .='</span></span>';
+  } elseif($prop) {
+    $after_list .='</span>';
+  } else {
+    $after_list .='</span>';
+  }
+
+  echo $before;
+
+  the_terms( 
+    $post,
+    $tax_slug,
+    $before_list,
+    $separator,
+    $after_list
+  );
+
+  echo $after;
+}
+
 
 /* META BOXES */
 add_filter( 'cmb_meta_boxes', 'anamorphic_metaboxes' );
@@ -234,12 +336,6 @@ function anamorphic_metaboxes( $meta_boxes ) {
         'id'    => $prefix . 'basedon',
         'type'  => 'text',
       ),
-
-      array(
-        'name' => 'Item Type',
-        'id'   => $prefix . 'item_type',
-        'type' => 'text',
-      )
     )
 	);
 
@@ -284,20 +380,6 @@ function anamorphic_metaboxes( $meta_boxes ) {
         'type' => 'text',        
       ),
 
-      // Actor(s)
-      array(
-        'name' => 'Actor(s)',
-        'id'   => $prefix . 'actors_list',
-        'type' => 'text',        
-      ),
-
-      // Short?
-      array(
-        'name' => 'Is this a Short Film?',
-        'id'   => $prefix . 'film_length',
-        'type' => 'checkbox',
-      ),
-
       // Bollywood / Hollywood / Indie?
       array(
         'name' => 'Film Origin',
@@ -309,7 +391,15 @@ function anamorphic_metaboxes( $meta_boxes ) {
           array('name' => 'Indiependent', 'value' => 'indie'),
           array('name' => 'Other', 'value' => 'other')
         ),
-      )
+      ),
+
+      // Year Released
+      array(
+        'name' => 'Year Released',
+        'id'   => $prefix . 'release_year',
+        'type' => 'text',
+      ),
+
     ),
   );
 
@@ -361,10 +451,23 @@ function anamorphic_metaboxes( $meta_boxes ) {
         'type' => 'text',
       ),
 
-      // Amazon 
+      // Amazon India 
       array(
-        'name' => 'Amazon',
+        'name' => 'Amazon India',
         'id' => $prefix . 'aff_amazon',
+        'type' => 'text',
+      ),
+
+      array(
+        'name' => 'Amazon US',
+        'id'   => $prefix . 'aff_amazon_us',
+        'type' => 'text',
+      ),
+
+      // Infibeam
+      array(
+        'name' => 'Infibeam',
+        'id'   => $prefix . 'aff_infibeam',
         'type' => 'text',
       ),
 
@@ -429,7 +532,7 @@ function anamorhpic_rating_to_star($rating) {
 
 function anamorphic_post_data($meta) {
   global $subheading, $rating, $itemtype, $main_image, $other_name,
-    $directors, $authors, $actors, $bookisbn, $publisher, $extended_title,
+    $directors, $authors, $actors, $bookisbn, $publisher, $release_year, $extended_title,
     $flipkart_link, $amazon_link, $other_link;
   # Fetch Subheading
   $subheading = $meta[anamorphic_subheading][0];
@@ -439,7 +542,15 @@ function anamorphic_post_data($meta) {
   $rating     = $meta[anamorphic_rating][0];
 
   # Item type film or book
-  $itemtype   = $meta[anamorphic_item_type][0]; 
+  if(in_category('book', $post->ID)) {
+    $itemtype = 'book';
+  } 
+  elseif(in_category('film', $post->ID)) {
+    $itemtype = 'film';
+  } else {
+    $itemtype = 'other';
+  }
+  #$itemtype   = $meta[anamorphic_item_type][0]; 
 
   # URL of main image also
   # used for Open Graph
@@ -465,6 +576,8 @@ function anamorphic_post_data($meta) {
   $actors_str = $meta[anamorphic_actors_list][0];
   $actors     = explode(",",$actors_str);
 
+  $release_year = $meta[anamorphic_release_year][0];
+
   $bookisbn   = $meta[anamorphic_isbn][0];
 
   $publisher  = $meta[anamorphic_publisher][0];
@@ -478,6 +591,12 @@ function anamorphic_post_data($meta) {
 
   if($itemtype == 'book') {
     $extended_title = get_the_title() . ' by ' . implode(",", $authors);
+  } elseif ($item_type = 'film') {
+    if($release_year) {
+      $extended_title = get_the_title() . ' ('. $release_year . ')';
+    } else {
+      $extended_title = get_the_title();
+    }
   } else {
     $extended_title = get_the_title();
   }
@@ -497,3 +616,4 @@ function anamorphic_resize($image_url, $width ) {
     . '&width=' . $width;
   return $resized_url;
 }
+
