@@ -55,71 +55,104 @@
    } elseif($itemtype == 'film') {
      echo "http://schema.org/Movie";
    } ?>" class="sidebar single_sidebar grid__item three-eighths palm-one-whole right">
+    
     <aside class="photo">
       <img src="<?php echo $main_image ?>" 
       alt="<?php echo $extended_title; ?>" title="<?php echo $extended_title; ?>" itemprop="image">
     </aside>
 
     <aside class="about">
-    <p class="entry-meta main-meta" >
-    <span class="name" itemprop="name">
-    <?php 
-      if($other_name) {
-        echo $other_name;
-      } else {
-        the_title();
-      }?>
-    </span>
-    <span class="byline">
-    <?php if($itemtype == 'film') { echo 'directed '; } ?>by</span>
-    <?php
-        if($itemtype =='film') {
-          foreach ($directors as $director) {          
-            echo '<span class="creator director" itemprop="director" itemscope itemtype="http://schema.org/Person"><span itemprop="name">';
-            echo $director;
-            echo '</span></span>';
-          }
-        } elseif($itemtype == 'book') { 
-          foreach ($authors as $author) {
-            echo '<span class="creator author" itemprop="author" itemscope itemtype="http://schema.org/Person"><span itemprop="name">'; 
-            echo $author;
-            echo '</span></span>';
-          }
-        }
-    ?></span></p>
+      <p class="entry-meta main-meta" >
+        <span class="name" itemprop="name">
+          <?php if($other_name) { echo $other_name; } else { the_title(); }?>
+        </span>
+        <span class="byline"><?php if($itemtype == 'film') { echo 'directed '; } ?>by</span>
+        <?php
+          if($itemtype =='film') {
+            foreach ($directors as $director) {          
+              echo '<span class="creator director" itemprop="director" itemscope itemtype="http://schema.org/Person">';
+                echo '<span itemprop="name">';
+                  echo $director;
+                echo '</span>';
+              echo '</span>';
+            }
+          } 
+          elseif($itemtype == 'book') { 
+            foreach ($authors as $author) {
+              echo '<span class="creator author" itemprop="author" itemscope itemtype="http://schema.org/Person">';
+                echo '<span itemprop="name">'; 
+                  echo $author;
+                echo '</span>';
+              echo '</span>';
+            }
+          }?>
+      </p><!-- .entry-meta.main-meta -->
+    </aside>
     <?php 
       if($itemtype == 'film') {
-        if(!empty($actors)){
-          echo '<p class="actor entry-meta"><strong>Starring:</strong> ';
-          foreach ($actors as $actor) {
-            echo '<span itemprop="actor" itemscope itemtype="http://schema.org/Person">';
-            echo "<span itemprop=name>$actor</span>";
-            echo '</span>, ';
-          }
-          echo '</p>';
+        # IF ITEM IS A FILM
+        echo '<aside class="entry-meta film-meta">';
+        
+        # The Actors
+        $actor_args = array(
+          'post_id' => $post->ID,
+          'tax_slug' => 'actor',
+          'tax_title' => 'Starring',
+          'tax_item_prop' => 'actor',
+          'tax_item_scope' => 'Person',
+          'tax_item_child_prop' => 'name',
+          'before' => '<p class="actors">',
+          'after'  => '</p>',
+        );
+        anamorphic_custom_tax_list($actor_args);
+
+        # Release Year
+        if($release_year){
+          echo '<p class="release_year"><strong>Year of Release: </strong>';
+          echo '<span itemprop=datePublished>';
+          echo $release_year;
+          echo '</span></p>';
         }
-        # end if($authors)
-      } elseif($itemtype == 'book') {
-        echo '<p class="entry-meta sub-meta">';
+
+        # End of FILM Meta
+        echo '</aside>';
+      } 
+      elseif($itemtype == 'book') {
+        # IF ITEM IS A BOOK
+        echo '<aside class="entry-meta book-meta">';
         if($bookisbn) {
-          echo '<span class="entry-isbn"><strong>ISBN:</strong> ';
-          echo "<span itemprop='isbn'>$bookisbn</span></span>";
+          echo '<p class="entry-isbn"><strong>ISBN: </strong> ';
+          echo "<span itemprop='isbn'>$bookisbn</span></p>";
         }
         if($publisher) {
-          echo '<span class="entry-publisher"><strong>Publisher:</strong> ';
+          echo '<p class="entry-publisher"><strong>Publisher: </strong> ';
           echo "<span itemprop=publisher>$publisher</span></p>";
         }
-        echo '</p>';
+        echo '</aside>';
+      } else {
+        # If Item is some other stuff 
       }
-      echo '<p class="entry-meta common-meta">';
-      echo '<span class="entry-genre">';
-      the_terms( $post->ID, 'genre', '<strong>Genre:</strong> ', ', ' );
-      echo '</span>';
-      echo '</p>';
+
+
+      # COMMON META
+      echo '<aside class="entry-meta common-meta">';
+
+      # Genre
+      $genre_args = array(
+        'post_id' => $post->ID,
+        'tax_slug' => 'genre',
+        'tax_title' => 'Genre',
+        'tax_item_prop' => 'genre',
+        'before' => '<p class="genre_parent">',
+        'after'  => '</p>',
+      );
+      anamorphic_custom_tax_list($genre_args);
+
+      # End Common Meta
+      echo '</aside>';
  
       # BEGIN AFFILATE SHIT
-      
-      if($flipkart_link || $amazon_link || $other_link) {
+      /*(if($flipkart_link || $amazon_link || $other_link) {
         
         # IF Rating is higher than 1.5
         if($rating > 1.5) {
@@ -143,8 +176,8 @@
         # le Fin
         echo "<br/><small>These are affiliate links.</small>";
         echo "</p>";
-      }?>
-    </aside> 
+      }?>*/
+?>
     <aside class="admin-ui">
       <?php edit_post_link( __( '<i class="icon icon-edit"> </i>Edit', 'anamorhpic' ), '<span class="admin edit-link">', '</span>' ); ?>
     </aside>
@@ -155,6 +188,10 @@
         <li><a target="_blank" href="//pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo $main_image ?>&description=<?php echo $extended_title; ?>: <?php if($subheading) { echo $subheading; } ?>" data-pin-do="buttonPin" data-pin-config="none"><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a></li>
         <li><div class="fb-like-box" data-href="https://www.facebook.com/anamorphic.in" data-width="250" data-show-faces="false" data-stream="false" data-show-border="false" data-header="false"></div></li>
       </ul>
+    </aside>
+    <aside>
+    <!--
+      -->
     </aside>
   </div><!-- .sidebar
 
@@ -183,7 +220,7 @@
     <div class="entry-content" itemprop="reviewBody">
       <?php the_content(); ?>
     </div><!-- .entry-content -->
-    <div class="fb-like" data-href="<?php the_permalink(); ?>" data-send="true" data-width="450" data-show-faces="false"></div>
+    <div class="fb-like" data-href="<?php the_permalink(); ?>" data-send="true" data-layout="button_count" data-width="300" data-show-faces="false"></div>
     <p>&nbsp;</p>
     <aside class="breadcrumbs entry-meta">
     <p class="entry-date">
