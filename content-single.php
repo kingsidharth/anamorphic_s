@@ -162,6 +162,11 @@
         }
         echo '</p>';
       }
+      echo '<p class="entry-meta common-meta">';
+      echo '<span class="entry-genre">';
+      the_terms( $post->ID, 'genre', '<strong>Genre:</strong> ', ', ' );
+      echo '</span>';
+      echo '</p>';
  
       # BEGIN AFFILATE SHIT
       

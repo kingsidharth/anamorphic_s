@@ -34,7 +34,7 @@ get_header(); ?>
 
               --><li class="post_item_wrap grid__item one-half">
                 <a class="post_item" href="<?php the_permalink(); ?>" title="Review of <?php the_title(); ?>">
-                   <img src="<?php echo $main_image; ?>" 
+                   <img src="<?php echo anamorphic_resize($main_image, 200); ?>" 
                      alt="<?php the_title(); ?> by <?php the_array_list($authors); ?>"/>
                    <h2 class="entry-title"><?php the_title(); ?></h2>
                    <div class="entry-meta">
@@ -73,7 +73,7 @@ get_header(); ?>
               $meta  = get_post_meta($post->ID);
               anamorphic_post_data($meta); ?>
               --><li class="post_item_wrap grid__item one-half"><a class="post_item" href="<?php the_permalink(); ?>">
-                <img src="<?php echo $main_image; ?>" title="<?php echo $extended_title;?>" alt="<?php echo $extended_title;?>"/>
+                <img src="<?php echo anamorphic_resize($main_image, 200); ?>" title="<?php echo $extended_title;?>" alt="<?php echo $extended_title;?>"/>
                 <h2 class="entry-title"><?php the_title(); ?></h2>
                 <div class="entry-meta">
                   <?php if($rating){ 

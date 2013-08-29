@@ -95,18 +95,14 @@ get_header(); ?>
           <div class="post">
             <div class="media grid__item one-quarter">
               <a href="<?php the_permalink(); ?>">
-                <img src="<?php echo $main_image; ?>" alt="" title="" />
+                <img src="<?php echo anamorphic_resize($main_image, 200); ?>" alt="" title="" />
               </a>
             </div><!--
             --><div class="grid__item three-quarters">
               <h2 class="entry-title gamma"><a href="<?php the_permalink(); ?>"><?php echo $extended_title; ?></a></h2>
               <div class="entry-meta">
-                <?php if($rating){ 
-                  echo '<span class="rating">';
-                  anamorhpic_rating_to_star($rating);
-                  echo '</span><br/>';
-                }
-                
+              <?php 
+                                
                 # If Authors exists
                 if($authors) {
                   echo "<span class=authors>by ";
@@ -116,7 +112,15 @@ get_header(); ?>
                     echo '</span>';
                   }
                   echo "</span><br/>";
-                }?>
+                }
+
+                if($rating){ 
+                  echo '<span class="rating">';
+                  anamorhpic_rating_to_star($rating);
+                  echo '</span><br/>';
+                }
+
+                ?>
 
                 <span class="entry-date"><?php echo get_the_date(); ?></span>              
               </div><!--.entry-meta-->

@@ -79,45 +79,9 @@ add_action( 'wp_enqueue_scripts', 'anamorhpic_scripts' );
  */
 require get_template_directory() . '/inc/jetpack.php';
 
-// Register Custom Taxonomy
-/* function anamorphic_people_taxnomy()  {
-	$labels = array(
-		'name'                       => 'People',
-		'singular_name'              => 'Person',
-		'menu_name'                  => 'People',
-		'all_items'                  => 'All People',
-		'parent_item'                => 'Parent Person',
-		'parent_item_colon'          => 'Parent Person:',
-		'new_item_name'              => 'New Person',
-		'add_new_item'               => 'Add A New Person',
-		'edit_item'                  => 'Edit Person',
-		'update_item'                => 'Update Person',
-		'separate_items_with_commas' => 'Separate people with commas',
-		'search_items'               => 'Search people...',
-		'add_or_remove_items'        => 'Add or remove Person/People',
-		'choose_from_most_used'      => 'Choose from the people',
-	);
+/* ______ REGISTER CUSTOM TAXONOMIES ______ */
 
-	$rewrite = array(
-		'slug'                       => 'person',
-		'with_front'                 => true,
-		'hierarchical'               => false,
-	);
-
-	$args = array(
-		'labels'                     => $labels,
-		'hierarchical'               => false,
-		'public'                     => true,
-		'show_ui'                    => true,
-		'show_admin_column'          => true,
-		'show_in_nav_menus'          => true,
-		'show_tagcloud'              => false,
-		'rewrite'                    => $rewrite,
-	);
-
-	register_taxonomy( 'people', 'post', $args );
-} */
-
+// Authors (for books)
 function anamorphic_authors_taxnomy()  {
 	$labels = array(
 		'name'                       => 'Authors',
@@ -156,6 +120,83 @@ function anamorphic_authors_taxnomy()  {
 
 // Hook into the 'init' action
 add_action( 'init', 'anamorphic_authors_taxnomy', 0 );
+
+
+// Genre (common?)
+function anamorphic_genre()  {
+	$labels = array(
+		'name'                       => 'Genre',
+		'singular_name'              => 'Genre',
+		'menu_name'                  => 'Genre',
+		'all_items'                  => 'All Genre',
+		'new_item_name'              => 'New Genre',
+		'add_new_item'               => 'Add A New Genre',
+		'edit_item'                  => 'Edit Genre',
+		'update_item'                => 'Update Genre',
+		'separate_items_with_commas' => 'Separate genre with commas',
+		'search_items'               => 'Search genre...',
+		'add_or_remove_items'        => 'Add or remove Genre',
+		'choose_from_most_used'      => 'Choose from the genre',
+	);
+
+	$rewrite = array(
+		'slug'                       => 'genre',
+		'with_front'                 => true,
+		'hierarchical'               => false,
+	);
+
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => false,
+		'rewrite'                    => $rewrite,
+	);
+
+	register_taxonomy( 'genre', 'post', $args );
+}
+
+
+// Hook into the 'init' action
+add_action( 'init', 'anamorphic_genre', 0 );
+
+
+function anamorphic_display_taxonomy() {
+  global $post, $post_id;
+  // get post by post id
+  $post = &get_post($post->ID);
+  // get post type by post
+  $post_type = $post->post_type;
+  $taxonomies = get_object_taxonomies($post_type);
+  foreach ($taxonomies as $taxonomy) {        
+      $out .= "<li>".$taxonomy.": ";
+      // get the terms related to post
+      $terms = get_the_terms( $post->ID, $taxonomy );
+      if ( !empty( $terms ) ) {
+          foreach ( $terms as $term )
+              $out .= '<a href="' .get_term_link($term->slug, $taxonomy) .'">'.$term->name.'</a> ';
+      }
+      $out .= "</li>";
+  }
+  $out .= "</ul>";
+  return $out;
+}
+
+function anamorphic_get_genre() {
+  $args=array(
+    'name' => 'genre'
+  );
+  $output = 'objects'; // or objects
+  $taxonomies= get_taxonomies($args, $output); 
+  if($taxonomies) {
+    foreach ($taxonomies  as $taxonomy ) {
+      echo '<a href="' . $taxonomy->slug . '">'.$taxonomy->name.'</a> ';
+    }
+  }  
+}
 
 /* META BOXES */
 add_filter( 'cmb_meta_boxes', 'anamorphic_metaboxes' );
@@ -448,4 +489,11 @@ function get_array_list($array) {
 
 function the_array_list($array) {
   echo get_array_list($array);
+}
+
+function anamorphic_resize($image_url, $width ) {
+  $resized_url = 'http://i.embed.ly/1/display/resize?key=1bb0b297268c4c30bba79833f323b94f&url='
+    . $image_url . '&errorUrl=' . $image_url 
+    . '&width=' . $width;
+  return $resized_url;
 }
