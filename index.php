@@ -74,7 +74,7 @@ get_header(); ?>
               anamorphic_post_data($meta); ?>
               --><li class="post_item_wrap grid__item one-half"><a class="post_item" href="<?php the_permalink(); ?>">
                 <img src="<?php echo anamorphic_resize($main_image, 200); ?>" title="<?php echo $extended_title;?>" alt="<?php echo $extended_title;?>"/>
-                <h2 class="entry-title"><?php the_title(); ?></h2>
+                <h2 class="entry-title"><?php echo $extended_title; ?></h2>
                 <div class="entry-meta">
                   <?php if($rating){ 
                     echo '<span class="rating">';
