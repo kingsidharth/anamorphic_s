@@ -193,9 +193,6 @@
     </aside>
     <aside class="social-share palm-hidden">
       <ul class="nav nav--stacked">
-        <!--<li><div class="fb-like" data-href="<?php the_permalink(); ?>" data-send="true" data-layout="button_count" data-width="250" data-show-faces="false"></div></li>-->
-        <!--<li><div class="fb-follow" data-href="https://www.facebook.com/KingSidharth" data-layout="button_count" data-show-faces="false" data-width="200"></div></li>-->
-        <li><a target="_blank" href="//pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo $main_image ?>&description=<?php echo $extended_title; ?>: <?php if($subheading) { echo $subheading; } ?>" data-pin-do="buttonPin" data-pin-config="none"><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a></li>
         <li><div class="fb-like-box" data-href="https://www.facebook.com/anamorphic.in" data-width="250" data-show-faces="false" data-stream="false" data-show-border="false" data-header="false"></div></li>
       </ul>
     </aside>
@@ -226,8 +223,8 @@
     <div class="entry-content" itemprop="reviewBody">
       <?php the_content(); ?>
     </div><!-- .entry-content -->
-    <div class="fb-like" data-href="<?php the_permalink(); ?>" data-send="true" data-layout="button_count" data-width="300" data-show-faces="false"></div>
-    <p>&nbsp;</p>
+    <p class="social-share">
+    <span class="fb-like" data-href="<?php the_permalink(); ?>" data-send="true" data-layout="button_count" data-width="300" data-show-faces="false"> </span> <a target="_blank" href="//pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo $main_image ?>&description=<?php echo $extended_title; ?>: <?php if($subheading) { echo $subheading; } ?>" data-pin-do="buttonPin" data-pin-config="none"><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a></p>
     <aside class="breadcrumbs entry-meta">
     <p class="entry-date">
       <span class="published"><meta itemprop="datePublished" content="<?php the_date('c'); ?>"/>Published on <?php echo get_the_date('F j, Y'); ?>.</span>
@@ -249,7 +246,7 @@
       <?php } ?>
       <li class="separator"><a><i class="icon icon-chevron-right"></i></a></li>
       <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-        <a itemprop="url" href="<?php the_permalink(); ?>"><span itemprop="title"><?php the_title(); ?></span></a>
+        <a itemprop="url" href="<?php the_permalink(); ?>"><span itemprop="title"><?php echo $extended_title; ?></span></a>
       </li>
     </ul>
     </aside> 

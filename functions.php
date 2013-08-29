@@ -606,6 +606,8 @@ function anamorphic_post_data($meta) {
   }
 }
 
+
+/* _____ GET ARRAY INTO A LIST ______ */
 function get_array_list($array) {
   echo implode(",", $array);
 } 
@@ -614,6 +616,10 @@ function the_array_list($array) {
   echo get_array_list($array);
 }
 
+
+/* ______ IMAGE RESIZING _____ */
+# Uses embed.ly
+# TODO: Make this inhouse.
 function anamorphic_resize($image_url, $width ) {
   $resized_url = 'http://i.embed.ly/1/display/resize?key=1bb0b297268c4c30bba79833f323b94f&url='
     . $image_url . '&errorUrl=' . $image_url 
