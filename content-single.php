@@ -18,7 +18,7 @@
     $bookisbn, 
     $publisher, 
 
-    $flipkart_link, $amazon_link, $amazon_us_link, $other_link,
+    $affiliate, $flipkart_link, $amazon_link, $amazon_us_link, $infibeam_link, $other_link,
     $extended_title;  
 
   $meta = get_post_meta( $post->ID );
@@ -162,32 +162,25 @@
       echo '</aside>';
 
       # BEGIN AFFILATE SHIT
-      if($flipkart_link || $amazon_link || $other_link || $amazon) {
+      if($affiliate) {
+        echo "<aside class='affiliate-promo left'>";
         
         # IF Rating is higher than 1.5
-        if($rating > 1.5) {
-          echo "<p>Buy it on: ";
-        } else {
-          echo "<p>I really don't think you should buy it, but if you must: ";
+        echo "<h4>Buy it here!</h4>";
+        if($rating < 1.5) {
+          echo "<p>I really don't think you should buy it, but if you must:</p>";
         }
 
-        # THE LINKS
+        echo "<ul class='nav nav--stacked'>";
+        check_print_affiliate_link($amazon_us_link, 'Amazon US');
+        check_print_affiliate_link($amazon_link, 'Amazon India');
+        check_print_affiliate_link($flipkart_link, 'Filpkart');
+        check_print_affiliate_link($infibeam_link, 'Infibeam');
+        check_print_affiliate_link($other_link, 'Other');
+        echo '</ul>';
 
-        if($amazon_link) { 
-          echo "<a href='$amazon_link' rel='nofollow' target='_blank'>Amazon</a>, "; 
-        }
-        if($flipkart_link) {
-          echo "<a href='$flipkart_link' rel='nofollow' target='_blank'>Flipkart</a>, "; 
-        }
-        if($other_link) { 
-          echo "<a href='$other_link' rel='nofollow' target='_blank'>this site</a>";
-        }
-
-        # le Fin
-        echo "<br/><small>These are affiliate links.</small>";
-        echo "</p>";
-      }?>*/
-?>
+        echo '</aside>';
+      }?>
     <aside class="admin-ui">
       <?php edit_post_link( __( '<i class="icon icon-edit"> </i>Edit', 'anamorhpic' ), '<span class="admin edit-link">', '</span>' ); ?>
     </aside>

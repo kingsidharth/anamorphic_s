@@ -278,3 +278,52 @@ aside.entry-meta {
     display: none!important;
   }
 }
+
+
+// Affiliate Promo 
+.affiliate-promo {
+  background: mix($white, #FFF);
+  border: 1px solid adjust-lightness($white, -10%);
+  padding: 0.2em 0.6em;
+  @include border-radius(3px);
+
+  h4 {
+    font-weight: 300;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: $green;
+  }
+
+  ul {
+    margin-bottom: 0.5em;
+    font-size: 0.85em;
+  }
+}
+
+// breadcrumbs
+.breadcrumbs {
+  .icon {
+    font-size: 0.5em;
+  }
+}
+
+// Single Post Content Promo
+.related_posts {
+  margin-top: 10px;
+  border-top: 2px solid $green;
+  h4 {
+    text-transform: uppercase;
+    font-size: 0.9em;
+    font-weight: normal;
+    color: $lgreen;
+  }
+  .nav {
+    li {
+      border-bottom: 1px dotted adjust-lightness($white, -15%);
+    }
+  }
+  abbr {
+    display: none;
+  }
+}

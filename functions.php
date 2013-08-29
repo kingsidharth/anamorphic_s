@@ -549,7 +549,7 @@ function anamorphic_post_data($meta) {
     $bookisbn, 
     $publisher, 
 
-    $flipkart_link, $amazon_link, $amazon_us_link, $other_link,
+    $flipkart_link, $amazon_link, $amazon_us_link, $other_link, $infibeam_link,
     $extended_title;  
   
   # COMMON METADATA
@@ -590,9 +590,13 @@ function anamorphic_post_data($meta) {
   $flipkart_link    = $meta[anamorphic_aff_flipkart][0];
   $amazon_link      = $meta[anamorphic_aff_amazon][0];
   $amazon_us_link   = $meta[anamorphic_aff_amazon_us][0];
+  $infibeam_link    = $meta[anamorphic_aff_infibeam][0];
   $other_link       = $meta[anamorphic_aff_other][0];
-
-
+  if($flipkart_link || $amazon_link || $other_link || $amazon_us_link) {
+    global $affiliate;
+    $affiliate = true;
+  }
+  
   # Extended Title
   if($itemtype == 'book') {
     # Book: <Book Title> by <Author>
@@ -606,6 +610,11 @@ function anamorphic_post_data($meta) {
   }
 }
 
+function check_print_affiliate_link($link, $text) {
+  if($link) {
+    echo "<li><a href='$link' rel='nofollow' target='_blank'>$text</a></li>"; 
+  }
+}
 
 /* _____ GET ARRAY INTO A LIST ______ */
 function get_array_list($array) {
