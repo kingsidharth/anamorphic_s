@@ -101,37 +101,17 @@ get_header(); ?>
             --><div class="grid__item three-quarters">
               <h2 class="entry-title gamma"><a href="<?php the_permalink(); ?>"><?php echo $extended_title; ?></a></h2>
               <div class="entry-meta">
-              <?php 
-                                
-                # If Authors exists
-                if($authors) {
-                  echo "<span class=authors>by ";
-                  foreach ($authors as $author) {
-                    echo '<span class="name">'; 
-                    echo $author;
-                    echo '</span>';
-                  }
-                  echo "</span><br/>";
-                }
-
-                if($rating){ 
-                  echo '<span class="rating">';
-                  anamorhpic_rating_to_star($rating);
-                  echo '</span><br/>';
-                }
-
-                ?>
-
+                <?php 
+                  if($rating){ 
+                    echo '<span class="rating">';
+                    anamorhpic_rating_to_star($rating);
+                    echo '</span><br/>';
+                  }?>
                 <span class="entry-date"><?php echo get_the_date(); ?></span>              
               </div><!--.entry-meta-->
 
-              <?php if($subheading) { 
-                echo '<p>';
-                echo $subheading;
-                echo '</p>';
-              } ?>
+              <?php if($subheading) { echo "<p class=subheading>$subheading</p>"; } ?>
             </div>
-
           </div>
 
         <?php endwhile; ?>
