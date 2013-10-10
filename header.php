@@ -18,7 +18,8 @@
     } elseif (is_page()) {
       the_title();
     } elseif (is_single()) {
-      the_title() . ' Review';
+      the_title();
+      echo ': Review';
     }
   ?>
   </title>
