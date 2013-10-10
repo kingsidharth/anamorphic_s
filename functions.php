@@ -99,7 +99,7 @@ function anamorphic_authors_taxnomy()  {
 	);
 
 	$rewrite = array(
-		'slug'                       => 'author',
+		'slug'                       => 'book-author',
 		'with_front'                 => true,
 		'hierarchical'               => false,
 	);

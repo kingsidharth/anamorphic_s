@@ -229,14 +229,35 @@
     <div class="entry-content" itemprop="reviewBody">
       <?php the_content(); ?>
     </div><!-- .entry-content -->
+
+    <aside> 
+    <p class="entry-date entry-meta">
+      <span class="published">
+        <meta itemprop="datePublished" content="<?php the_date('c'); ?>"/>
+        Published on <?php echo get_the_date('F j, Y'); ?>.&nbsp;
+      </span>
+      <span class="updated">
+        <meta itemprop="dateModified" content="<?php the_modified_date('c'); ?>">
+        Updated on <?php the_modified_date(); ?>.
+      </span>
+    </p>
     <p class="social-share">
-    <span class="fb-like" data-href="<?php the_permalink(); ?>" data-send="true" data-layout="button_count" data-width="300" data-show-faces="false"> </span> <a target="_blank" href="//pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo $main_image ?>&description=<?php echo $extended_title; ?>: <?php if($subheading) { echo $subheading; } ?>" data-pin-do="buttonPin" data-pin-config="none"><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" /></a></p>
-    <aside class="breadcrumbs entry-meta">
-    <p class="entry-date">
-      <span class="published"><meta itemprop="datePublished" content="<?php the_date('c'); ?>"/>Published on <?php echo get_the_date('F j, Y'); ?>.</span>
-      <span class="updated">Updated on <meta itemprop="dateModified" content="<?php the_modified_date('c'); ?>"><?php the_modified_date(); ?>.</span>
+      <span class="fb-like" 
+            data-href="<?php the_permalink(); ?>" 
+            data-send="true" 
+            data-layout="button_count" 
+            data-width="300" 
+            data-show-faces="false"> 
+      </span> 
+      <a target="_blank" 
+         href="//pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo $main_image ?>&description=<?php echo $extended_title; ?>: <?php if($subheading) { echo $subheading; } ?>" 
+         data-pin-do="buttonPin" 
+         data-pin-config="none"><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
+      </a>
+      &nbsp;<a href="//twitter.com/share?url=<?php the_permalink(); ?>&text=<?php echo $extended_title; ?>&via=kingsidharth" target="_blank">Tweet this</a>
     </p>
     </aside> 
+
     <?php 
      if(function_exists('related_posts')) {
        echo "<aside class='related_posts'>";
