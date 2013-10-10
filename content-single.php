@@ -190,6 +190,22 @@
 
   --><div class="format_text grid__item five-eighths palm-one-whole">
     <header class="entry-header">
+      <ul class="nav breadcrumbs">
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+          <a itemprop="url" href="/"><span itemprop="title">Anamorphic</span></a>
+        </li>
+        <li class="separator"><a><i class="icon icon-chevron-right"></i></a></li>
+        <?php if($itemtype =='film') { ?>
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+          <a itemprop="url" href="/category/film"><span itemprop="title">Films</span></a>
+        </li>
+        <?php } elseif($itemtype =='book') { ?> 
+        <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+          <a itemprop="url" href="/category/book"><span itemprop="title">Books</span></a>
+        </li> 
+        <?php } ?>
+        <li class="separator"><a><i class="icon icon-chevron-right"></i></a></li>
+      </ul>
       <h1 itemprop="name" class="entry-title"><?php echo $extended_title; ?></h1>
       <div class="entry-meta">
       <?php
@@ -220,25 +236,6 @@
       <span class="published"><meta itemprop="datePublished" content="<?php the_date('c'); ?>"/>Published on <?php echo get_the_date('F j, Y'); ?>.</span>
       <span class="updated">Updated on <meta itemprop="dateModified" content="<?php the_modified_date('c'); ?>"><?php the_modified_date(); ?>.</span>
     </p>
-    <ul class="nav">
-      <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-        <a itemprop="url" href="/"><span itemprop="title">Anamorphic</span></a>
-      </li>
-      <li class="separator"><a><i class="icon icon-chevron-right"></i></a></li>
-      <?php if($itemtype =='film') { ?>
-      <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-        <a itemprop="url" href="/category/film"><span itemprop="title">Films</span></a>
-      </li>
-      <?php } elseif($itemtype =='book') { ?> 
-      <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-        <a itemprop="url" href="/category/book"><span itemprop="title">Books</span></a>
-      </li> 
-      <?php } ?>
-      <li class="separator"><a><i class="icon icon-chevron-right"></i></a></li>
-      <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-        <a itemprop="url" href="<?php the_permalink(); ?>"><span itemprop="title"><?php echo $extended_title; ?></span></a>
-      </li>
-    </ul>
     </aside> 
     <?php 
      if(function_exists('related_posts')) {

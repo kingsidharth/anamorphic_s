@@ -80,7 +80,12 @@ body.page {
   margin: 0 auto;
 }
 
-::selection, ::-moz-selection {
+::selection {
+  background: $red;
+  color: $white;
+}
+
+::-moz-selection {
   background: $red;
   color: $white;
 }
@@ -103,6 +108,10 @@ body.page {
 .entry-title {
   margin-top: 0;
 }
+  h1.entry-title {
+    font-weight: 300;
+  }
+
 .subheading {
   font-weight: bold;
   font-size: 1.1em;
@@ -320,8 +329,14 @@ aside.entry-meta {
 
 // breadcrumbs
 .breadcrumbs {
+  font-size: 0.9em;
+  font-weight: 300;
+  margin-bottom: 0.5rem;
   .icon {
     font-size: 0.5em;
+  }
+  a {
+    text-decoration: none;
   }
 }
 
