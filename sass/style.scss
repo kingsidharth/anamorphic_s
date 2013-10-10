@@ -267,8 +267,9 @@ aside.entry-meta {
   margin-top: 0.5em;
   padding-top: 0.5em;
   footer {
-    border-top: 1px dotted adjust-lightness($white, -15%);
     font-size: 0.9em;
+    text-transform: uppercase;
+    color: adjust-lightness($black, 10%);
   }
 }
 
@@ -344,14 +345,29 @@ aside.entry-meta {
   }
 }
 
-#subscribe_area {
-  h4 {
-    color: $green;
-  }
-  a{
-    text-decoration: none;
-  }
-  p {
-    margin-bottom: 10px;
-  }
+#promo_area {
 }
+  #promo {
+    hr {
+      border-top: 1px solid $red;
+      border-width: 1px 0 0 0;
+      margin-bottom: 5px;
+    }
+    h4{
+      font-weight: 300;
+    }
+    a {
+      text-decoration: none;
+    }
+  }
+    #subscribe{
+      h4 {
+        color: $green;
+        font-weight: bold;
+      }
+      p{
+        margin-bottom: 0.5rem;
+      }
+    }
+    #get_reviewed{}
+    #elsewhere{}

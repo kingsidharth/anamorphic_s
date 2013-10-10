@@ -77,7 +77,7 @@ add_action( 'wp_enqueue_scripts', 'anamorhpic_scripts' );
 /**
  * Load Jetpack compatibility file.
  */
-require get_template_directory() . '/inc/jetpack.php';
+# require get_template_directory() . '/inc/jetpack.php';
 
 /* ______ REGISTER CUSTOM TAXONOMIES ______ */
 
