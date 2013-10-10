@@ -241,9 +241,11 @@
     </ul>
     </aside> 
     <?php 
-     echo "<aside class='related_posts'>";
-     related_posts();
-     echo "</aside>";
+     if(function_exists('related_posts')) {
+       echo "<aside class='related_posts'>";
+       related_posts();
+       echo "</aside>";
+     }
      ?>
   </div><!-- .format_text-->
 </article><!-- #post-## -->
