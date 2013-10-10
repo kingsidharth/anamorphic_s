@@ -45,20 +45,8 @@ get_header(); ?>
               elseif ( is_year() ) :
                 printf( __( 'Yearly Archives: %s', 'anamorhpic' ), '<span>' . get_the_date( 'Y' ) . '</span>' );
 
-              elseif ( is_tax( 'post_format', 'post-format-aside' ) ) :
+              elseif ( is_tax('post', 'genre') ) :
                 _e( 'Asides', 'anamorhpic' );
-
-              elseif ( is_tax( 'post_format', 'post-format-image' ) ) :
-                _e( 'Images', 'anamorhpic');
-
-              elseif ( is_tax( 'post_format', 'post-format-video' ) ) :
-                _e( 'Videos', 'anamorhpic' );
-
-              elseif ( is_tax( 'post_format', 'post-format-quote' ) ) :
-                _e( 'Quotes', 'anamorhpic' );
-
-              elseif ( is_tax( 'post_format', 'post-format-link' ) ) :
-                _e( 'Links', 'anamorhpic' );
 
               else :
                 _e( 'Archives', 'anamorhpic' );
