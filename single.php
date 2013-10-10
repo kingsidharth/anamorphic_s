@@ -19,23 +19,38 @@ get_header(); ?>
     </div>
   </div><!-- #content_area -->
 
-  <div id="subscribe_area" class="grid">
+  <div id="promo_area" class="grid">
     <div class="page">
-      <div id="subscribe">
-        <h4 class="grid__item one-whole">Liked what you read? Keep up with the new stuff:</h4>
-        <div class="grid__item two-fifths palm-one-whole rss">
+      <div id="promo">
+        <div class="grid__item one-whole"><hr/></div>
+      
+        <div id="subscribe" class="grid__item one-third">
+          <h4><i class="icon icon-check"> </i>Subscribe</h4>
+          <p>Liked what you read? You might want to subscribe to the updates:</p>
           <ul class="nav nav--stacked">
-            <li class="gamma"><a href=""><i class="icon icon-rss"> </i> RSS Feed</a></li>
-            <li><a href="https://twitter.com/kingsidharth"><i class="icon icon-twitter"> </i>Twitter</a></li>
-            <li><a href="http://"><i class="icon icon-book"></i> Goodreads</a></li>
+            <li><a class="fb-like" data-href="https://www.facebook.com/anamorphic.in" data-width="300" data-layout="button_count" data-show-faces="true"> Like on Facebook</a></li>
+            <li><a href="http://feeds.feedburner.com/anamorphic"><i class="icon icon-rss"> </i> RSS Feed</a></li>
+            <li><a href="https://www.goodreads.com/kingsidharth"><i class="icon icon-book"></i> Follow on Goodreads</a></li>
           </ul>
-          <div class="fb-follow" data-href="https://www.facebook.com/KingSidharth" data-width="300" data-layout="button_count" data-show-faces="false"></div>
-        </div><!--
-        --><div class="grid__item three-fifths right palm-hideen fb">
-          <div class="fb-like-box" data-href="https://www.facebook.com/anamorphic.in" data-width="300" data-show-faces="false" data-header="false" data-stream="false" data-show-border="false"></div>
-        </div>
-      </div><!-- #subscribe -->
+        </div><!-- #subscribe
+        --><div id="get_reviewed" class="grid__item one-third">
+          <h4>Get Reviewed</h4>
+          <p>Want me to review your book/film or some specific book/film? Email me: king(a)kingsidharth.com</p>
+        </div><!-- #get_reviewed
+
+        --><div id="elsewhere" class="grid__item one-third">
+          <h4>Elsewhere</h4>
+          <ul class="nav nav--stacked">
+            <li><a href="http://bit.ly/anatwitks"><i class="icon icon-twitter"> </i>@kingsidharth</a></li>
+            <li><a href="https://plus.google.com/100630005600562803456?rel=author" rel="author"><i class="icon icon-google-plus"> </i>Add on Google+</a></li>
+            <li><a href="http://bit.ly/anamorfbks"><i class="icon icon-facebook"> </i> Follow on Facebook</a></li>
+            <li><a href="http://www.kingsidharth.com"><i class="icon icon-globe"> </i> Personal Website</a></li>
+            <!--<li><a href=""><i class="icon icon-"> </i></a></li>-->
+          </ul>
+        </div><!-- #elsewhere -->
+        
+      </div><!-- #promo -->
     </div>
-  </div><!-- #subscribe_area -->
+  </div><!-- #promo_area -->
 
 <?php get_footer(); ?>
