@@ -373,6 +373,10 @@ aside.entry-meta {
   .nav {
     li {
       border-bottom: 1px dotted adjust-lightness($white, -15%);
+      margin-bottom: 0.2em;
+      a {
+        text-decoration: none;
+      }
     }
   }
   abbr {
@@ -381,23 +385,50 @@ aside.entry-meta {
 }
 
 // Special Nav 
-.nav--speical {
+.nav--button {
   li {
-    margin: 0 0.5em;
-    a {
+    a{
       text-decoration: none;
-      border: 1px solid $green;
-      color: $green;
-      border-radius: 25px;
-      padding: 3px 18.8px;
-      &:hover, &:focus, &.active {
-        background: $green;
-        color: $white;
-        border-color: adjust-lightness($green, -10%);
-      }
+      text-align: center;
+      border-radius: 2em;
+      padding: 0.4em 1.18em;
+    }
+  }
+  &.nav--stacked {
+    li {
+      margin-bottom: 0.5em;
+    }
+  }
+  &.nav--block {
+    li {
+      margin-right: 0.8em;
     }
   }
 }
+
+@mixin nav--button($color, $background) {
+  li { 
+    a {
+      background: $background;
+      border: 1px solid $color;
+      color: $color;
+      &:hover, &:focus, &.active {
+        background: $color;
+        color: $background;
+        border-color: adjust-lightness($color, -10%);
+      }
+    }
+  } 
+}
+
+.nav--button-red {
+  @include nav--button($red, $white);
+}
+.nav--button-green {
+  @include nav--button($green, $white);
+}
+ 
+
 
 
 #promo_area {
