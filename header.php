@@ -28,6 +28,9 @@
   
   <meta name="viewport" content="width=device-width" />
   <meta charset="<?php bloginfo( 'charset' ); ?>" />
+  <?php if(is_tax()) { ?>
+  <meta name="robots" content="noindex">
+  <?php } ?>
 
   <!-- Open Graph Data -->
   <meta property="fb:app_id" content="502579883131350" /> 
