@@ -19,6 +19,8 @@
   </body>
 
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/js/app.js"></script>
+
   <div id="fb-root"></div>
   <script>
     (function(d, s, id) {

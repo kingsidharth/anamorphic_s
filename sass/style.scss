@@ -221,6 +221,9 @@ aside.entry-meta {
       &:active {
         background: adjust-lightness($white, -2%);
       }
+      .entry-date {
+        font-size: 0.8em;
+      }
       .entry-title {
         font-size: 1em;
         line-height: 1.4em;
@@ -352,6 +355,26 @@ aside.entry-meta {
     display: none;
   }
 }
+
+// Special Nav 
+.nav--speical {
+  li {
+    margin: 0 0.5em;
+    a {
+      text-decoration: none;
+      border: 1px solid $green;
+      color: $green;
+      border-radius: 25px;
+      padding: 3px 18.8px;
+      &:hover, &:focus, &.active {
+        background: $green;
+        color: $white;
+        border-color: adjust-lightness($green, -10%);
+      }
+    }
+  }
+}
+
 
 #promo_area {
 }

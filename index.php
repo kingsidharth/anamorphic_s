@@ -16,10 +16,11 @@ get_header(); ?>
   <div id="content_area" class="grid">
     <div class="page">
       <div id="content">
-        <ul class="grid__item one-whole nav nav--block" id="category_select">
-          <li><a class="active" rel="all" href="/">All Reviews</a></li>
-          <li><a rel="book" href="/category/book">Book Reviews</a></li>
-          <li><a rel="film" href="/category/film">Film Reviews</a></li>
+        <ul class="grid__item one-whole nav nav--block nav--speical" id="category_select">
+          <li>Sort Reviews:</li>
+          <li><a class="active" rel="post_item_wrap" href="/">All</a></li>
+          <li><a rel="book" href="/category/book">Book</a></li>
+          <li><a rel="film" href="/category/film">Film</a></li>
         </ul>
         <ul class="nav post_list"><!--
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
@@ -57,8 +58,8 @@ get_header(); ?>
              <?php endwhile; else: ?>
                --><li><?php _e('<icon class="icon icon-frown> </i>Sorry, no posts matched your criteria.'); ?></li><!--
             <?php endif; ?>
-             --><li class="grid__item gamma one-whole">
-               <a href="/category/book/">See all book reviews <i class="icon icon-chevron-right"></i></a>
+             --><li class="grid__item one-whole">
+               <?php posts_nav_link(); ?> 
              </li>
           </ul>
         </div><!-- #content -->
