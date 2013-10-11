@@ -108,6 +108,9 @@ body.page {
 .entry-title {
   margin-top: 0;
   font-weight: 300;
+  a {
+    text-decoration: none;
+  }
 }
 
 .subheading {
@@ -203,6 +206,7 @@ aside.entry-meta {
       padding-bottom: 10px;
       max-width: 100%;
       border-bottom: 1px dotted $lgreen;
+      display: inline-block;
       color: $lgreen;
       @include transition(0.2s);
       &:hover {
@@ -238,6 +242,13 @@ aside.entry-meta {
           display: block;
         }
       }
+    }
+
+    .subheading {
+      font-size: 0.9em;
+      color: adjust-lightness($lgreen, 10%);
+      font-weight: normal;
+      margin-bottom: 0.2rem;
     }
   }
   .group-title {

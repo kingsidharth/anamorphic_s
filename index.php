@@ -67,6 +67,4 @@ get_header(); ?>
 		</div>
 	</div><!-- #content_area -->
   
-  <script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/js/masonry.min.js"></script>
-
 <?php get_footer(); ?>

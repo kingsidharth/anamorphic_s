@@ -1,4 +1,9 @@
 
+var is_front_page;
+var is_category;
+var is_single;
+var is_page;
+var is_taxonomy;
 
 $(document).ready(function() {
   $('#category_select a').click(function(e) {
@@ -21,6 +26,15 @@ $(document).ready(function() {
       }
     }
   });
+
+  /* _____ CATEGORY _____ */
+  if(is_category == "true" ) {
+    $(window).bind("load", function() {
+      applyMasonry('.post_item_wrap', '.post_list');
+    });
+  }
+
+  /* _____ TAXONOMY _____ */
 });
 
 $(window).bind("load", function() {
