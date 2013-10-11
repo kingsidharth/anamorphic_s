@@ -37,6 +37,7 @@ body {
   @include sans;
   a {
     color: $red;
+    text-decoration: none;
     &:hover {
       color: $lgreen;
     }
@@ -90,6 +91,12 @@ body.page {
   color: $white;
 }
 
+.format-text, p, ul, table, ol {
+  a {
+    text-decoration: underline;
+  }
+}
+
 .brand {
   background: url('assets/images/anamorphic-logo.png') transparent top left no-repeat;
   background-size: contain;
@@ -104,6 +111,7 @@ body.page {
       background-image: url('assets/images/anamorphic-logo-red.png');
     }
   }
+
 
 .entry-title {
   margin-top: 0;
