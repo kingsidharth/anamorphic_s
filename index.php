@@ -13,86 +13,56 @@
 
 get_header(); ?>
 
-  <div id="latest_area" class="grid">
+  <div id="content_area" class="grid">
     <div class="page">
-      <div id="latest" class"" role="main">
-        
-        <div class="grid__item one-half post_list  palm-one-whole">
-          <h2 class="group-title grid__item one-whole">Latest Book Reviews</h2>
-          <ul class="nav"><!--
-          <?php 
-            global $post;
-            $args = array( 'numberposts' => 10, 'category' => 4 );
+      <div id="content">
+        <ul class="grid__item one-whole nav nav--block" id="category_select">
+          <li><a class="active" rel="all" href="/">All Reviews</a></li>
+          <li><a rel="book" href="/category/book">Book Reviews</a></li>
+          <li><a rel="film" href="/category/film">Film Reviews</a></li>
+        </ul>
+        <ul class="nav post_list"><!--
+        <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
+            $meta  = get_post_meta($post->ID);
+            anamorphic_post_data($meta);
+          ?>
 
-            $myposts = get_posts( $args );
-
-            foreach( $myposts as $post ) : setup_postdata($post); 
-              $meta  = get_post_meta($post->ID);
-              anamorphic_post_data($meta);
-              $book_title = get_the_title() . ' by ' . get_array_list($authors);
-            ?>
-
-              --><li class="post_item_wrap grid__item one-half">
-                <a class="post_item" href="<?php the_permalink(); ?>" title="Review of <?php the_title(); ?>">
-                   <img src="<?php echo anamorphic_resize($main_image, 200); ?>" 
-                     alt="<?php the_title(); ?> by <?php the_array_list($authors); ?>"/>
-                   <h2 class="entry-title"><?php the_title(); ?></h2>
-                   <div class="entry-meta">
-                     <?php 
-                      if($authors) {
-                        echo "<span class=author><em>by</em> <strong>";
-                        the_array_list($authors);
-                        echo "</strong></span>";
-                      }
-                      if($rating){ 
-                        echo '<span class="rating">';
-                        anamorhpic_rating_to_star($rating);
-                        echo '</span>';
-                      } ?>
-                     <span class="entry-date"><?php echo get_the_date(); ?></span>              
-                   </div><!--.entry-meta-->
-                 </a>
-               </li><!--
-               <?php endforeach; ?>
-               --><li class="grid__item gamma one-whole">
-                 <a href="/category/book/">See all book reviews <i class="icon icon-chevron-right"></i></a>
-               </li>
-            </ul>
-          </div><!-- #latest_films.post_list
-
-        --><div class="grid__item one-half post_list palm-one-whole">
-          <h2 class="group-title grid__item one-whole">Latest Film Reviews</h2>
-          <ul class="nav"><!--
-          <?php 
-            global $post;
-            $args = array( 'numberposts' => 10, 'category' => 3 );
-
-            $myposts = get_posts( $args );
-
-            foreach( $myposts as $post ) : setup_postdata($post); 
-              $meta  = get_post_meta($post->ID);
-              anamorphic_post_data($meta); ?>
-              --><li class="post_item_wrap grid__item one-half"><a class="post_item" href="<?php the_permalink(); ?>">
-                <img src="<?php echo anamorphic_resize($main_image, 200); ?>" title="<?php echo $extended_title;?>" alt="<?php echo $extended_title;?>"/>
-                <h2 class="entry-title"><?php echo $extended_title; ?></h2>
-                <div class="entry-meta">
-                  <?php if($rating){ 
+            --><li class="post_item_wrap grid__item one-fifth <?php echo $itemtype; ?>">
+              <a class="post_item" href="<?php the_permalink(); ?>" title="Review of <?php the_title(); ?>">
+                 <img src="<?php echo $main_image; ?>" 
+                   alt="<?php echo $extended_title; ?>" width="100%" class="image"/>
+                 <h3 class="entry-title">
+                   <?php if($itemtype=="film") { echo $extended_title; } else { the_title(); } ?>
+                 </h3>
+                 <div class="entry-meta">
+                   <?php if($rating){ 
                     echo '<span class="rating">';
                     anamorhpic_rating_to_star($rating);
                     echo '</span>';
-                  } ?>
-                  <span class="entry-date"><?php echo get_the_date(); ?></span>              
-                </div><!--.entry-meta-->
-              </a></li><!--
-            <?php endforeach; ?>
-              --><li class="grid__item gamma one-whole">
-                 <a href="/category/film/">See all film reviews <i class="icon icon-chevron-right"></i></a>
-               </li>
+                   }
+                   
+                   # if FILM 
+                   if($itemtype=='book') {
+                     if($authors) {
+                       echo "<span class=author><em>by</em> <strong>";
+                       the_array_list($authors);
+                       echo "</strong></span>";
+                     }
+                   }?>  
+                    
+                   <span class="entry-date"><?php echo get_the_date(); ?></span>              
+                 </div><!--.entry-meta-->
+               </a>
+             </li><!--
+             <?php endwhile; else: ?>
+               --><li><?php _e('<icon class="icon icon-frown> </i>Sorry, no posts matched your criteria.'); ?></li><!--
+            <?php endif; ?>
+             --><li class="grid__item gamma one-whole">
+               <a href="/category/book/">See all book reviews <i class="icon icon-chevron-right"></i></a>
+             </li>
           </ul>
-        </div> 
-
-      </div><!-- #latest -->
+        </div><!-- #content -->
 		</div>
-	</div><!-- #latest_area -->
+	</div><!-- #content_area -->
 
 <?php get_footer(); ?>
