@@ -82,8 +82,10 @@
       --><nav id="main-navigation" role="navigation" class="grid__item two-thirds portable-one-whole">
         <ul class="nav nav--block">
           <li><a <?php if(is_page('about')) {?> class="active" <?php }?>href="/about">About + Why</a></li>
-          <li><a <?php if(is_category(3)){?> class="active"<?php }?> href="/category/film">Films</a></li>
-          <li><a <?php if(is_category(4)){?> class="active"<?php }?>href="/category/book">Books</a></li>
+          <li><a <?php if(is_category(3) | (is_single() && has_category(3))){?> 
+                 class="active"<?php }?> href="/category/film">Films</a></li>
+          <li><a <?php if(is_category(4) | (is_single() && has_category(4))){?> 
+                 class="active"<?php }?>href="/category/book">Books</a></li>
         </ul>            
        </nav><!-- #main-navigation -->
        </header><!-- #header -->

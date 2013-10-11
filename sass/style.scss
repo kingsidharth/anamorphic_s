@@ -191,6 +191,10 @@ aside.entry-meta {
 
 #main-navigation {
   text-align: right;
+  .active {
+    background: $red;
+    color: $white;
+  }
 }
 
 #content_area {
