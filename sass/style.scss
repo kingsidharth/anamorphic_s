@@ -124,6 +124,7 @@ body.page {
 .subheading {
   font-weight: 400;
   font-size: 1.1em;
+  letter-spacing: 1px;
 }
 .entry-meta {
   font-size: 0.9em;
@@ -327,25 +328,24 @@ aside.entry-meta {
 
 // Affiliate Promo 
 .affiliate-promo {
-  background: mix($white, #FFF);
-  border: 1px solid adjust-lightness($white, -10%);
-  padding: 0.2em 0.6em;
-  @include border-radius(3px);
-
+  margin-top: 1em;
+  border-top: 2px solid $green;
   h4 {
-    font-weight: 300;
-    font-size: 0.8em;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: $green;
+    font-weight: 400;
+    text-align: center;
+    .icon {
+      color: $red;
+    }
   }
 
-  ul {
+  ul, p {
     margin-bottom: 0.5em;
     font-size: 0.85em;
   }
-}
-
+  .nav--button li a {
+    text-decoration: underline;
+  }
+} 
 // breadcrumbs
 .breadcrumbs {
   font-size: 0.9em;
@@ -426,7 +426,10 @@ aside.entry-meta {
 .nav--button-green {
   @include nav--button($green, $white);
 }
- 
+
+.nav--button-white-lgreen {
+  @include nav--button($white, $lgreen);
+}
 
 
 

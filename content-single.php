@@ -166,12 +166,17 @@
         echo "<aside class='affiliate-promo left'>";
         
         # IF Rating is higher than 1.5
-        echo "<h4>Buy it here!</h4>";
+        echo "<h4>";
+        echo "<i class='icon green icon-shopping-cart'></i>";
+        echo "</span> Buy it here!</h4>";
         if($rating < 1.5) {
           echo "<p>I really don't think you should buy it, but if you must:</p>";
-        }
+        } else {
+          echo "<p>Use these links to make a pruchase, I will get some money for coffee:";
+        }         
 
         echo "<ul class='nav nav--stacked'>";
+        # TODO: Turn this into a for loop:
         check_print_affiliate_link($amazon_us_link, 'Amazon US');
         check_print_affiliate_link($amazon_link, 'Amazon India');
         check_print_affiliate_link($flipkart_link, 'Filpkart');
