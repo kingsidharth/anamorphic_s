@@ -628,6 +628,25 @@ function the_array_list($array) {
 }
 
 
+/* _____ SEARCH ENGINER USERS ______ */
+$ref = $_SERVER['HTTP_REFERER'];
+$SE = array('/search?', 'images.google.', 'web.info.com', 'search.', 'del.icio.us/search', 'soso.com', '/search/', '.yahoo.');
+foreach ($SE as $source) {
+  if (strpos($ref,$source)!==false) {
+    setcookie("sevisitor", 1, time()+3600, "/", ".wpbeginner.com"); 
+    $sevisitor=true;
+  }
+}
+ 
+function wpbeginner_from_searchengine(){
+  global $sevisitor;
+  if ($sevisitor==true || $_COOKIE["sevisitor"]==1) {
+    return true;
+  }
+  return false;
+}
+
+
 /* ______ IMAGE RESIZING _____ */
 # Uses embed.ly
 # TODO: Make this inhouse.
