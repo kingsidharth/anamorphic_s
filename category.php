@@ -15,7 +15,7 @@ get_header(); ?>
       <?php if ( have_posts() ) : ?>
 
         <header class="page-header grid__item one-whole">
-          <h1 class="page-title">
+          <h1 class="page-title entry-title">
             <?php
               printf( __( 'All %s Reviews', 'anamorhpic' ), '<span>' . single_cat_title( '', false ) . '</span>' );
             ?>

@@ -15,7 +15,7 @@ get_header(); ?>
       <?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); ?>
       <?php if ( have_posts() ) : ?>
         <header class="page-header grid__item one-whole">
-          <h1 class="page-title">
+          <h1 class="page-title entry-title">
           <?php echo ucfirst($term->taxonomy); ?>: 
           <?php echo apply_filters( 'the_title', $term->name ); ?>
           </h1>
