@@ -229,6 +229,7 @@ aside.entry-meta {
         line-height: 1.4em;
         margin-bottom: 3px;
         color: $red;
+        font-weight: normal;
         @include transition(0.2s);
       }
       .entry-meta {

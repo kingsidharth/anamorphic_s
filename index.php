@@ -28,7 +28,7 @@ get_header(); ?>
             anamorphic_post_data($meta);
           ?>
 
-            --><li class="post_item_wrap grid__item one-fifth <?php echo $itemtype; ?>">
+            --><li class="post_item_wrap grid__item one-fifth palm-one-half <?php echo $itemtype; ?>">
               <a class="post_item" href="<?php the_permalink(); ?>" title="Review of <?php the_title(); ?>">
                  <img src="<?php echo $main_image; ?>" 
                    alt="<?php echo $extended_title; ?>" width="100%" class="image"/>
@@ -58,10 +58,11 @@ get_header(); ?>
              <?php endwhile; else: ?>
                --><li><?php _e('<icon class="icon icon-frown> </i>Sorry, no posts matched your criteria.'); ?></li><!--
             <?php endif; ?>
-             --><li class="grid__item one-whole">
-               <?php posts_nav_link(); ?> 
-             </li>
+             -->
           </ul>
+          <div class="grid__item one-whole pagination-nav">
+            <?php posts_nav_link(' | ', '<i class="icon icon-chevron-sign-left"> </i>Previous', 'Next <i class="icon icon-chevron-sign-right"></i>'); ?> 
+          </div>
         </div><!-- #content -->
 		</div>
 	</div><!-- #content_area -->
