@@ -612,7 +612,9 @@ function anamorphic_post_data($meta) {
 
 function check_print_affiliate_link($link, $text) {
   if($link) {
-    echo "<li><a href='$link' rel='nofollow' target='_blank'>$text</a></li>"; 
+    echo "<li><a href='$link' rel='nofollow' 
+      onClick=\"_gaq.push(['_trackEvent', 'Affiliate', '$text']);\" 
+      target='_blank'>$text</a></li>"; 
   }
 }
 
