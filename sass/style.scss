@@ -107,10 +107,8 @@ body.page {
 
 .entry-title {
   margin-top: 0;
+  font-weight: 300;
 }
-  h1.entry-title {
-    font-weight: 300;
-  }
 
 .subheading {
   font-weight: bold;
@@ -198,9 +196,6 @@ aside.entry-meta {
 
 // List of posts
 .post_list {
-  .post_item_wrap:nth-child(2n+1) {
-    clear: right;
-  }
   .post_item_wrap {
     margin-bottom: 20px;
     a {
@@ -228,6 +223,7 @@ aside.entry-meta {
       }
       .entry-title {
         font-size: 1em;
+        line-height: 1.4em;
         margin-bottom: 3px;
         color: $red;
         @include transition(0.2s);
@@ -248,9 +244,6 @@ aside.entry-meta {
   }
 }
 
-#latest > .grid__item {
-  padding-left: 0px;
-}
 
 .rating {
   color: $green;
