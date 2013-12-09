@@ -24,11 +24,6 @@ get_header(); ?>
             <?php echo esc_html($term->description); ?>
           <?php endif; ?>
           </p>
-          <ul class="nav nav--block nav--button nav--button-green" id="category_select">
-            <li><a class="active" rel="post_item_wrap" href="#">Show All</a></li>
-            <li><a rel="book" href="#">Only Book Reviews</a></li>
-            <li><a rel="film" href="#">Only Film Reviews</a></li>
-          </ul>
         </header><!-- .page-header -->
 
         <div class="post_list"><!--

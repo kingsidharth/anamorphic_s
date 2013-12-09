@@ -16,11 +16,6 @@ get_header(); ?>
   <div id="content_area" class="grid">
     <div class="page">
       <div id="content">
-        <ul class="grid__item one-whole nav nav--block nav--button nav--button-green" id="category_select">
-          <li><a class="active" rel="post_item_wrap" href="/">Show All</a></li>
-          <li><a rel="book" href="/category/book">Only Book Reviews</a></li>
-          <li><a rel="film" href="/category/film">Only Film Reviews</a></li>
-        </ul>
         <ul class="nav post_list"><!--
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
             $meta  = get_post_meta($post->ID);
