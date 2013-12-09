@@ -86,16 +86,20 @@
                 echo '</span>';
               echo '</span>';
             }
-          } 
-          elseif($itemtype == 'book') { 
-            foreach ($authors as $author) {
-              echo '<span class="creator author" itemprop="author" itemscope itemtype="http://schema.org/Person">';
-                echo '<span itemprop="name">'; 
-                  echo $author;
-                echo '</span>';
-              echo '</span>';
-            }
-          }?>
+          }  
+          # The Authors
+          $author_arg = array(
+            'post_id' => $post->ID,
+            'tax_slug' => 'authors',
+            #'tax_title' => 'Authors',
+            'tax_item_prop' => 'author',
+            'tax_item_scope' => 'Person',
+            'tax_item_child_prop' => 'name',
+            'before' => '<span class="author">',
+            'after' => '</span>',
+          );
+          anamorphic_custom_tax_list($author_arg);
+        ?>
       </p><!-- .entry-meta.main-meta -->
     </aside>
     <?php 
