@@ -109,8 +109,9 @@ get_header(); ?>
         <?php get_template_part( 'no-results', 'archive' ); ?>
 
      <?php endif; ?>
-     <p class="grid__item one-whole"><?php posts_nav_link(); ?></p>
-       
+     <div class="grid__item one-whole pagination-nav">
+       <?php posts_nav_link(' | ', '<i class="icon icon-chevron-sign-left"> </i>Previous', 'Next <i class="icon icon-chevron-sign-right"></i>'); ?> 
+     </div>
    </div><!-- #content -->
  </section><!-- #primary -->
 
