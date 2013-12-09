@@ -67,7 +67,7 @@ function anamorphic_authors_taxnomy()  {
 	);
 
 	$rewrite = array(
-		'slug'                       => 'book-author',
+		'slug'                       => 'authors',
 		'with_front'                 => true,
 		'hierarchical'               => false,
 	);
@@ -223,6 +223,8 @@ function anamorphic_custom_tax_list($args) {
   if($tax_title) {
     $before_list .= "<strong>$tax_title: </strong>";
   }
+
+  // If Child Scope
   if($prop && $scope && $child_prop) {
     $before_list .= "<span itemprop='$prop' itemscope itemtype='http://schema.org/$scope'><span itemprop='$child_prop'>";
   } elseif($prop) {
