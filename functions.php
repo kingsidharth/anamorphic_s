@@ -8,7 +8,7 @@
 # ====================
 # INCLUDES & IMPORTS
 # ====================
-include('helper.php');
+include('inc/helper.php');
 
 // Register the Main Menu
 if ( ! function_exists( 'anamorhpic_setup' ) ) :
