@@ -29,7 +29,6 @@
             <li><a href="http://bit.ly/anatwitks"><i class="icon icon-twitter"> </i>@kingsidharth</a></li>
             <li><a href="https://plus.google.com/100630005600562803456?rel=author" rel="author"><i class="icon icon-google-plus"> </i>Add on Google+</a></li>
             <li><a href="http://bit.ly/anamorfbks"><i class="icon icon-facebook"> </i> Follow on Facebook</a></li>
-            <li><a href="http://www.kingsidharth.com"><i class="icon icon-globe"> </i> Personal Website</a></li>
             <!--<li><a href=""><i class="icon icon-"> </i></a></li>-->
           </ul>
         </div><!-- #elsewhere -->
