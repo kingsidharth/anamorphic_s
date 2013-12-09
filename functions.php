@@ -5,53 +5,24 @@
  * @package anamorhpic
  */
 
-/**
- * Set the content width based on the theme's design and stylesheet.
- */
-if ( ! isset( $content_width ) )
-	$content_width = 640; /* pixels */
+# ====================
+# INCLUDES & IMPORTS
+# ====================
+include('helper.php');
 
+// Register the Main Menu
 if ( ! function_exists( 'anamorhpic_setup' ) ) :
-/**
- * Sets up theme defaults and registers support for various WordPress features.
- *
- * Note that this function is hooked into the after_setup_theme hook, which runs
- * before the init hook. The init hook is too late for some features, such as indicating
- * support post thumbnails.
- */
+  
 function anamorhpic_setup() {
-
-	/**
-	 * Add default posts and comments RSS feed links to head
-	 */
-	# add_theme_support( 'automatic-feed-links' );
-
-	/**
-	 * Enable support for Post Thumbnails on posts and pages
-	 *
-	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
-	 */
-	//add_theme_support( 'post-thumbnails' );
-
-	/**
-	 * This theme uses wp_nav_menu() in one location.
-	 */
 	register_nav_menus( array(
 		'primary' => __( 'Primary Menu', 'anamorhpic' ),
 	) );
-
-	/**
-	 * Enable support for Post Formats
-	 */
-	add_theme_support( 'post-formats', array( 'aside', 'link' ) );
 }
 endif; // anamorhpic_setup
 add_action( 'after_setup_theme', 'anamorhpic_setup' );
 
 
-/**
- * Register widgetized area and update sidebar with default widgets
- */
+/* Sidebar
 function anamorhpic_widgets_init() {
 	register_sidebar( array(
 		'name'          => __( 'Sidebar', 'anamorhpic' ),
@@ -63,23 +34,20 @@ function anamorhpic_widgets_init() {
 	) );
 }
 add_action( 'widgets_init', 'anamorhpic_widgets_init' );
-
-/**
- * Enqueue scripts and styles
  */
-function anamorhpic_scripts() {
-  
-  wp_enqueue_style( 'anamorhpic-style', get_stylesheet_uri() );
 
+// Enqueue scripts and styles
+function anamorhpic_scripts() {
+  wp_enqueue_style( 'anamorhpic-style', get_stylesheet_uri() );
 }
 add_action( 'wp_enqueue_scripts', 'anamorhpic_scripts' );
 
-/**
- * Load Jetpack compatibility file.
- */
-# require get_template_directory() . '/inc/jetpack.php';
 
-/* ______ REGISTER CUSTOM TAXONOMIES ______ */
+# ================================ 
+# TAXONOMIES & POST DATA 
+# ================================
+
+# REGISTER CUSTOM TAXONOMIES
 
 // Authors (for books)
 function anamorphic_authors_taxnomy()  {
@@ -118,11 +86,10 @@ function anamorphic_authors_taxnomy()  {
 	register_taxonomy( 'authors', 'post', $args );
 }
 
-// Hook into the 'init' action
 add_action( 'init', 'anamorphic_authors_taxnomy', 0 );
 
 
-// Genre (common?)
+// Genre (common)
 function anamorphic_genre()  {
 	$labels = array(
 		'name'                       => 'Genre',
@@ -159,8 +126,6 @@ function anamorphic_genre()  {
 	register_taxonomy( 'genre', 'post', $args );
 }
 
-
-// Hook into the 'init' action
 add_action( 'init', 'anamorphic_genre', 0 );
 
 
@@ -201,15 +166,15 @@ function anamorphic_actor()  {
 	register_taxonomy( 'actor', 'post', $args );
 }
 
-
-// Hook into the 'init' action
 add_action( 'init', 'anamorphic_actor', 0 );
 
 
+// Output List of Schema
 function anamorphic_list_taxonomy($args) {
   // Unfold the Array
   $tax_slug = $args['slug'];
   $tax_title = $args['title'];
+
   // For schema markup
   $schema_prop = $args['prop'];
   $schema_scope = $args['scope'];
@@ -300,7 +265,134 @@ function anamorphic_custom_tax_list($args) {
 }
 
 
-/* META BOXES */
+// Get Font-Awesome Stars for Ratings
+function anamorhpic_rating_to_star($rating) {
+  $round_rating = floor($rating); // Reset rating to down round up  
+  
+  if($rating != $round_rating) {
+    // If Rating is in points
+    // Count empty stars
+    $no_star = 5 - $round_rating; // .5 rounds upwards
+
+    // Print the full stars
+    for ($i = 0; $i < $round_rating; $i++) {
+      echo '<i class="icon icon-star"></i> ';
+    }
+
+    // Print the half star 
+    echo '<i class="icon icon-star-half-full"></i> ';
+
+    // Print empty stars
+    for ($i = 1; $i < $no_star; $i++) {
+       echo '<i class="icon icon-star-empty"></i> ';
+    }
+    
+  } else {
+    // Count the empty stars
+    $no_star = 5 - $rating;                    
+
+    // Print full stars = rating.
+    for ($i = 0; $i < $rating; $i++) {
+      echo '<i class="icon icon-star"></i> ';
+    }
+
+    // Print empty stars.
+    for ($i = 0; $i < $no_star; $i++) {
+      echo '<i class="icon icon-star-empty"></i> ';
+    }
+  }
+}
+
+
+// Get Post Meta Data
+function anamorphic_post_data($meta) {
+  # Making the variables accessible
+  # outside this function.
+  # Somehow, doesn't work on
+  # single post stuff.
+  global $subheading,
+    $rating, 
+    $main_image, 
+    $other_name,
+
+    $itemtype, 
+    
+    $directors, 
+    $release_year,     
+    
+    $authors, 
+    $bookisbn, 
+    $publisher, 
+
+    $flipkart_link, $amazon_link, $amazon_us_link, $other_link, $infibeam_link,
+    $extended_title;  
+  
+  # COMMON METADATA
+  
+  $subheading = $meta[anamorphic_subheading][0];
+  $rating     = $meta[anamorphic_rating][0];
+  $main_image = $meta[anamorphic_imageurl][0];  
+  $other_name = $meta[anamorphic_name][0];
+
+  # Define Item type
+  # based on category 
+  # assigned.
+  if(in_category('book', $post->ID)) {
+    $itemtype = 'book';
+  } 
+  elseif(in_category('film', $post->ID)) {
+    $itemtype = 'film';
+  } else {
+    $itemtype = 'other';
+  }
+
+  # Film Specific Metadata
+  $dirctr_str = $meta[anamorphic_directors][0];
+  $directors  = explode(",", $dirctr_str);
+
+  $release_year = $meta[anamorphic_release_year][0];
+  
+  # Book Specific Metadata
+  $author_str= $meta[anamorphic_authors][0];
+  $authors   = explode(",", $author_str);
+
+  $bookisbn   = $meta[anamorphic_isbn][0];
+
+  $publisher  = $meta[anamorphic_publisher][0];
+
+
+  # Affiliate Links 
+  $flipkart_link    = $meta[anamorphic_aff_flipkart][0];
+  $amazon_link      = $meta[anamorphic_aff_amazon][0];
+  $amazon_us_link   = $meta[anamorphic_aff_amazon_us][0];
+  $infibeam_link    = $meta[anamorphic_aff_infibeam][0];
+  $other_link       = $meta[anamorphic_aff_other][0];
+  if($flipkart_link || $amazon_link || $other_link || $amazon_us_link) {
+    global $affiliate;
+    $affiliate = true;
+  }
+  
+  # Extended Title
+  if($itemtype == 'book') {
+    # Book: <Book Title> by <Author>
+    # TODO: Various Authors Automation
+    $extended_title = get_the_title() . ' by ' . implode(",", $authors);
+  } elseif ($item_type = 'film') {
+    # Film: Film (<Release Year>)
+    $extended_title = get_the_title() . ' ('. $release_year . ')';
+  } else {
+    $extended_title = get_the_title();
+  }
+}
+
+
+
+
+# ==============================
+# BACKEND STUFF
+# ==============================
+
+# META BOXES 
 add_filter( 'cmb_meta_boxes', 'anamorphic_metaboxes' );
  
 function anamorphic_metaboxes( $meta_boxes ) {
@@ -490,126 +582,6 @@ function be_initialize_cmb_meta_boxes() {
 	}
 }
 
-/* RATING to Star System in PHP */
-function anamorhpic_rating_to_star($rating) {
-  $round_rating = floor($rating); // Reset rating to down round up  
-  
-  if($rating != $round_rating) {
-    // If Rating is in points
-    // Count empty stars
-    $no_star = 5 - $round_rating; // .5 rounds upwards
-
-    // Print the full stars
-    for ($i = 0; $i < $round_rating; $i++) {
-      echo '<i class="icon icon-star"></i> ';
-    }
-
-    // Print the half star 
-    echo '<i class="icon icon-star-half-full"></i> ';
-
-    // Print empty stars
-    for ($i = 1; $i < $no_star; $i++) {
-       echo '<i class="icon icon-star-empty"></i> ';
-    }
-    
-  } else {
-    // Count the empty stars
-    $no_star = 5 - $rating;                    
-
-    // Print full stars = rating.
-    for ($i = 0; $i < $rating; $i++) {
-      echo '<i class="icon icon-star"></i> ';
-    }
-
-    // Print empty stars.
-    for ($i = 0; $i < $no_star; $i++) {
-      echo '<i class="icon icon-star-empty"></i> ';
-    }
-  }
-}
-
-/* ____ GET META _____ */
-
-function anamorphic_post_data($meta) {
-  # Making the variables accessible
-  # outside this function.
-  # Somehow, doesn't work on
-  # single post stuff.
-  global $subheading,
-    $rating, 
-    $main_image, 
-    $other_name,
-
-    $itemtype, 
-    
-    $directors, 
-    $release_year,     
-    
-    $authors, 
-    $bookisbn, 
-    $publisher, 
-
-    $flipkart_link, $amazon_link, $amazon_us_link, $other_link, $infibeam_link,
-    $extended_title;  
-  
-  # COMMON METADATA
-  
-  $subheading = $meta[anamorphic_subheading][0];
-  $rating     = $meta[anamorphic_rating][0];
-  $main_image = $meta[anamorphic_imageurl][0];  
-  $other_name = $meta[anamorphic_name][0];
-
-  # Define Item type
-  # based on category 
-  # assigned.
-  if(in_category('book', $post->ID)) {
-    $itemtype = 'book';
-  } 
-  elseif(in_category('film', $post->ID)) {
-    $itemtype = 'film';
-  } else {
-    $itemtype = 'other';
-  }
-
-  # Film Specific Metadata
-  $dirctr_str = $meta[anamorphic_directors][0];
-  $directors  = explode(",", $dirctr_str);
-
-  $release_year = $meta[anamorphic_release_year][0];
-  
-  # Book Specific Metadata
-  $author_str= $meta[anamorphic_authors][0];
-  $authors   = explode(",", $author_str);
-
-  $bookisbn   = $meta[anamorphic_isbn][0];
-
-  $publisher  = $meta[anamorphic_publisher][0];
-
-
-  # Affiliate Links 
-  $flipkart_link    = $meta[anamorphic_aff_flipkart][0];
-  $amazon_link      = $meta[anamorphic_aff_amazon][0];
-  $amazon_us_link   = $meta[anamorphic_aff_amazon_us][0];
-  $infibeam_link    = $meta[anamorphic_aff_infibeam][0];
-  $other_link       = $meta[anamorphic_aff_other][0];
-  if($flipkart_link || $amazon_link || $other_link || $amazon_us_link) {
-    global $affiliate;
-    $affiliate = true;
-  }
-  
-  # Extended Title
-  if($itemtype == 'book') {
-    # Book: <Book Title> by <Author>
-    # TODO: Various Authors Automation
-    $extended_title = get_the_title() . ' by ' . implode(",", $authors);
-  } elseif ($item_type = 'film') {
-    # Film: Film (<Release Year>)
-    $extended_title = get_the_title() . ' ('. $release_year . ')';
-  } else {
-    $extended_title = get_the_title();
-  }
-}
-
 function check_print_affiliate_link($link, $text) {
   if($link) {
     echo "<li><a href='$link' rel='nofollow' 
@@ -617,35 +589,6 @@ function check_print_affiliate_link($link, $text) {
       target='_blank'>$text</a></li>"; 
   }
 }
-
-/* _____ GET ARRAY INTO A LIST ______ */
-function get_array_list($array) {
-  echo implode(",", $array);
-} 
-
-function the_array_list($array) {
-  echo get_array_list($array);
-}
-
-
-/* _____ SEARCH ENGINER USERS ______ */
-$ref = $_SERVER['HTTP_REFERER'];
-$SE = array('/search?', 'images.google.', 'web.info.com', 'search.', 'del.icio.us/search', 'soso.com', '/search/', '.yahoo.');
-foreach ($SE as $source) {
-  if (strpos($ref,$source)!==false) {
-    setcookie("sevisitor", 1, time()+3600, "/", ".wpbeginner.com"); 
-    $sevisitor=true;
-  }
-}
- 
-function wpbeginner_from_searchengine(){
-  global $sevisitor;
-  if ($sevisitor==true || $_COOKIE["sevisitor"]==1) {
-    return true;
-  }
-  return false;
-}
-
 
 /* ______ IMAGE RESIZING _____ */
 # Uses embed.ly
