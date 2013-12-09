@@ -10,7 +10,7 @@
       <div id="promo">
         <div class="grid__item one-whole"><hr/></div>
       
-        <div id="subscribe" class="grid__item one-third">
+        <div id="subscribe" class="grid__item one-third palm-one-whole">
           <h4><i class="icon icon-check"> </i>Subscribe</h4>
           <p>Liked what you read? You might want to subscribe to the updates:</p>
           <ul class="nav nav--stacked nav--button nav--button-green">
@@ -19,12 +19,12 @@
             <li><a href="https://www.goodreads.com/kingsidharth"><i class="icon icon-book"></i> Follow on Goodreads</a></li>
           </ul>
         </div><!-- #subscribe
-        --><div id="get_reviewed" class="grid__item one-third">
+        --><div id="get_reviewed" class="grid__item one-third palm-one-whole">
           <h4>Get Reviewed</h4>
-          <p>Want me to review your book/film or some specific book/film? Email me: king(a)kingsidharth.com</p>
+          <p>Want me to review your book/film? Email me: king(a)kingsidharth.com</p>
         </div><!-- #get_reviewed
 
-        --><div id="elsewhere" class="grid__item one-third">
+        --><div id="elsewhere" class="grid__item one-third palm-one-whole">
           <ul class="nav nav--stacked nav--button nav--button-red">
             <li><a href="http://bit.ly/anatwitks"><i class="icon icon-twitter"> </i>@kingsidharth</a></li>
             <li><a href="https://plus.google.com/100630005600562803456?rel=author" rel="author"><i class="icon icon-google-plus"> </i>Add on Google+</a></li>
