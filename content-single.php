@@ -249,22 +249,23 @@
         <meta itemprop="dateModified" content="<?php the_modified_date('c'); ?>">
         Updated on <?php the_modified_date(); ?>.
       </span>
-    </p>
-    <p class="social-share">
-      <span class="fb-like" 
+    </p> 
+
+    <ul class="nav nav--block social-share">
+      <li><a href="//twitter.com/share?url=<?php the_permalink(); ?>&text=<?php echo $extended_title; ?>&via=kingsidharth" target="_blank"><i class="icon icon-twitter"></i> Tweet this</a></li>
+      <li style="position: relative; top: 5px;"><a class="fb-like" 
             data-href="<?php the_permalink(); ?>" 
-            data-send="true" 
             data-layout="button_count" 
             data-width="300" 
             data-show-faces="false"> 
-      </span> 
-      <a target="_blank" 
+      </a></li>
+      <li style="position: relative; top: 5px;">
+<a target="_blank" 
          href="//pinterest.com/pin/create/button/?url=<?php the_permalink(); ?>&media=<?php echo $main_image ?>&description=<?php echo $extended_title; ?>: <?php if($subheading) { echo $subheading; } ?>" 
          data-pin-do="buttonPin" 
-         data-pin-config="none"><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" />
-      </a>
-      &nbsp;<a href="//twitter.com/share?url=<?php the_permalink(); ?>&text=<?php echo $extended_title; ?>&via=kingsidharth" target="_blank">Tweet this</a>
-    </p>
+         data-pin-config="none"><img src="//assets.pinterest.com/images/pidgets/pin_it_button.png" alt="Pin it on Pinterest" title="Pin it on Pinterest"/></a>
+      </li>
+    </ul>
     </aside> 
 
     <?php 
