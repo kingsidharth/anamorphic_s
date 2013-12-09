@@ -29,7 +29,7 @@
   <meta name="viewport" content="width=device-width" />
   <meta charset="<?php bloginfo( 'charset' ); ?>" />
   <?php if(is_tax()) { ?>
-  <meta name="robots" content="noindex">
+    <meta name="robots" content="noindex, follow">
   <?php } ?>
 
   <!-- Open Graph Data -->
