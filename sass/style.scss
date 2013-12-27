@@ -56,6 +56,11 @@ body {
     color: $lgreen;
     padding-left: 1em;
     border-left: 1px solid $red;
+    text-indent: 0px;
+    quotes: none;
+    line-height: 1.65em;
+    font-style: italic;
+    letter-spacing: 0.5px;
     .source {
       text-align: right;
       font-variant: italic;
