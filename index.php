@@ -54,7 +54,7 @@ get_header(); ?>
             <?php endif; ?>
              -->
           </ul>
-          <div class="grid__item one-whole pagination-nav">
+          <div class="grid__item one-whole pagination-nav center">
             <?php posts_nav_link(' | ', '<i class="icon icon-chevron-sign-left"> </i>Previous', 'Next <i class="icon icon-chevron-sign-right"></i>'); ?> 
           </div>
         </div><!-- #content -->

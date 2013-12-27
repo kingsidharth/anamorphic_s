@@ -64,7 +64,7 @@ get_header(); ?>
         <?php get_template_part( 'no-results', 'archive' ); ?>
 
      <?php endif; ?>
-     --><div class="grid__item one-whole pagination-nav">
+     --><div class="grid__item one-whole pagination-nav center">
         <?php posts_nav_link(' | ', '<i class="icon icon-chevron-sign-left"> </i>Previous', 'Next <i class="icon icon-chevron-sign-right"></i>'); ?> 
      </div>
        
