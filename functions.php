@@ -602,3 +602,12 @@ function anamorphic_resize($image_url, $width ) {
   return $resized_url;
 }
 
+/* ______ FULL-WIDTH LAYOUT ______ */
+function detect_full_width() {
+  if( is_single() || is_page())  {
+    # Not list is shorter than is.
+    $full_width = false;
+  } else {
+    $full_width = true;
+  }
+}

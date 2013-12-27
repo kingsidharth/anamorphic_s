@@ -76,6 +76,13 @@ body.page {
     max-width: 500px;
   }
 }
+
+.full-width {
+  max-width: 100%;
+  padding-left: 1.6em;
+  padding-right: 1.6em;
+}
+
 .page {
   max-width: 800px;
   margin: 0 auto;

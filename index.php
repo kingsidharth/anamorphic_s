@@ -14,7 +14,7 @@
 get_header(); ?>
 
   <div id="content_area" class="grid">
-    <div class="page">
+    <div class="full-width">
       <div id="content">
         <ul class="nav post_list"><!--
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
@@ -22,7 +22,7 @@ get_header(); ?>
             anamorphic_post_data($meta);
           ?>
 
-            --><li class="post_item_wrap grid__item one-fifth palm-one-half <?php echo $itemtype; ?>">
+            --><li class="post_item_wrap grid__item desk-one-sixth lap-one-fifth palm-one-half <?php echo $itemtype; ?>">
               <a class="post_item" href="<?php the_permalink(); ?>" title="Review of <?php the_title(); ?>">
                  <img src="<?php echo $main_image; ?>" 
                    alt="<?php echo $extended_title; ?>" width="100%" class="image"/>
