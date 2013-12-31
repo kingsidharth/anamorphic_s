@@ -114,17 +114,21 @@ function anamorphic_custom_tax_list($args) {
     $after_list .='</span>';
   }
 
-  echo $before;
+  // PRINTING IT
+  $termsy = wp_get_post_terms($post, $tax_slug);
+  if(!empty($termsy)) {
+    echo $before;
 
-  the_terms( 
-    $post,
-    $tax_slug,
-    $before_list,
-    $separator,
-    $after_list
-  );
+    the_terms( 
+      $post,
+      $tax_slug,
+      $before_list,
+      $separator,
+      $after_list
+    );
 
-  echo $after;
+    echo $after;
+  }
 }
 
 
