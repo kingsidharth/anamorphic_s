@@ -22,20 +22,6 @@ endif; // anamorhpic_setup
 add_action( 'after_setup_theme', 'anamorhpic_setup' );
 
 
-/* Sidebar
-function anamorhpic_widgets_init() {
-	register_sidebar( array(
-		'name'          => __( 'Sidebar', 'anamorhpic' ),
-		'id'            => 'sidebar-1',
-		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</aside>',
-		'before_title'  => '<h4 class="widget-title">',
-		'after_title'   => '</h4>',
-	) );
-}
-add_action( 'widgets_init', 'anamorhpic_widgets_init' );
- */
-
 // Enqueue scripts and styles
 function anamorhpic_scripts() {
   wp_enqueue_style( 'anamorhpic-style', get_stylesheet_uri() );
