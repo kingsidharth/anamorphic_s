@@ -162,7 +162,15 @@
       );
       anamorphic_custom_tax_list($genre_args);
 
-      # End Common Meta
+      # The Series
+      $series_args = array(
+        'post_id' => $post->ID,
+        'tax_slug' => 'series',
+        'tax_title' => 'Part of',
+        'before' => '<p class="series">',
+        'after'  => '</p>',
+      );
+      anamorphic_custom_tax_list($series_args);
       echo '</aside>';
 
       # BEGIN AFFILATE SHIT
