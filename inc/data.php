@@ -124,3 +124,43 @@ function anamorphic_actor()  {
 }
 
 add_action( 'init', 'anamorphic_actor', 0 );
+
+
+// Series
+function anamorphic_series()  {
+	$labels = array(
+		'name'                       => 'Series',
+		'singular_name'              => 'Series',
+		'menu_name'                  => 'Series',
+		'all_items'                  => 'All Series',
+		'new_item_name'              => 'New Series',
+		'add_new_item'               => 'Add A New Series',
+		'edit_item'                  => 'Edit Series Details',
+		'update_item'                => 'Update Series Details',
+		'separate_items_with_commas' => 'Separate series with commas',
+		'search_items'               => 'Search series...',
+		'add_or_remove_items'        => 'Add or remove Series',
+		'choose_from_most_used'      => 'Choose from the Series',
+	);
+
+	$rewrite = array(
+		'slug'                       => 'series',
+		'with_front'                 => true,
+		'hierarchical'               => false,
+	);
+
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => false,
+		'rewrite'                    => $rewrite,
+	);
+
+	register_taxonomy( 'series', 'post', $args );
+}
+
+add_action( 'init', 'anamorphic_series', 0 );
