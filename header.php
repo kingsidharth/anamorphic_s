@@ -36,10 +36,27 @@
   <meta property="fb:app_id" content="502579883131350" /> 
   <?php global $post;
     if(is_single()) {
-    $meta_head = get_post_meta( $post->ID ); ?>
+      $meta_head = get_post_meta( $post->ID );
+      if ( in_category( 'book', $post->ID )) { 
+        $meta_title = 'Review of Book ' . get_the_title() . ' by ' . $meta_head[anamorphic_authors][0]; 
+      } elseif ( in_category('film', $post->ID)) {
+        $meta_title = 'Review of Film ' . get_the_title() . ' (' . $meta_head[anamorphic_release_year][0] . ')'; 
+      } else { 
+        $meta_title = the_title();
+      }
+    ?>
+  <!-- TWITTER CARDS -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:site" content="@kingsidhart">
+  <meta name="twitter:title" content="<?php echo $meta_title; ?>">
+  <meta name="twitter:description" content="<?php echo $meta_head[anamorphic_subheading][0]; ?>">
+  <meta name="twitter:creator" content="@kingsidharth">
+  <meta name="twitter:image:src" content="<?php echo $meta_head[anamorphic_imageurl][0]; ?>">
+  <meta name="twitter:domain" content="anamorphic.in">
+  <!-- Open Graph -->
   <meta property="og:type"                content="article" /> 
   <meta property="og:url"                 content="<?php the_permalink(); ?>" /> 
-  <meta property="og:title"               content="<?php the_title(); ?>" /> 
+  <meta property="og:title"               content="<?php echo $meta_title; ?>" /> 
   <meta property="og:image"               content="<?php echo $meta_head[anamorphic_imageurl][0]; ?>" /> 
   <meta property="article:author"         content="http://www.kingsidharth.com"/>
   <meta property="article:published_time" content="<?php echo get_the_date('c'); ?>"/>
