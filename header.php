@@ -7,6 +7,20 @@
  * @package anamorhpic
  */
 ?><!DOCTYPE html>
+<?php if(is_single()) {
+  $meta_head = get_post_meta( $post->ID );
+  if ( in_category( 'book', $post->ID )) { 
+    $meta_title = 'Review of Book ' . get_the_title() . ' by ' . $meta_head[anamorphic_authors][0]; 
+    $seo_title  = get_the_title() . ' by ' . $meta_head[anamorphic_authors][0] . ' — Book Review'; 
+  } elseif ( in_category('film', $post->ID)) {
+    $meta_title = 'Review of Film ' . get_the_title() . ' (' . $meta_head[anamorphic_release_year][0] . ')'; 
+    $seo_title  = get_the_title() . ' (' . $meta_head[anamorphic_release_year][0] . ') ' . ' — Film Review'; 
+  } else { 
+    $meta_title = the_title();
+    $seo_title  = the_title();
+  }
+}
+?>
 <html <?php language_attributes(); ?>>
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
   <title>
@@ -18,8 +32,7 @@
     } elseif (is_page()) {
       the_title();
     } elseif (is_single()) {
-      the_title();
-      echo ': Review';
+      echo $seo_title;
     }
   ?>
   </title>
@@ -36,14 +49,6 @@
   <meta property="fb:app_id" content="502579883131350" /> 
   <?php global $post;
     if(is_single()) {
-      $meta_head = get_post_meta( $post->ID );
-      if ( in_category( 'book', $post->ID )) { 
-        $meta_title = 'Review of Book ' . get_the_title() . ' by ' . $meta_head[anamorphic_authors][0]; 
-      } elseif ( in_category('film', $post->ID)) {
-        $meta_title = 'Review of Film ' . get_the_title() . ' (' . $meta_head[anamorphic_release_year][0] . ')'; 
-      } else { 
-        $meta_title = the_title();
-      }
     ?>
   <!-- TWITTER CARDS -->
   <meta name="twitter:card" content="summary">
