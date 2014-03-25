@@ -9,7 +9,7 @@
 get_header(); ?>
 
 	<section id="content_area" class="grid">
-    <div  class="page">
+    <div  class="full-width">
       <div id="content" role="main">
       
       <?php $term = get_term_by( 'slug', get_query_var( 'term' ), get_query_var( 'taxonomy' ) ); ?>
@@ -24,11 +24,6 @@ get_header(); ?>
             <?php echo esc_html($term->description); ?>
           <?php endif; ?>
           </p>
-          <ul class="nav nav--block nav--button nav--button-green" id="category_select">
-            <li><a class="active" rel="post_item_wrap" href="#">Show All</a></li>
-            <li><a rel="book" href="#">Only Book Reviews</a></li>
-            <li><a rel="film" href="#">Only Film Reviews</a></li>
-          </ul>
         </header><!-- .page-header -->
 
         <div class="post_list"><!--
@@ -39,7 +34,7 @@ get_header(); ?>
           anamorphic_post_data($meta);
           
         ?>
-          --><div class="post_item_wrap grid__item one-quarter palm-one-half <?php echo $itemtype; ?>">
+          --><div class="post_item_wrap grid__item desk-one-sixth lap-one-third palm-one-half <?php echo $itemtype; ?>">
             <a href="<?php the_permalink(); ?>">
               <img src="<?php echo anamorphic_resize($main_image, 200); ?>" 
               alt="<?php echo $extended_title; ?>" title="<?php echo $extended_title; ?>" />
@@ -60,7 +55,9 @@ get_header(); ?>
         <?php get_template_part( 'no-results', 'archive' ); ?>
 
      <?php endif; ?>
-     --><p class="grid__item one-whole"><?php posts_nav_link(); ?></p>
+     --><div class="grid__item one-whole pagination-nav center">
+        <?php posts_nav_link(' | ', '<i class="icon icon-chevron-sign-left"> </i>Previous', 'Next <i class="icon icon-chevron-sign-right"></i>'); ?> 
+     </div>
        
    </div><!-- #content -->
  </section><!-- #primary -->

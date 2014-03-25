@@ -14,20 +14,15 @@
 get_header(); ?>
 
   <div id="content_area" class="grid">
-    <div class="page">
+    <div class="full-width">
       <div id="content">
-        <ul class="grid__item one-whole nav nav--block nav--button nav--button-green" id="category_select">
-          <li><a class="active" rel="post_item_wrap" href="/">Show All</a></li>
-          <li><a rel="book" href="/category/book">Only Book Reviews</a></li>
-          <li><a rel="film" href="/category/film">Only Film Reviews</a></li>
-        </ul>
         <ul class="nav post_list"><!--
         <?php if ( have_posts() ) : while ( have_posts() ) : the_post();
             $meta  = get_post_meta($post->ID);
             anamorphic_post_data($meta);
           ?>
 
-            --><li class="post_item_wrap grid__item one-fifth palm-one-half <?php echo $itemtype; ?>">
+            --><li class="post_item_wrap grid__item desk-one-sixth lap-one-fifth palm-one-half <?php echo $itemtype; ?>">
               <a class="post_item" href="<?php the_permalink(); ?>" title="Review of <?php the_title(); ?>">
                  <img src="<?php echo $main_image; ?>" 
                    alt="<?php echo $extended_title; ?>" width="100%" class="image"/>
@@ -59,7 +54,7 @@ get_header(); ?>
             <?php endif; ?>
              -->
           </ul>
-          <div class="grid__item one-whole pagination-nav">
+          <div class="grid__item one-whole pagination-nav center">
             <?php posts_nav_link(' | ', '<i class="icon icon-chevron-sign-left"> </i>Previous', 'Next <i class="icon icon-chevron-sign-right"></i>'); ?> 
           </div>
         </div><!-- #content -->

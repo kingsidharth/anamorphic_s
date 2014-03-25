@@ -9,7 +9,7 @@
 get_header(); ?>
 
 	<section id="content_area" class="grid">
-    <div  class="page">
+    <div  class="full-width">
       <div id="content" role="main">
 
       <?php if ( have_posts() ) : ?>
@@ -40,7 +40,7 @@ get_header(); ?>
           anamorphic_post_data($meta);
           
         ?>
-          --><div class="post_item_wrap grid__item one-quarter palm-one-half">
+          --><div class="post_item_wrap grid__item desk-one-sixth lap-one-third palm-one-half">
             <a href="<?php the_permalink(); ?>">
               <img src="<?php echo anamorphic_resize($main_image, 200); ?>" 
               alt="<?php echo $extended_title; ?>" title="<?php echo $extended_title; ?>" />
@@ -64,7 +64,7 @@ get_header(); ?>
         <?php get_template_part( 'no-results', 'archive' ); ?>
 
      <?php endif; ?>
-     --><div class="grid__item one-whole pagination-nav">
+     --><div class="grid__item one-whole pagination-nav center">
         <?php posts_nav_link(' | ', '<i class="icon icon-chevron-sign-left"> </i>Previous', 'Next <i class="icon icon-chevron-sign-right"></i>'); ?> 
      </div>
        

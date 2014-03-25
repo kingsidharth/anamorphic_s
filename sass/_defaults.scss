@@ -31,7 +31,7 @@ $base-line-height:  $base-font-size * 1.6;
 /**
  * Base font-family.
  */
-$base-font-family:  sans-serif!default;
+$base-font-family:  'Lato', 'Lucida Grande', 'Lucida Sans', sans-serif;
 
 /**
  * Default colour for objects’ borders etc.
@@ -49,7 +49,7 @@ $responsive:        true!default;
  * Responsiveness for widescreen/high resolution desktop monitors and beyond?
  * Note: `$responsive` variable above must be set to true before enabling this.
  */
-$responsive-extra:  false!default;
+$responsive-extra:  true;
 
 /**
  * Responsive push and pull produce a LOT of code, only turn them on if you

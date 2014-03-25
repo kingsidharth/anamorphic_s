@@ -162,7 +162,15 @@
       );
       anamorphic_custom_tax_list($genre_args);
 
-      # End Common Meta
+      # The Series
+      $series_args = array(
+        'post_id' => $post->ID,
+        'tax_slug' => 'series',
+        'tax_title' => 'Part of',
+        'before' => '<p class="series">',
+        'after'  => '</p>',
+      );
+      anamorphic_custom_tax_list($series_args);
       echo '</aside>';
 
       # BEGIN AFFILATE SHIT
@@ -206,11 +214,11 @@
         <li class="separator"><a><i class="icon icon-chevron-right"></i></a></li>
         <?php if($itemtype =='film') { ?>
         <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-          <a itemprop="url" href="/category/film"><span itemprop="title">Films</span></a>
+          <a itemprop="url" href="/film/"><span itemprop="title">Films</span></a>
         </li>
         <?php } elseif($itemtype =='book') { ?> 
         <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
-          <a itemprop="url" href="/category/book"><span itemprop="title">Books</span></a>
+          <a itemprop="url" href="/book/"><span itemprop="title">Books</span></a>
         </li> 
         <?php } ?>
         <li class="separator"><a><i class="icon icon-chevron-right"></i></a></li>
