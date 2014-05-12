@@ -48,13 +48,14 @@
     </div>
   </div><!-- #footer_area -->
 
-  <?php wp_footer(); ?>
 
   </body>
 
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
   <script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/js/masonry.min.js"></script>
   <script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/js/app.js"></script>
+
+  <?php wp_footer(); ?>
 
   <?php if (!is_user_logged_in()) {
     # Do NOT load Google Analytics Code if user IS logged in
