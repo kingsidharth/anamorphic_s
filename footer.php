@@ -56,16 +56,6 @@
   <script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/js/masonry.min.js"></script>
   <script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/js/app.js"></script>
 
-  <div id="fb-root"></div>
-  <script>
-    (function(d, s, id) {
-      var js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) return;
-      js = d.createElement(s); js.id = id;
-      js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=502579883131350";
-      fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-  </script>
   <?php if (!is_user_logged_in()) {
     # Do NOT load Google Analytics Code if user IS logged in
   ?>
@@ -77,7 +67,6 @@
 
       ga('create', 'UA-4910697-22', 'anamorphic.in');
       ga('send', 'pageview');
-
     </script>
   <?php } ?>
 </html>
