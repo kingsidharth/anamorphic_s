@@ -26,22 +26,11 @@
 
 ?>
 <script>
-
-  $(document).ready(function() {
-    window.rating = <?php echo $rating; ?>;
-
-    rateIt(rating, '.rating');
-
-    $('#main_image').load(function() {
-        var anamorphic_imageurl = new Image;
-        anamorphic_imageurl.crossOrigin = "anamorphic.in";
-        anamorphic_imageurl.src = this.getAttribute('src');
-        anamorphic_imageurl.crossOrigin = "http://anamorphic.in";
-
-        var colorThief = new ColorThief();
-        console.log( colorThief.getColor(anamorphic_imageurl));
-    }); 
-});
+  
+  var documentData = {
+    'rating' : '<?php echo $rating; ?>',
+    'accentImage' : '<?php echo $main_image; ?>',
+  }
 
 </script>
 

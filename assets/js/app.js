@@ -59,6 +59,19 @@ $(document).ready(function() {
     });
   }
 
+  if (documentData.rating) {
+    rateIt(documentData.rating, '.rating');
+  }    
+
+  if (documentData.accentImage) {
+    var accentImage = new Image;
+        accentImage.crossOrigin = "http://anamorphic.in";
+        accentImage.src         = documentData.accentImage;
+    
+    var color = new ColorThief();
+    documentData.accentColor = arrayRGB(color.getColor(accentImage));
+  }
+
 });
 
 $(window).bind("load", function() {
