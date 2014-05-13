@@ -34,6 +34,8 @@ var rateIt = function(rating, targetElement) {
   }
 
   $(targetElement).empty().html(ratingHTML);
+
+  return $(targetElement);
 }
 
 $(document).ready(function() {
