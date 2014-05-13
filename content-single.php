@@ -27,10 +27,10 @@
 ?>
 <script>
 
-$(document).ready(function() {
-  window.rating = <?php echo $rating; ?>;
+  $(document).ready(function() {
+    window.rating = <?php echo $rating; ?>;
 
-  rateIt(rating, '.rating');
+    rateIt(rating, '.rating');
 });
 
 </script>
