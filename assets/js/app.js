@@ -6,6 +6,19 @@ var is_page;
 var is_taxonomy;
 
 
+// 3 Value Array to RGB
+var arrayRGB = function (array) {
+  var rgb = "rgb(";
+  for (i = 0; i < array.length; i++) { 
+    rgb += array[i];
+    if(i < array.length -1) {
+      rgb += ', ';
+    }
+  }
+  rgb += ')';
+  return rgb;
+}
+
 // Rating Display Functions
 var rating, rating_float, noStar;
 var rateIt = function(rating, targetElement) {
