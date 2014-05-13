@@ -31,9 +31,20 @@
     window.rating = <?php echo $rating; ?>;
 
     rateIt(rating, '.rating');
+
+    $('#main_image').load(function() {
+        var anamorphic_imageurl = new Image;
+        anamorphic_imageurl.crossOrigin = "anamorphic.in";
+        anamorphic_imageurl.src = this.getAttribute('src');
+        anamorphic_imageurl.crossOrigin = "http://anamorphic.in";
+
+        var colorThief = new ColorThief();
+        console.log( colorThief.getColor(anamorphic_imageurl));
+    }); 
 });
 
 </script>
+
 <article itemprop="review" itemscope itemtype="http://schema.org/Review" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
   <div itemprop="itemReviewed" itemscope itemtype="
    <?php if($itemtype == 'book') {
@@ -43,7 +54,7 @@
    } ?>" class="sidebar single_sidebar grid__item three-eighths palm-one-whole right">
     
     <aside class="photo">
-      <img src="<?php echo $main_image ?>" 
+      <img src="<?php echo $main_image ?>" id="main_image" crossorigin="http://anamorhpic.in" 
       alt="<?php echo $extended_title; ?>" title="<?php echo $extended_title; ?>" itemprop="image">
     </aside>
 
