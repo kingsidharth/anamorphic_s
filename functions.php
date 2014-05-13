@@ -461,10 +461,10 @@ function check_print_affiliate_link($link, $text) {
 # Uses embed.ly
 # TODO: Make this inhouse.
 function anamorphic_resize($image_url, $width ) {
-  $resized_url = 'http://i.embed.ly/1/display/resize?key=1bb0b297268c4c30bba79833f323b94f&url='
-    . $image_url . '&errorUrl=' . $image_url 
-    . '&width=' . $width;
-  return $resized_url;
+  #$resized_url = 'http://i.embed.ly/1/display/resize?key=1bb0b297268c4c30bba79833f323b94f&url='
+  #  . $image_url . '&errorUrl=' . $image_url 
+  #  . '&width=' . $width;
+  return $image_url;
 }
 
 /* ______ FULL-WIDTH LAYOUT ______ */
