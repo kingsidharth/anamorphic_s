@@ -8,7 +8,7 @@ var is_taxonomy;
 
 // 3 Value Array to RGB
 var arrayRGB = function (array) {
-  var rgb = "rgb(";
+  var rgb = 'rgb(';
   for (i = 0; i < array.length; i++) { 
     rgb += array[i];
     if(i < array.length -1) {
@@ -17,6 +17,20 @@ var arrayRGB = function (array) {
   }
   rgb += ')';
   return rgb;
+}
+
+var arrayRGBA = function (array, opacity) {
+  var rgba = 'rgba(';
+  for (i = 0; i < array.length; i++) { 
+    rgba += array[i];
+    if(i < array.length -1) {
+      rgba += ', ';
+    }
+  }
+
+  rgba += ', ' + opacity;
+  rgba += ')';
+  return rgba;
 }
 
 // Rating Display Functions
@@ -68,9 +82,30 @@ $(document).ready(function() {
         accentImage.crossOrigin = "http://anamorphic.in";
         accentImage.src         = documentData.accentImage;
     
-    var color = new ColorThief();
-    documentData.accentColor = arrayRGB(color.getColor(accentImage));
+    var getColorTheif = new ColorThief();
+    var color = getColorTheif.getColor(accentImage);
+    window.documentData.accentColor = arrayRGBA(color, 0.5);
   }
+
+  documentData.imageHeight = $('#main_image_').height(); 
+  documentData.mainImageUrl = $('#main_image_').attr('src');
+  documentData.headlineAreaHeight = $('#headline_area').height();
+  documentData.headlineAreaOffset = documentData.headlineAreaHeight;
+
+  $('#headline_area').css('background-color', documentData.accentColor);
+  $('.photo').css('top', (-1 * documentData.headlineAreaOffset) );
+  $('.sidebar').css('padding-top', (documentData.imageHeight - documentData.headlineAreaOffset) );
+
+  var jsGeneratedCSS = ' ';
+  jsGeneratedCSS += '<style> ' 
+    + '#headline_area:after { '
+    + '  background-image: url("' + documentData.mainImageUrl + '");'
+    + '} '
+    + '<style>';
+
+
+  $(document.body).append(jsGeneratedCSS);
+
 
 });
 

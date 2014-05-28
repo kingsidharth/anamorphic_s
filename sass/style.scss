@@ -157,6 +157,61 @@ body.page {
   }
 }
 
+.sidebar {
+  @include media-query(lap-and-up) {
+    position: relative;
+  }
+}
+
+.photo {
+  @include media-query(lap-and-up) {
+    position: absolute;
+    left: 0;
+  }
+}
+
+@mixin pele {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+
+#headline_area {
+  @include transition(0.3s);
+  position: relative;
+  overflow: hidden;
+  color: $white;
+  padding-top: $base-spacing-unit;
+  padding-bottom: $base-spacing-unit;
+  margin-top: $base-spacing-unit;
+  margin-bottom: $base-spacing-unit;
+
+  &:before {
+    @include pele;
+    background: rgba(0,0,0,0.45);
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+  }
+  &:after {
+    @include pele;
+    width: 200%;
+    height: 100%;
+    z-index: -1;
+    background-position: 50%;
+    background-size: cover;
+    background-attachment: fixed;
+
+    @include filter(blur(30px));
+    opacity: 0.5;
+    overflow: hidden;
+
+  }
+}
+
 aside.entry-meta {
   p {
     margin-bottom: 5px;
@@ -263,7 +318,7 @@ aside.entry-meta {
       }
       .entry-meta {
         span {
-          @include transition(0.2s);      
+          @include transition(0.2s);
           display: block;
         }
       }
@@ -271,7 +326,7 @@ aside.entry-meta {
 
     .subheading {
       font-size: 0.9em;
-      color: adjust-lightness($lgreen, 10%);
+      color: $white;
       margin-bottom: 0.2rem;
     }
   }
@@ -338,7 +393,7 @@ aside.entry-meta {
 }
 
 
-// Affiliate Promo 
+// Affiliate Promo
 .affiliate-promo {
   margin-top: 1em;
   border-top: 2px solid $green;
@@ -357,7 +412,7 @@ aside.entry-meta {
   .nav--button li a {
     text-decoration: underline;
   }
-} 
+}
 // breadcrumbs
 .breadcrumbs {
   font-size: 0.9em;
@@ -397,7 +452,7 @@ aside.entry-meta {
   }
 }
 
-// Special Nav 
+// Special Nav
 .nav--button {
   li {
     a{
@@ -420,7 +475,7 @@ aside.entry-meta {
 }
 
 @mixin nav--button($color, $background) {
-  li { 
+  li {
     a {
       background: $background;
       border: 1px solid $color;
@@ -431,7 +486,7 @@ aside.entry-meta {
         border-color: adjust-lightness($color, -10%);
       }
     }
-  } 
+  }
 }
 
 .nav--button-red {
