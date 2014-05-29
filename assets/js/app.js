@@ -90,7 +90,7 @@ $(document).ready(function() {
   documentData.imageHeight = $('#main_image_').height(); 
   documentData.mainImageUrl = $('#main_image_').attr('src');
   documentData.headlineAreaHeight = $('#headline_area').height();
-  documentData.headlineAreaOffset = documentData.headlineAreaHeight;
+  documentData.headlineAreaOffset = documentData.headlineAreaHeight + (16 * 5.2);
 
   $('#headline_area').css('background-color', documentData.accentColor);
   $('.photo').css('top', (-1 * documentData.headlineAreaOffset) );

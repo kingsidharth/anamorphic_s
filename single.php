@@ -58,7 +58,6 @@ get_header(); ?>
           <li class="separator"><a><i class="icon icon-chevron-right"></i></a></li>
         </ul>
         <h1 itemprop="name" class="entry-title"><?php echo $extended_title; ?></h1>
-        <div class="entry-meta">
         <?php
           if($subheading) {
             echo '<p class="subheading" itemprop="alternativeHeadline">';
@@ -70,12 +69,11 @@ get_header(); ?>
           echo "Rating <span itemprop='ratingValue'>$rating</span> out of <span itemprop='bestRating'>5</span>";
           echo '</p>';
         ?> 
-          <div class="hidden review-author-meta" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            <meta itemprop="name" content="King Sidharth"/>
-            <meta itemprop="url"  content="http://www.KingSidharth.com"/>
-            <meta itemprop="url"  content="https://plus.google.com/100630005600562803456?rel=author"/>
-          </div><!-- .review-author-meta -->
-        </div><!-- .entry-meta -->
+        <div class="hidden review-author-meta" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <meta itemprop="name" content="King Sidharth"/>
+          <meta itemprop="url"  content="http://www.KingSidharth.com"/>
+          <meta itemprop="url"  content="https://plus.google.com/100630005600562803456?rel=author"/>
+        </div><!-- .review-author-meta -->
       </header>
     </div>
   </div><!-- #headline_area -->
