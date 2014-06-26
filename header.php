@@ -104,9 +104,9 @@
         <ul id="main_navigation" class="nav nav--block nav--button nav--button-red">
           <li><a <?php if(is_page('about')) {?> class="active" <?php }?>href="/about">About</a></li>
           <li><a <?php if(is_category(3) | (is_single() && has_category(3))){?> 
-                 class="active"<?php }?> href="/film/">Film Reviews</a></li>
+                 class="active"<?php }?> href="/category/film/">Film Reviews</a></li>
           <li><a <?php if(is_category(4) | (is_single() && has_category(4))){?> 
-                 class="active"<?php }?>href="/book/">Book Reviews</a></li>
+                 class="active"<?php }?>href="category/book/">Book Reviews</a></li>
         </ul>            
        </nav><!-- #main-navigation -->
        </header><!-- #header -->
