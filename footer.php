@@ -77,6 +77,7 @@
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-4910697-22', 'anamorphic.in');
+      ga('require', 'displayfeatures');
       ga('send', 'pageview');
 
     </script>
