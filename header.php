@@ -86,7 +86,6 @@
 </head>
 
 <body <?php body_class(); ?>>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
 
   <div id="header_area" class="grid">
     <div class="page">
