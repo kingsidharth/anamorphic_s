@@ -87,8 +87,6 @@
 
 <body <?php body_class(); ?>>
 
-  <script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/js/jquery-1.11.1.min.js"></script>
-
   <div id="header_area" class="grid">
     <div class="page">
       <?php do_action( 'before' ); ?>
