@@ -95,16 +95,18 @@
       <?php if(is_home()) {
         echo "<h1 class=hidden>Anamorphic</h1>";
       } ?>
-      <div class="grid__item one-third portable-one-whole">
-        <a id="main-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+      <div class="grid__item two-fifths portable-one-whole">
+        <a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
           <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/anamorphic-logo.png"
+             width="230px" height="32px"
              alt="Anamorphic Logo"
+             id="main-logo"
              title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"> 
         </a><!-- #main-logo -->
       </div><!--
       --><nav id="main_navigation_area" role="navigation" 
-              class="grid__item two-thirds portable-one-whole desk-right">
-        <ul id="main_navigation" class="nav nav--block thin">
+              class="grid__item three-fifths portable-one-whole desk-right">
+        <ul id="main_navigation" class="nav nav--block">
           <li><a <?php if(is_page('about')) {?> class="active" <?php }?>href="/about">About</a></li>
           <li><a id="main_navigation__film-link" 
                   class="nav__category <?php if(is_category(3) | (is_single() && has_category(3))){?> 

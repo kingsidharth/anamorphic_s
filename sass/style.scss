@@ -389,20 +389,11 @@ aside.entry-meta {
 
   #main-logo {
     font-size: 1em;
-    margin-top: 0px;
-    margin-bottom: 0px;
-
-    .brand {
-      background-position: left center;
-      padding: $base-spacing-unit/2;
-      line-height: 1em;
-      font-size: 1em;
-    }
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 
-#content_area {
-  //padding-top: 2em;
-}
+#content_area {}
 
 // List of posts
 .post_list {
