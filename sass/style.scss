@@ -290,40 +290,53 @@ aside.entry-meta {
 #header_area {
   margin-top: $base-spacing-unit;
   margin-bottom: $base-spacing-unit;
-  padding-top: $base-spacing-unit;
-  padding-bottom: $base-spacing-unit;
+  //padding-top: $base-spacing-unit;
+  //padding-bottom: $base-spacing-unit;
   position: relative;
+}
   nav .nav {
     margin-bottom: 0;
-    word-spacing: 0;
+    word-spacing: normal;
+    letter-spacing: 0px;
     li{
       text-align: center;
-/*
       a{
-        padding-top: 17px;
-        padding-bottom: 18px;
         text-decoration: none;
         &:hover, .active {
-          background: $red;
           color: $white;
         }
-        .icon {
-          font-size: 0.9em;
-        }
       }
-*/
     }
   }
-}
 
-#main_navigation_area {
-  letter-spacing: 0px;
-  word-spacing: normal;
-  .active {
-    background: $red;
-    color: $white;
+// #main_navigation_area {
+  #main_navigation {
+    word-spacing: normal;
+    letter-spacing: 0px;
+
+    li {
+      a {
+        position: relative;
+        @include transition(0.3s);
+        @include p_element($before: true);
+        &:before {
+          border-top: 0px solid $red;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 0px;
+        }
+
+        &.active, &:hover {
+          color: $white;
+          &:before {
+            border-top-width: 2px;
+            height: 2px;
+          }
+        }
+      }
+    }
   }
-}
 
 /*
   #main_navigation {

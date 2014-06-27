@@ -79,23 +79,11 @@ $(document).ready(function() {
     rateIt(documentData.rating, '.rating');
   }    
 
-  /*
-  if (documentData.accentImage) {
-    var accentImage = new Image;
-        accentImage.crossOrigin = "http://anamorphic.in";
-        accentImage.src         = documentData.accentImage;
-    
-    var getColorTheif = new ColorThief();
-    var color = getColorTheif.getColor(accentImage);
-    window.documentData.accentColor = arrayRGBA(color, 0.5);
-  }*/
-
   documentData.imageHeight = $('#main_image_').height(); 
   documentData.mainImageUrl = $('#main_image_').attr('src');
   documentData.headlineAreaHeight = $('#headline_area').height();
   documentData.headlineAreaOffset = documentData.headlineAreaHeight + (16 * 5.2);
 
-  //$('#headline_area').css('background-color', documentData.accentColor);
   $('.photo').css('top', (-1 * documentData.headlineAreaOffset) );
   $('.sidebar').css('padding-top', (documentData.imageHeight - documentData.headlineAreaOffset) );
 
