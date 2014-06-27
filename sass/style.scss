@@ -31,6 +31,36 @@ $lgreen:      #688a87;
   font-family: 'Lato', 'Lucida Grande', 'Lucida Sans', Tahoma, sans-serif;
 }
 
+// HELPER
+
+@mixin _p_element_properties {
+  content: '';
+  position: absolute;
+}
+
+@mixin after_element {
+  &:after {
+    @include _p_element_properties;
+  }
+}
+
+@mixin before_element {
+  &:before {
+    @include _p_element_properties;
+  }
+}
+
+@mixin p_element($before: false, $after:false) {
+  position: relative;
+
+  @if($before) {
+    @include before_element;
+  }
+  @if($after) {
+    @include after_element;
+  }
+}
+
 body {
   color: $black;
   background: $white;
@@ -109,20 +139,21 @@ body.page {
   }
 }
 
+.nav {
+  &.nav--block {
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
 .brand {
-  background: url('assets/images/anamorphic-logo.png') transparent top left no-repeat;
+  background: url('assets/images/anamorphic-logo-transparent-green.png') transparent top left no-repeat;
   background-size: contain;
   display: inline-block;
   text-indent: -9999px;
   width: 100%;
 }
-  #main-logo {
-    margin-top: 0;
-    margin-bottom: 0;
-    .brand {
-      background-image: url('assets/images/anamorphic-logo-red.png');
-    }
-  }
 
 
 .entry-title {
@@ -170,12 +201,6 @@ body.page {
   }
 }
 
-@mixin pele {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 
 
 #headline_area {
@@ -187,29 +212,6 @@ body.page {
   padding-bottom: $base-spacing-unit;
   margin-top: $base-spacing-unit;
   margin-bottom: $base-spacing-unit;
-
-  &:before {
-    @include pele;
-    background: rgba(0,0,0,0.45);
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-  }
-  &:after {
-    @include pele;
-    width: 200%;
-    height: 100%;
-    z-index: -2;
-    background-position: 50%;
-    background-size: cover;
-    // background-attachment: fixed; — There are performance issues.
-
-    @include filter(blur(30px));
-    opacity: 0.5;
-    overflow: hidden;
-
-  }
 }
 
 aside.entry-meta {
@@ -233,17 +235,67 @@ aside.entry-meta {
   }
 }
 
+/* __________ BACKGROUNDS __________ */
+// Note: Combination of pos: fixed parent
+// with translate3d, and pos: absolute ch
+// -ild seems to be the best way to hold
+// it together.
+@mixin pele {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#background_area {
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 300px;
+  @include transform(translate3d(0,0,0));
+}
+
+#background {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  @include transform(translate3d(0,0,0));
+
+  &:before {
+    @include pele;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+    z-index: -1;
+  }
+  &:after {
+    @include pele;
+    top: -50%;
+    left: -50%;
+    height: 300%;
+    width: 300%;
+    background-size: cover;
+    @include filter(blur(35px));
+    z-index: -2;
+  }
+}
 
 
 /* __________ HEADER __________ */
 #header_area {
   margin-top: $base-spacing-unit;
   margin-bottom: $base-spacing-unit;
+  padding-top: $base-spacing-unit;
+  padding-bottom: $base-spacing-unit;
+  position: relative;
   nav .nav {
     margin-bottom: 0;
     word-spacing: 0;
     li{
       text-align: center;
+/*
       a{
         padding-top: 17px;
         padding-bottom: 18px;
@@ -256,11 +308,14 @@ aside.entry-meta {
           font-size: 0.9em;
         }
       }
+*/
     }
   }
 }
 
-#main-navigation {
+#main_navigation_area {
+  letter-spacing: 0px;
+  word-spacing: normal;
   text-align: right;
   .active {
     background: $red;
@@ -268,8 +323,68 @@ aside.entry-meta {
   }
 }
 
+  #main_navigation {
+    @include p_element($after: true);
+    &:after {
+      border-top: 2px solid $red;
+      left: 0px;
+      bottom: -1px;
+      width: 100%;
+      height: 2px;
+    }
+
+    li {
+      a {
+        position: relative;
+        @include p_element($after: true);
+
+        &:after {
+          width: 100%;
+          height: 2px;
+          bottom: 0px;
+          left: 0px;
+          border-top: 2px solid $red;
+          z-index: 1;
+        }
+
+        &.active {
+          background: none;
+          color: $red;
+          &:after {
+            border-color: $white;
+          }
+
+          &:hover {
+            color: $white;
+          }
+        }
+
+        &:hover, &:active {
+          background: none;
+          color: $white;
+          &:after {
+            border-color: $white;
+          }
+        }
+      }
+    }
+  }
+
+  #main-logo {
+    font-size: 1em;
+    margin-top: 0px;
+    margin-bottom: 0px;
+
+    .brand {
+      background-position: left center;
+      padding: $base-spacing-unit/2;
+      line-height: 1em;
+      font-size: 1em;
+    }
+  }
+
 #content_area {
-  padding-top: 2em;
+  //padding-top: 2em;
 }
 
 // List of posts
@@ -531,4 +646,5 @@ aside.entry-meta {
   padding-top:     1em;
   padding-left:  0.8em;
 }
+
 

@@ -89,7 +89,7 @@ get_header(); ?>
      echo "http://schema.org/Movie";
    } ?>" class="sidebar single_sidebar grid__item three-eighths palm-one-whole right">
     
-    <aside class="photo">
+    <aside class="grid__item photo">
       <img src="<?php echo $main_image ?>" id="main_image_" crossorigin="http://anamorhpic.in" 
       alt="<?php echo $extended_title; ?>" title="<?php echo $extended_title; ?>" itemprop="image">
     </aside>

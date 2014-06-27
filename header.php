@@ -86,14 +86,13 @@
 </head>
 
 <body <?php body_class(); ?>>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
-
   <div id="header_area" class="grid">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js" ></script>
     <div class="page">
       <?php do_action( 'before' ); ?>
       
       <header id="header" role="banner">
-      <div class="grid__item one-third portable-one-whole">
+      <div class="grid__item two-fifths portable-one-whole">
         <h1 id="main-logo" class="">
           <a href="<?php echo esc_url( home_url( '/' ) ); ?>" 
              title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" 
@@ -101,8 +100,8 @@
           </a>
         </h1>
       </div><!--
-      --><nav id="main-navigation" role="navigation" class="grid__item two-thirds portable-one-whole">
-        <ul id="main_navigation" class="nav nav--block nav--button nav--button-red">
+      --><nav id="main_navigation_area" role="navigation" class="grid__item three-fifths portable-one-whole">
+        <ul id="main_navigation" class="nav nav--block">
           <li><a <?php if(is_page('about')) {?> class="active" <?php }?>href="/about">About</a></li>
           <li><a <?php if(is_category(3) | (is_single() && has_category(3))){?> 
                  class="active"<?php }?> href="/film/">Film Reviews</a></li>
