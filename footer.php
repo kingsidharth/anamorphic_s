@@ -53,7 +53,6 @@
   </body>
 
   <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-  <script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/js/jquery-1.11.1.min.js"></script>
   <script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/js/masonry.min.js"></script>
   <script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/js/app.js"></script>
 
@@ -77,6 +76,7 @@
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
       ga('create', 'UA-4910697-22', 'anamorphic.in');
+      ga('require', 'displayfeatures');
       ga('send', 'pageview');
 
     </script>

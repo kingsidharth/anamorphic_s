@@ -84,8 +84,9 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico" /> 
   <link rel="alternate" type="application/rss+xml" title="<?php bloginfo('name'); ?>" href="http://feeds.feedburner.com/anamorphic" />
 </head>
-
 <body <?php body_class(); ?>>
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
   <div id="header_area" class="grid">
     <div class="page">
