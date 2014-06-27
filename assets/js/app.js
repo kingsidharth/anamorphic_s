@@ -5,7 +5,7 @@ var is_single;
 var is_page;
 var is_taxonomy;
 
-var documentData;
+var documentData = new Object;
 
 
 // 3 Value Array to RGB
@@ -87,18 +87,22 @@ $(document).ready(function() {
   $('.photo').css('top', (-1 * documentData.headlineAreaOffset) );
   $('.sidebar').css('padding-top', (documentData.imageHeight - documentData.headlineAreaOffset) );
 
-  var background = '<div id="background_area" style="height: '
-    + ( $('#header_area').height() + $('#headline_area').height() + (16 * 5.2))
-    + 'px;">'
-    + '<div id="background" data-speed="10">&nbsp;</div></div><!-- #background_area -->';
+  var background = new String;
+  background += '<div id="background_area" ';
+  if(documentData.mainImageUrl) {
+    background += 'style="height: ';
+    background += $('#header_area').outerHeight(true) + $('#headline_area').outerHeight(true) + 'px;"';
+  } else {
+    background += 'style="background-color: #0e2825; height:' + $('#header_area').outerHeight(true) + 'px;"' 
+      + ' class="no-p_element"'; 
+  }
+  background += '>';
+  background += '<div id="background" data-speed="10">&nbsp;</div></div><!-- #background_area -->';
 
-  var jsGeneratedCSS = ' ';
-  jsGeneratedCSS += '<style> ' 
-    + '#background:after { '
-    + '  background-image: url("' + documentData.mainImageUrl + '");'
-    + '} '
-    + '<style>';
-
+  var jsGeneratedCSS = new String; 
+  jsGeneratedCSS += '<style> ' + '#background:after { ';
+  jsGeneratedCSS += 'background-image: url("' + documentData.mainImageUrl + '");'
+  jsGeneratedCSS +=  '} </style>';
 
   $(document.body).append(jsGeneratedCSS);
   $(document.body).prepend(background);

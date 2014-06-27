@@ -258,6 +258,9 @@ aside.entry-meta {
   width: 100%;
   min-height: 300px;
   @include transform(translate3d(0,0,0));
+  &.no-p_element {
+    min-height: 85px;
+  }
 }
 
 #background {
@@ -282,6 +285,13 @@ aside.entry-meta {
     background-size: cover;
     @include filter(blur(35px));
     z-index: -2;
+  }
+}
+.no-p_element {
+  #background {
+    &:after, &:before {
+      display: none;
+    }
   }
 }
 
