@@ -10,22 +10,18 @@ get_header(); ?>
 <?php while ( have_posts() ) : the_post(); ?>
 
 <?php
-  global $subheading,
+global 
+    $subheading,
     $rating, 
     $main_image, 
+    $extended_title;  
     $other_name,
 
     $itemtype, 
-    
-    $directors, 
-    $release_year,     
-    
-    $authors, 
-    $bookisbn, 
-    $publisher, 
+      $directors, $release_year,     
+      $authors, $bookisbn, $publisher, 
 
     $affiliate, $flipkart_link, $amazon_link, $amazon_us_link, $infibeam_link, $other_link,
-    $extended_title;  
 
     $meta = get_post_meta( $post->ID );
     anamorphic_post_data($meta);

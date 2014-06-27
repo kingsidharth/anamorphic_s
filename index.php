@@ -10,12 +10,9 @@
  *
  * @package anamorhpic
  */
+?>
 
-get_header(); ?>
- <div id="home_header" class="grid">
-   <div class="page">
-     <h1 class="g one-whole">A site full of stars</h1>
-</div></div></div>
+<?php get_header(); ?>
 
   <div id="content_area" class="grid">
     <div class="full-width">

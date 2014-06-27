@@ -36,7 +36,7 @@ var arrayRGBA = function (array, opacity) {
 }
 
 // Rating Display Functions
-var rating, rating_float, noStar;
+var rating;
 var rateIt = function(rating, targetElement) {
   var noStar = 5 - rating;
   var rating_float = Math.round(rating*10)/10;
@@ -84,8 +84,8 @@ $(document).ready(function() {
   documentData.headlineAreaHeight = $('#headline_area').height();
   documentData.headlineAreaOffset = documentData.headlineAreaHeight + (16 * 5.2);
 
-  $('.photo').css('top', (-1 * documentData.headlineAreaOffset) );
-  $('.sidebar').css('padding-top', (documentData.imageHeight - documentData.headlineAreaOffset) );
+  //$('.photo').css('top', (-1 * documentData.headlineAreaOffset) );
+  //$('.sidebar').css('padding-top', (documentData.imageHeight - documentData.headlineAreaOffset) );
 
   var background = new String;
   background += '<div id="background_area" ';
