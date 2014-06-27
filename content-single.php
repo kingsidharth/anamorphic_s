@@ -28,35 +28,10 @@
 <script>
   // Get the rating number
   var rating, rating_float, noStar;
-  var rateIt = function(rating, noStar, rating_float) {
-    if(rating % 1 === 0) {
-      for (var i = 0; i < rating; i++) {
-        $('.rating').append('<i class="icon icon-star"></i> ');
-      }
-      for (var i = 0; i < noStar; i++) {
-        $('.rating').append('<i class="icon icon-star-empty"></i> ');
-      }
-    } else {
-      rating = Math.round(rating) - 1; // Set rating to rounded down.
-      noStar = 4 - rating;
-      for (var i = 0; i < rating; i++) {
-        $('.rating').append('<i class="icon icon-star"></i> ');
-      }
-      $('.rating').append('<i class="icon icon-star-half-full"></i> ');
-      for (var i = 0; i < noStar; i++) {
-        $('.rating').append('<i class="icon icon-star-empty"></i> ');
-      }
-    }
-  }
-  $(document).ready(function() {
-    window.rating = <?php echo $rating; ?>;
-    window.rating_float = Math.round(rating*10)/10;
-    window.noStar = 5 - rating;
-
-    $('.rating').empty(); 
-    rateIt(rating, noStar, rating_float);
-  });
-
+  var rating = <?php echo $rating; ?>;
+  var rating_float = Math.round(rating*10)/10;
+  var noStar = 5 - rating;
+  var is_single = true;
 </script>
 <article itemprop="review" itemscope itemtype="http://schema.org/Review" id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
   <div itemprop="itemReviewed" itemscope itemtype="
