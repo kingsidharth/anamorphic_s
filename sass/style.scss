@@ -319,13 +319,13 @@ aside.entry-meta {
 #main_navigation_area {
   letter-spacing: 0px;
   word-spacing: normal;
-  text-align: right;
   .active {
     background: $red;
     color: $white;
   }
 }
 
+/*
   #main_navigation {
     @include p_element($after: true);
     &:after {
@@ -372,6 +372,7 @@ aside.entry-meta {
       }
     }
   }
+*/
 
   #main-logo {
     font-size: 1em;
