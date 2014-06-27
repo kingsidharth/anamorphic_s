@@ -92,6 +92,9 @@
       <?php do_action( 'before' ); ?>
       
       <header id="header" role="banner">
+      <?php if(is_home()) {
+        echo "<h1 class=hidden>Anamorphic</h1>";
+      } ?>
       <div class="grid__item one-third portable-one-whole">
         <a id="main-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
           <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/anamorphic-logo.png"
