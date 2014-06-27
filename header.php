@@ -92,15 +92,14 @@
       <?php do_action( 'before' ); ?>
       
       <header id="header" role="banner">
-      <div class="grid__item two-fifths portable-one-whole">
-        <h1 id="main-logo" class="">
-          <a href="<?php echo esc_url( home_url( '/' ) ); ?>" 
-             title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>" 
-             rel="home" class="brand"><?php bloginfo( 'name' ); ?>
-          </a>
-        </h1>
+      <div class="grid__item one-third portable-one-whole">
+        <a id="main-logo" href="<?php echo esc_url( home_url( '/' ) ); ?>">
+          <img src="<?php echo get_stylesheet_directory_uri() ?>/assets/images/anamorphic-logo.png"
+             alt="Anamorphic Logo"
+             title="<?php echo esc_attr( get_bloginfo( 'name', 'display' ) ); ?>"> 
+        </a><!-- #main-logo -->
       </div><!--
-      --><nav id="main_navigation_area" role="navigation" class="grid__item three-fifths portable-one-whole">
+      --><nav id="main_navigation_area" role="navigation" class="grid__item two-thirds portable-one-whole">
         <ul id="main_navigation" class="nav nav--block">
           <li><a <?php if(is_page('about')) {?> class="active" <?php }?>href="/about">About</a></li>
           <li><a <?php if(is_category(3) | (is_single() && has_category(3))){?> 

@@ -19,6 +19,9 @@ License: GNU General Public License
 
 @import "responsive";
 
+//TODO: Move Helper Classes to a sub-module
+@import "helper";
+
 
 /* __________ VARIABLES __________ */
  $white:      #f1f2e4;
