@@ -104,12 +104,14 @@
       </div><!--
       --><nav id="main_navigation_area" role="navigation" 
               class="grid__item two-thirds portable-one-whole desk-right">
-        <ul id="main_navigation" class="nav nav--block">
+        <ul id="main_navigation" class="nav nav--block thin">
           <li><a <?php if(is_page('about')) {?> class="active" <?php }?>href="/about">About</a></li>
-          <li><a <?php if(is_category(3) | (is_single() && has_category(3))){?> 
-                 class="active"<?php }?> href="/category/film/">Film Reviews</a></li>
-          <li><a <?php if(is_category(4) | (is_single() && has_category(4))){?> 
-                 class="active"<?php }?>href="/category/book/">Book Reviews</a></li>
+          <li><a id="main_navigation__film-link" 
+                  class="nav__category <?php if(is_category(3) | (is_single() && has_category(3))){?> 
+                  active<?php }?>" href="/category/film/">Film Reviews</a></li>
+          <li><a id="main_navigation__book" 
+                  class="nav__category <?php if(is_category(4) | (is_single() && has_category(4))){?> 
+                 active<?php }?>" href="/category/book/">Book Reviews</a></li>
         </ul>            
        </nav><!-- #main-navigation -->
        </header><!-- #header -->
