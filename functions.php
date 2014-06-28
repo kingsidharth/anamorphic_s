@@ -44,7 +44,7 @@ function anamorphic_list_taxonomy($args) {
   $terms = get_terms($tax_slug);
   echo '<p class="'. $tax_slug. '">';
   if($tax_title){
-    echo "<strong>$tax_title: </strong>";
+    echo "<span class='meta__title'>$tax_title: </span>";
   }
 
   foreach ($terms as $term) {
@@ -53,7 +53,7 @@ function anamorphic_list_taxonomy($args) {
     if( is_wp_error( $term_link ) )
         continue;
     //We successfully got a link. Print it out.
-    echo '<span ';
+    echo '<span class="meta__value" ';
     if($schema_prop) {
       echo "itemprop='$schema_prop'";
     }
@@ -82,12 +82,12 @@ function anamorphic_custom_tax_list($args) {
 
   $before_list = '';
   if($tax_title) {
-    $before_list .= "<strong>$tax_title: </strong>";
+    $before_list .= "<span class='meta__title'>$tax_title: </span>";
   }
 
   // If Child Scope
   if($prop && $scope && $child_prop) {
-    $before_list .= "<span itemprop='$prop' itemscope itemtype='http://schema.org/$scope'><span itemprop='$child_prop'>";
+    $before_list .= "<span class='meta__value' itemprop='$prop' itemscope itemtype='http://schema.org/$scope'><span itemprop='$child_prop'>";
   } elseif($prop) {
     $before_list .= "<span itemprop='$prop'>";
   } else {
