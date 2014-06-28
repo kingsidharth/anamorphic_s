@@ -27,7 +27,7 @@
         'tax_item_prop' => 'author',
         'tax_item_scope' => 'Person',
         'tax_item_child_prop' => 'name',
-        'before' => '<span class="author">',
+        'before' => '<span class="author strong">',
         'after' => '</span>',
       );
       anamorphic_custom_tax_list($author_arg);
@@ -55,8 +55,8 @@
 
     # Release Year
     if($release_year){
-      echo '<p class="release_year"><strong>Year of Release: </strong>';
-      echo '<span itemprop=datePublished>';
+      echo '<p class="release_year"><span class="meta__title">Released in </span>';
+      echo '<span class="strong" itemprop=datePublished>';
       echo $release_year;
       echo '</span></p>';
     }
@@ -68,12 +68,12 @@
     # IF ITEM IS A BOOK
     echo '<aside class="entry-meta book-meta">';
     if($bookisbn) {
-      echo '<p class="entry-isbn"><strong>ISBN: </strong> ';
-      echo "<span itemprop='isbn'>$bookisbn</span></p>";
+      echo '<p class="entry-isbn"><span class="meta__title">ISBN: </span> ';
+      echo "<span itemprop='isbn' class='strong'>$bookisbn</span></p>";
     }
     if($publisher) {
-      echo '<p class="entry-publisher"><strong>Publisher: </strong> ';
-      echo "<span itemprop=publisher>$publisher</span></p>";
+      echo '<p class="entry-publisher"><span class="meta__title">Published by </strong> ';
+      echo "<span itemprop=publisher class='strong'>$publisher</span></p>";
     }
     echo '</aside>';
   } else {

@@ -553,6 +553,15 @@ aside.entry-meta {
     #elsewhere{}
 
 
+// MODULE
+.meta {}
+  .meta__title {
+    font-weight: 300;
+  }
+  .meta__value {
+    font-weight: bold;
+  }
+
 // DIRTY
 // TODO: Find better way to do pagination
 .pagination-nav {
