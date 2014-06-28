@@ -68,16 +68,19 @@ id="post-<?php the_ID(); ?>" <?php post_class(); ?> >
         <h1 itemprop="name" class="entry-title half-bottom-margin"><?php echo $html_title; ?></h1>
 
         <?php
-          echo '<p class="rating half-bottom-margin" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">';
+          echo '<p class="half-bottom-margin" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">';
           echo '<meta itemprop="worstRating" content="1"/>';
-          echo "Rating <span itemprop='ratingValue'>$rating</span> out of <span itemprop='bestRating'>5</span>";
+          echo "<span class=rating>Rating <span itemprop='ratingValue'>$rating</span> out of <span itemprop='bestRating'>5</span></span>";
           echo '</p>';
           if($subheading) {
-            echo '<p class="subheading no-bottom-margin" itemprop="alternativeHeadline">';
+            echo '<p class="subheading half-bottom-margin" itemprop="alternativeHeadline">';
             echo $subheading;
             echo '</p>';
           }
         ?> 
+        <ul class="nav no-bottom-margin">
+         <li><a href="#" id="buy_link" class="btn"><i class='icon icon-cart'></i> Buy Now</a></li>
+        </ul>
         <div class="hidden review-author-meta" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <meta itemprop="name" content="King Sidharth"/>
           <meta itemprop="url"  content="http://www.KingSidharth.com"/>

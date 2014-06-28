@@ -359,6 +359,12 @@ aside.entry-meta {
     }
   }
 
+  .btn {
+    background: $red;
+    color: $white;
+    line-height: 2;
+  }
+
   .title__byline {
     @extend .delta;
   }
