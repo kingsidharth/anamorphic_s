@@ -488,18 +488,26 @@ aside.entry-meta {
 // Single Post Content Promo
 .related_posts {
   margin-top: 10px;
-  border-top: 2px solid $green;
   h4 {
-    text-transform: uppercase;
-    font-weight: normal;
+    font-weight: 300;
     color: $lgreen;
   }
   .nav {
     li {
-      border-bottom: 1px dotted adjust-lightness($white, -15%);
+      list-style-type: none;
       margin-bottom: 0.2em;
+      position: relative;
+      @include p_element($before: true);
+      &:before {
+        @include icon-font;
+        content: '\e019';
+        position: absolute;
+        top: 20%;
+        color: $green;
+      }
       a {
         text-decoration: none;
+        padding-left: 1.5em;
       }
     }
   }
