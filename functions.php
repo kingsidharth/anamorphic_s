@@ -252,6 +252,17 @@ function anamorphic_post_data($meta) {
   }
 }
 
+function data_schema_itemtype($itemtype) {
+  $output = 'itemprop="itemReviewed" itemscope itemtype="';
+  if ($itemtype == 'book') {
+    $output += 'http://schema.org/Book"';
+  }
+  elseif ($itemtype == 'film') {
+    $output += '"http://schema.org/Movie"';
+  }
+
+  echo $output;
+}
 
 
 
