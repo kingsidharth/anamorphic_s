@@ -15,6 +15,7 @@ global
     $rating, 
     $main_image, 
     $extended_title,  
+    $html_title,
     $other_name,
 
     $itemtype, 
@@ -182,10 +183,9 @@ id="post-<?php the_ID(); ?>" <?php post_class(); ?> >
             }?>
         </div><!-- .sidebar
 
-  --><div class="format_text grid__item five-eighths palm-one-whole">
-
-<header class="entry-header">
-        <ul class="nav breadcrumbs epsilon">
+      --><div class="format_text grid__item five-eighths palm-one-whole review--<?php echo $itemtype; ?>">
+      <header class="entry-header entry__header">
+        <ul class="nav breadcrumbs epsilon no-bottom-margin">
           <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
             <a itemprop="url" href="/"><span itemprop="title">Anamorphic</span></a>
           </li>
@@ -200,18 +200,20 @@ id="post-<?php the_ID(); ?>" <?php post_class(); ?> >
           </li> 
           <?php } ?>
           <li class="separator"><a><i class="icon icon-chevron-right"></i></a></li>
-        </ul>
-        <h1 itemprop="name" class="entry-title"><?php echo $extended_title; ?></h1>
+        </ul><!-- breadcrumbs -->
+
+        <h1 itemprop="name" class="entry-title half-bottom-margin"><?php echo $html_title; ?></h1>
+
         <?php
-          if($subheading) {
-            echo '<p class="subheading" itemprop="alternativeHeadline">';
-            echo $subheading;
-            echo '</p>';
-          }
-          echo '<p class="rating" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">';
+          echo '<p class="rating half-bottom-margin" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">';
           echo '<meta itemprop="worstRating" content="1"/>';
           echo "Rating <span itemprop='ratingValue'>$rating</span> out of <span itemprop='bestRating'>5</span>";
           echo '</p>';
+          if($subheading) {
+            echo '<p class="subheading no-bottom-margin" itemprop="alternativeHeadline">';
+            echo $subheading;
+            echo '</p>';
+          }
         ?> 
         <div class="hidden review-author-meta" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <meta itemprop="name" content="King Sidharth"/>
@@ -220,12 +222,12 @@ id="post-<?php the_ID(); ?>" <?php post_class(); ?> >
         </div><!-- .review-author-meta -->
       </header>
 
-    <div class="entry-content" itemprop="reviewBody">
+    <div class="entry-content entry__body" itemprop="reviewBody">
       <?php the_content(); ?>
     </div><!-- .entry-content -->
 
     <aside> 
-    <p class="entry-date entry-meta">
+    <p class="entry-date entry-meta entry__footer">
       <span class="published">
         <meta itemprop="datePublished" content="<?php the_date('c'); ?>"/>
         Published on <?php echo get_the_date('F j, Y'); ?>.&nbsp;

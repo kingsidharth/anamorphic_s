@@ -192,7 +192,7 @@ function anamorphic_post_data($meta) {
     $publisher, 
 
     $flipkart_link, $amazon_link, $amazon_us_link, $other_link, $infibeam_link,
-    $extended_title;  
+    $extended_title, $html_title;  
   
   # COMMON METADATA
   
@@ -249,6 +249,17 @@ function anamorphic_post_data($meta) {
     $extended_title = get_the_title() . ' ('. $release_year . ')';
   } else {
     $extended_title = get_the_title();
+  }
+
+  # HTML Title 
+  if($itemtype == 'book') {
+    $html_title = get_the_title() 
+      . '<span class="title__byline block"> by<span class="title__author"> ' . implode(",", $authors) . '</span></span>';
+  } elseif ($item_type = 'film') {
+    # Film: Film (<Release Year>)
+    $html_title = get_the_title() . ' <span class="title__year title__byline">('. $release_year . ')</span>';
+  } else {
+    $html_title = get_the_title();
   }
 }
 

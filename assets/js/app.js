@@ -85,14 +85,11 @@ $(document).ready(function() {
   documentData.headlineAreaHeight = $('#headline_area').height();
   documentData.headlineAreaOffset = documentData.headlineAreaHeight + (16 * 5.2);
 
-  //$('.photo').css('top', (-1 * documentData.headlineAreaOffset) );
-  //$('.sidebar').css('padding-top', (documentData.imageHeight - documentData.headlineAreaOffset) );
-
   var background = new String;
   background += '<div id="background_area" ';
   if(documentData.mainImageUrl) {
     background += 'style="height: ';
-    background += $('#header_area').outerHeight(true) + $('.entry-header').outerHeight(true) + (25.6 * 2) + 'px;"';
+    background += $('#header_area').outerHeight(true) + $('.entry-header').outerHeight(true) + (25.6) + 'px;"';
   } else {
     background += 'style="background-color: #0e2825; height:' + $('#header_area').outerHeight(true) + 'px;"' 
       + ' class="no-p_element"'; 
@@ -104,6 +101,10 @@ $(document).ready(function() {
   jsGeneratedCSS += '<style> ' + '#background:after { ';
   jsGeneratedCSS += 'background-image: url("' + documentData.mainImageUrl + '");'
   jsGeneratedCSS +=  '} </style>';
+
+  if(documentData.mainImageUrl && is_single) {
+    $('.entry__header').addClass('has_background');
+  }
 
   $(document.body).append(jsGeneratedCSS);
   $(document.body).prepend(background);

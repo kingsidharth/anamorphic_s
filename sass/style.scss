@@ -308,7 +308,6 @@ aside.entry-meta {
     }
   }
 
-// #main_navigation_area {
   #main_navigation {
     word-spacing: normal;
     letter-spacing: 0px;
@@ -337,55 +336,6 @@ aside.entry-meta {
     }
   }
 
-/*
-  #main_navigation {
-    @include p_element($after: true);
-    &:after {
-      border-top: 2px solid $red;
-      left: 0px;
-      bottom: -1px;
-      width: 100%;
-      height: 2px;
-    }
-
-    li {
-      a {
-        position: relative;
-        @include p_element($after: true);
-
-        &:after {
-          width: 100%;
-          height: 2px;
-          bottom: 0px;
-          left: 0px;
-          border-top: 2px solid $red;
-          z-index: 1;
-        }
-
-        &.active {
-          background: none;
-          color: $red;
-          &:after {
-            border-color: $white;
-          }
-
-          &:hover {
-            color: $white;
-          }
-        }
-
-        &:hover, &:active {
-          background: none;
-          color: $white;
-          &:after {
-            border-color: $white;
-          }
-        }
-      }
-    }
-  }
-*/
-
   #main-logo {
     font-size: 1em;
     margin-top: 5px;
@@ -397,6 +347,24 @@ aside.entry-meta {
   z-index: 100;
   padding-top: $base-spacing-unit;
   padding-bottom: $base-spacing-unit;
+}
+
+.entry__header {
+  margin-bottom: $base-spacing-unit;
+
+  &.has_background {
+    a:hover {
+      color: $white;
+    }
+  }
+
+  .title__byline {
+    @extend .delta;
+  }
+}
+
+.entry__body {
+  padding-top: $base-spacing-unit;
 }
 
 // List of posts
@@ -462,16 +430,6 @@ aside.entry-meta {
 
 .rating {
   color: $green;
-}
-
-.center {
-  text-align: center;
-}
-.right {
-  text-align: right;
-}
-.left {
-  text-align: left;
 }
 
 .archive-entry-list-item {
