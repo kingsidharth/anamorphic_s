@@ -93,7 +93,7 @@ id="post-<?php the_ID(); ?>" <?php post_class(); ?> >
     </div><!-- .entry-content -->
 
     <aside> 
-    <p class="entry-date entry-meta entry__footer">
+    <p class="entry-date entry-meta entry__footer zeta">
       <span class="published">
         <meta itemprop="datePublished" content="<?php the_date('c'); ?>"/>
         Published on <?php echo get_the_date('F j, Y'); ?>.&nbsp;

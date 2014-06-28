@@ -5,7 +5,7 @@
 
 <aside class="about entry-meta main-meta">
   <p class="byline-meta">
-    <span class="name" itemprop="name">
+    <span class="name epsilon" itemprop="name">
       <?php if($other_name) { echo $other_name; } else { the_title(); }?>
     </span>
     <span class="byline"><?php if($itemtype == 'film') { echo 'directed '; } ?>by</span>
