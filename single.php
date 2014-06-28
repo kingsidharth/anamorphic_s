@@ -42,7 +42,7 @@ id="post-<?php the_ID(); ?>" <?php post_class(); ?> >
       <div id="content" role="main">
 
         <div id="sidebar" <?php data_schema_itemtype($itemtype); ?> 
-          class="sidebar single_sidebar grid__item three-eighths palm-one-whole right">
+          class="sidebar single_sidebar grid__item three-eighths palm-one-whole right palm-center zeta">
           <?php include 'sidebar.php'; ?>
         </div><!-- .sidebar
 

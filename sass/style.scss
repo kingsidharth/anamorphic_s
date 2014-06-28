@@ -175,7 +175,6 @@ body.page {
   color: $white;
 }
 .entry-meta {
-  font-size: 0.9em;
   color: $lgreen;
 }
 
@@ -184,7 +183,6 @@ body.page {
     font-weight: bold;
   }
   .name {
-    font-size: 1.3em;
     display: block;
   }
   .byline {
@@ -210,8 +208,6 @@ aside.entry-meta {
   p {
     margin-bottom: 5px;
     padding-bottom: 5px;
-    border-bottom: 1px dotted $green;
-
     a {
       color: $lgreen;
       text-decoration: none;
@@ -402,11 +398,8 @@ aside.entry-meta {
       &:active {
         background: adjust-lightness($white, -2%);
       }
-      .entry-date {
-        font-size: 0.8em;
-      }
+
       .entry-title {
-        font-size: 1em;
         line-height: 1.4em;
         margin-bottom: 3px;
         color: $red;
@@ -446,7 +439,6 @@ aside.entry-meta {
   margin-top: 0.5em;
   padding-top: 0.5em;
   footer {
-    font-size: 0.9em;
     text-transform: uppercase;
     color: adjust-lightness($black, 10%);
   }
@@ -490,7 +482,6 @@ aside.entry-meta {
 
   ul, p {
     margin-bottom: 0.5em;
-    font-size: 0.85em;
   }
   .nav--button li a {
     text-decoration: underline;
@@ -502,7 +493,6 @@ aside.entry-meta {
   .separator {
     color: $red;
     .icon {
-      font-size: 0.5em;
       padding-left: 0.2em;
       padding-right: 0.2em;
     }
@@ -518,7 +508,6 @@ aside.entry-meta {
   border-top: 2px solid $green;
   h4 {
     text-transform: uppercase;
-    font-size: 0.9em;
     font-weight: normal;
     color: $lgreen;
   }
