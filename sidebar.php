@@ -48,7 +48,7 @@
       'tax_item_prop' => 'actor',
       'tax_item_scope' => 'Person',
       'tax_item_child_prop' => 'name',
-      'before' => '<p class="actors">',
+      'before' => '<p class="actors meta">',
       'after'  => '</p>',
     );
     anamorphic_custom_tax_list($actor_args);
