@@ -158,7 +158,6 @@ body.page {
   width: 100%;
 }
 
-
 .entry-title {
   margin-top: 0;
   font-weight: 300;
@@ -166,11 +165,14 @@ body.page {
     text-decoration: none;
   }
 }
+.post .entry-title {
+  color: $white;
+}
 
 .subheading {
   font-weight: normal;
-  font-size: 0.9em;
   letter-spacing: 1px;
+  color: $white;
 }
 .entry-meta {
   font-size: 0.9em;
@@ -188,19 +190,6 @@ body.page {
   .byline {
     font-style: italic;
     font-weight: 300;
-  }
-}
-
-.sidebar {
-  @include media-query(lap-and-up) {
-    position: relative;
-  }
-}
-
-.photo {
-  @include media-query(lap-and-up) {
-    position: absolute;
-    left: 0;
   }
 }
 
@@ -403,7 +392,12 @@ aside.entry-meta {
     margin-bottom: 5px;
   }
 
-#content_area {}
+#content_area {
+  position: relative;
+  z-index: 100;
+  padding-top: $base-spacing-unit;
+  padding-bottom: $base-spacing-unit;
+}
 
 // List of posts
 .post_list {
@@ -542,8 +536,6 @@ aside.entry-meta {
 }
 // breadcrumbs
 .breadcrumbs {
-  font-size: 0.9em;
-  font-weight: 300;
   margin-bottom: 0.5rem;
   .icon {
     font-size: 0.5em;

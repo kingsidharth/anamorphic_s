@@ -75,7 +75,8 @@ $(document).ready(function() {
     });
   }
 
-  if (documentData.rating) {
+  if (rating) {
+    documentData.rating = rating;
     rateIt(documentData.rating, '.rating');
   }    
 
@@ -91,7 +92,7 @@ $(document).ready(function() {
   background += '<div id="background_area" ';
   if(documentData.mainImageUrl) {
     background += 'style="height: ';
-    background += $('#header_area').outerHeight(true) + $('#headline_area').outerHeight(true) + 'px;"';
+    background += $('#header_area').outerHeight(true) + $('.entry-header').outerHeight(true) + (25.6 * 2) + 'px;"';
   } else {
     background += 'style="background-color: #0e2825; height:' + $('#header_area').outerHeight(true) + 'px;"' 
       + ' class="no-p_element"'; 
