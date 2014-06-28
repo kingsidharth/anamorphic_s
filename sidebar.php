@@ -40,6 +40,14 @@
     # IF ITEM IS A FILM
     echo '<aside class="entry-meta film-meta">';
     
+    # Release Year
+    if($release_year){
+      echo '<p class="release_year"><span class="meta__title">Released in </span>';
+      echo '<span class="strong" itemprop=datePublished>';
+      echo $release_year;
+      echo '</span></p>';
+    }
+    
     # The Actors
     $actor_args = array(
       'post_id' => $post->ID,
@@ -52,15 +60,6 @@
       'after'  => '</p>',
     );
     anamorphic_custom_tax_list($actor_args);
-
-    # Release Year
-    if($release_year){
-      echo '<p class="release_year"><span class="meta__title">Released in </span>';
-      echo '<span class="strong" itemprop=datePublished>';
-      echo $release_year;
-      echo '</span></p>';
-    }
-
     # End of FILM Meta
     echo '</aside>';
   } 
