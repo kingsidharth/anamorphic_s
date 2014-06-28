@@ -8,7 +8,7 @@
     <span class="name epsilon" itemprop="name">
       <?php if($other_name) { echo $other_name; } else { the_title(); }?>
     </span>
-    <span class="byline"><?php if($itemtype == 'film') { echo 'directed '; } ?>by</span>
+    <span class="byline"><?php echo ($itemtype == 'film'? 'directed' : ''); ?>by</span>
     <?php
       if($itemtype =='film') {
         foreach ($directors as $director) {          
@@ -131,8 +131,4 @@
 
     echo '</aside>';
   }
-  if ( is_user_logged_in() ) {
-    echo '<aside class="admin-ui">';
-    edit_post_link( __( '<i class="icon icon-edit"> </i>Edit', 'anamorhpic' ), '<span class="admin edit-link">', '</span>' );
-    echo '</aside>';
-  }?>
+?>
