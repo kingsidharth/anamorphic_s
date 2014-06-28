@@ -51,10 +51,9 @@
 
   </body>
 
-  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="http://i.icomoon.io/public/temp/fa56f8cbed/Anamorphic/style.css">
   <script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/js/masonry.min.js"></script>
   <script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/js/app.js"></script>
-  <!--<script src="<?php echo bloginfo('stylesheet_directory'); ?>/assets/js/color-thief.min.js"></script>-->
 
   <?php wp_footer(); ?>
 

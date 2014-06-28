@@ -52,7 +52,7 @@ id="post-<?php the_ID(); ?>" <?php post_class(); ?> >
           <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
             <a itemprop="url" href="/"><span itemprop="title">Anamorphic</span></a>
           </li>
-          <li class="separator"><i class="icon icon-chevron-right"></i></li>
+          <li class="separator"><i class="icon icon-arrow-right"></i></li>
           <?php if($itemtype =='film') { ?>
           <li itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
             <a itemprop="url" href="/film/"><span itemprop="title">Films</span></a>
@@ -62,7 +62,7 @@ id="post-<?php the_ID(); ?>" <?php post_class(); ?> >
             <a itemprop="url" href="/book/"><span itemprop="title">Books</span></a>
           </li> 
           <?php } ?>
-          <li class="separator"><i class="icon icon-chevron-right"></i></li>
+          <li class="separator"><i class="icon icon-arrow-right"></i></li>
         </ul><!-- breadcrumbs -->
 
         <h1 itemprop="name" class="entry-title half-bottom-margin"><?php echo $html_title; ?></h1>
