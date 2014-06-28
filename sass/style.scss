@@ -274,16 +274,15 @@ aside.entry-meta {
   margin-bottom: $base-spacing-unit;
   position: relative;
 }
-  nav .nav {
+  .nav {
     margin-bottom: 0;
     word-spacing: normal;
     letter-spacing: 0px;
     li{
-      text-align: center;
       a{
         text-decoration: none;
         &:hover, .active {
-          color: $white;
+          color: $lgreen;
         }
       }
     }
@@ -550,4 +549,22 @@ aside.entry-meta {
   padding-bottom:  1em;
   padding-top:     1em;
   padding-left:  0.8em;
+}
+
+//Nav
+.nav--spaced {
+  > li:not(:last-child) {
+    margin-right: $base-spacing-unit/2;
+  }
+}
+
+// COLORS
+.green {
+  color: $green;
+}
+.lgreen {
+  color: $lgreen;
+}
+.red {
+  color: $red;
 }
