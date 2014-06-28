@@ -34,40 +34,12 @@ $lgreen:      #688a87;
   font-family: 'Lato', 'Lucida Grande', 'Lucida Sans', Tahoma, sans-serif;
 }
 
-// HELPER
-
-@mixin _p_element_properties {
-  content: '';
-  position: absolute;
-}
-
-@mixin after_element {
-  &:after {
-    @include _p_element_properties;
-  }
-}
-
-@mixin before_element {
-  &:before {
-    @include _p_element_properties;
-  }
-}
-
-@mixin p_element($before: false, $after:false) {
-  position: relative;
-
-  @if($before) {
-    @include before_element;
-  }
-  @if($after) {
-    @include after_element;
-  }
-}
-
 body {
   color: $black;
   background: $white;
   @include sans;
+
+  // Links
   a {
     color: $red;
     text-decoration: none;
@@ -81,10 +53,15 @@ body {
       text-decoration: none;
     }
   }
+
+  // TYPOGRAPHY
+  // Headline Margins
   h1, h2, h3, h4, h5, h6 {
     margin-top: 0.9em;
     margin-bottom: 0.5em;
   }
+
+  // Quotes
   blockquote {
     color: $lgreen;
     padding-left: 1em;
@@ -99,12 +76,37 @@ body {
       font-variant: italic;
     }
   }
+
+  // Lists
   ul {
     list-style-type: square;
   }
   ul, ol, dd {
     margin-left: 1.8rem;
   }
+}
+
+// Format Text Typography
+.format-text, p, ul, table, ol {
+  a {
+    text-decoration: underline;
+  }
+}
+
+// Overrides
+.nav {
+  word-spacing: normal;
+  &.nav--block {
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+// Layout
+.page {
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 body.page {
@@ -121,11 +123,7 @@ body.page {
   padding-right: 1.6em;
 }
 
-.page {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
+// Selection
 ::selection {
   background: $red;
   color: $white;
@@ -136,20 +134,7 @@ body.page {
   color: $white;
 }
 
-.format-text, p, ul, table, ol {
-  a {
-    text-decoration: underline;
-  }
-}
-
-.nav {
-  &.nav--block {
-    a {
-      text-decoration: none;
-    }
-  }
-}
-
+// Logo
 .brand {
   background: url('assets/images/anamorphic-logo-transparent-green.png') transparent top left no-repeat;
   background-size: contain;
@@ -158,27 +143,33 @@ body.page {
   width: 100%;
 }
 
-.entry-title {
+// ENTRY
+
+// Title
+.entry-title, .entry__title {
   margin-top: 0;
   font-weight: 300;
   a {
     text-decoration: none;
   }
 }
-.post .entry-title {
+.has_background .entry-title, .has_background .entry__title {
   color: $white;
 }
 
-.subheading {
+// Subheading
+.subheading, .entry__subheading {
   font-weight: normal;
   letter-spacing: 1px;
   color: $white;
 }
+
+// Entry Meta
 .entry-meta {
   color: $lgreen;
 }
 
-.main-meta {
+.main-meta { /* Dirty */
   .name, .creator {
     font-weight: bold;
   }
@@ -191,18 +182,6 @@ body.page {
   }
 }
 
-
-
-#headline_area {
-  @include transition(0.3s);
-  position: relative;
-  overflow: hidden;
-  color: $white;
-  padding-top: $base-spacing-unit;
-  padding-bottom: $base-spacing-unit;
-  margin-top: $base-spacing-unit;
-  margin-bottom: $base-spacing-unit;
-}
 
 aside.entry-meta {
   p {
@@ -222,6 +201,15 @@ aside.entry-meta {
     }
   }
 }
+
+// MODULE
+.meta {}
+  .meta__title {
+    font-weight: 300;
+  }
+  .meta__value {
+    font-weight: bold;
+  }
 
 /* __________ BACKGROUNDS __________ */
 // Note: Combination of pos: fixed parent
@@ -285,8 +273,6 @@ aside.entry-meta {
 #header_area {
   margin-top: $base-spacing-unit;
   margin-bottom: $base-spacing-unit;
-  //padding-top: $base-spacing-unit;
-  //padding-bottom: $base-spacing-unit;
   position: relative;
 }
   nav .nav {
@@ -305,9 +291,7 @@ aside.entry-meta {
   }
 
   #main_navigation {
-    word-spacing: normal;
     letter-spacing: 0px;
-
     li {
       a {
         position: relative;
@@ -552,15 +536,6 @@ aside.entry-meta {
     #get_reviewed{}
     #elsewhere{}
 
-
-// MODULE
-.meta {}
-  .meta__title {
-    font-weight: 300;
-  }
-  .meta__value {
-    font-weight: bold;
-  }
 
 // DIRTY
 // TODO: Find better way to do pagination

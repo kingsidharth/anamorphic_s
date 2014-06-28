@@ -244,3 +244,32 @@ $floats: left right none;
     @include transform(translateZ(0));
   }
 }
+
+// PSEUDO ELEMENTS
+@mixin _p_element_properties {
+  content: '';
+  position: absolute;
+}
+
+@mixin after_element {
+  &:after {
+    @include _p_element_properties;
+  }
+}
+
+@mixin before_element {
+  &:before {
+    @include _p_element_properties;
+  }
+}
+
+@mixin p_element($before: false, $after:false) {
+  position: relative;
+
+  @if($before) {
+    @include before_element;
+  }
+  @if($after) {
+    @include after_element;
+  }
+}
