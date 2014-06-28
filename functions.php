@@ -69,7 +69,7 @@ function anamorphic_list_taxonomy($args) {
       if($schema_link_prop) {
         echo "itemprop='$schema_link_prop'";
       }
-      echo '>' . $term->name . '</a>, </span>';
+      echo '>' . $term->name . '</a> &middot; </span>';
     }// foreach ($terms as $term)
 
     echo '</span><!--.meta__value-->';
@@ -90,7 +90,7 @@ function anamorphic_custom_tax_list($args) {
 
   $before_list = '';
   if($tax_title) {
-    $before_list .= "<span class='meta__title'>$tax_title: </span>";
+    $before_list .= "<span class='meta__title'>$tax_title </span>";
   }
 
   // If Child Scope
@@ -104,13 +104,13 @@ function anamorphic_custom_tax_list($args) {
 
   $separator = '';
   if($prop && $scope && $child_prop) {
-    $separator .= "</span></span>, " . 
+    $separator .= "</span></span> &middot; " . 
       "<span class='meta__value' itemprop='$prop' itemscope itemtype='http://schema.org/$scope'><span itemprop='$child_prop'>";
   } elseif($prop){
-    $separator .= "</span>, " . 
+    $separator .= "</span> &middot; " . 
       "<span class='meta__value' itemprop='$prop'>";
   } else {
-    $separator .= '</span>, <span>'; 
+    $separator .= '</span> &middot; <span>'; 
   }
 
   $after_list = '';

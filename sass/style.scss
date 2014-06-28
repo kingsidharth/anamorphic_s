@@ -188,12 +188,11 @@ aside.entry-meta {
     margin-bottom: 5px;
     padding-bottom: 5px;
     a {
-      color: $lgreen;
       text-decoration: none;
       border-bottom: 1px dotted $red;
+      @include transition(0.2s);
       &:hover {
-        color: $red;
-        border-bottom: 1px solid $red;
+        border-bottom-style: solid;
       }
       &:active {
         color: $black;
