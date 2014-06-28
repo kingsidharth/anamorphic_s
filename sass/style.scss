@@ -315,9 +315,10 @@ aside.entry-meta {
     li {
       a {
         position: relative;
-        @include transition(0.3s);
+        @include transition(0.2s);
         @include p_element($before: true);
         &:before {
+          @include transition(0.2s);
           border-top: 0px solid $red;
           left: 0;
           top: 0;
@@ -415,14 +416,11 @@ aside.entry-meta {
     }
 
     .subheading {
-      color: $white;
-      margin-bottom: 0.2rem;
+      color: $lgreen;
     }
   }
   .group-title {
-    font-size: 1em;
     font-weight: 300;
-    text-transform: uppercase;
     color: $lgreen;
   }
 }
@@ -492,13 +490,16 @@ aside.entry-meta {
     text-decoration: underline;
   }
 }
+
 // breadcrumbs
 .breadcrumbs {
-  margin-bottom: 0.5rem;
-  .icon {
-    font-size: 0.5em;
-    padding-left: 0.2em;
-    padding-right: 0.2em;
+  .separator {
+    color: $red;
+    .icon {
+      font-size: 0.5em;
+      padding-left: 0.2em;
+      padding-right: 0.2em;
+    }
   }
   a {
     text-decoration: none;
@@ -528,56 +529,6 @@ aside.entry-meta {
     display: none;
   }
 }
-
-// Special Nav
-.nav--button {
-  li {
-    a{
-      text-decoration: none;
-      text-align: center;
-      border-radius: 2em;
-      padding: 0.4em 1.18em;
-    }
-  }
-  &.nav--stacked {
-    li {
-      margin-bottom: 0.5em;
-    }
-  }
-  &.nav--block {
-    li {
-      margin-right: 0.8em;
-    }
-  }
-}
-
-@mixin nav--button($color, $background) {
-  li {
-    a {
-      background: $background;
-      border: 1px solid $color;
-      color: $color;
-      &:hover, &:focus, &.active {
-        background: $color;
-        color: $background;
-        border-color: adjust-lightness($color, -10%);
-      }
-    }
-  }
-}
-
-.nav--button-red {
-  @include nav--button($red, $white);
-}
-.nav--button-green {
-  @include nav--button($green, $white);
-}
-
-.nav--button-white-lgreen {
-  @include nav--button($white, $lgreen);
-}
-
-
 
 #promo_area {
 }
@@ -614,5 +565,3 @@ aside.entry-meta {
   padding-top:     1em;
   padding-left:  0.8em;
 }
-
-
